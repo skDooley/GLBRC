@@ -1,0 +1,21 @@
+#!/bin/bash --login
+########## Define Resources Needed with SBATCH Lines ##########
+ 
+#SBATCH --time=24:00:00             # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --ntasks=1                  # number of tasks - how many tasks (nodes) that you require (same as -n)
+#SBATCH --cpus-per-task=30           # number of CPUs (or cores) per task (same as -c)
+#SBATCH --mem=100G                    # memory required per node - amount of memory (in bytes)
+#SBATCH --job-name kegg      # you can give your job a name for easier identification (same as -J)
+#SBATCH --account shadeash-colej 
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=dooley.shanek@gmail.com
+
+
+#Launched with
+#sbatch -o logs/AnnotateLog.out -e logs/AnnotationLog.err scripts/hpc_scripts/KeggAnnotate.sb
+
+cd /mnt/research/germs/shane/glbrc/                 ### change to the directory where your code is located
+ 
+diamond blastx --query /mnt/gs18/scratch/users/dooleys1/bowtieDB/Final.contigs.fa --out annotations/final.contigs_diamond.KEGG_Prokaryotic.annotations.txt --outfmt 6 --max-hsps 5 --threads 30 --db annotations/KEGG_Prok          
+
+

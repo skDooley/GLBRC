@@ -1,0 +1,20 @@
+#!/bin/bash --login
+########## Define Resources Needed with SBATCH Lines ##########
+ 
+#SBATCH --time=24:00:00            # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --ntasks=1                 # number of tasks - how many tasks (nodes) that you require (same as -n)
+#SBATCH --cpus-per-task=20         # number of CPUs (or cores) per task (same as -c)
+#SBATCH --mem=100G                  # memory required per node - amount of memory (in bytes)
+#SBATCH --job-name mags1        # you can give your job a name for easier identification (same as -J)
+#SBATCH --account shadeash-colej 
+#SBATCH --output=logs/metabat.out
+#SBATCH --error=logs/metabat.err
+
+
+
+cd /mnt/research/ShadeLab/GLBRC/mags/     
+
+bash ~/bin/anaconda3/bin/runMetaBat.sh --threads 20 $SCRATCH/bowtieDB/Final.contigs.fa /mnt/gs18/scratch/users/dooleys1/metaG/fullAssembly/bams/*.sorted.bam  
+ 
+
+###SBATCH --dependency=aftercorr:40582039

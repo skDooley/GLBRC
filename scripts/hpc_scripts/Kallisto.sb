@@ -1,0 +1,58 @@
+#!/bin/bash --login
+ 
+#SBATCH --time=24:00:00            
+#SBATCH --ntasks=1                
+#SBATCH --cpus-per-task=20         
+#SBATCH --mem=400G                 
+#SBATCH --job-name kallisto        
+#SBATCH --account shadeash-colej 
+#SBATCH --output=/mnt/research/ShadeLab/GLBRC/logs/kallisto.out
+#SBATCH --error=/mnt/research/ShadeLab/GLBRC/logs/kallisto.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=dooley.shanek@gmail.com
+
+# This script was launched from: /mnt/research/ShadeLab/GLBRC
+# Using the command: sbatch scripts/hpc_scripts/Kallisto.sb
+
+#### Activate environment or load kallisto module and store variables for the run
+~/bin/anaconda3/bin/activate
+conda activate microbe
+METAGENOME=/mnt/gs18/scratch/users/dooleys1/bowtieDB/GLBRC_Metagenome/final.contigs.fa #Assembly to be indexed
+INDEX_DIR=/mnt/gs18/scratch/users/dooleys1/bowtieDB #Path of index file kallisto will create
+INDEX_NAME="KallistoIndex.kai"
+FASTQ_DIR=/mnt/gs18/scratch/users/dooleys1/metaT/cleaned_fastqs #Where R1,R2 files are located. To improve runtime, both the index and the fastq files should be on scratch but are not required to be
+R1_EXT="R1.fastq" #The extension type for reads 1 files. Eg Sample1.R1.fastq
+R2_EXT="R2.fastq" #The extension type for reads 2 files. Eg Sample1.R2.fastq  
+OUTPUT_DIR=/mnt/research/ShadeLab/GLBRC/mapping/metaT #Output directory for kallisto counts
+
+
+############### You shouldn't have to change anything below here ###############
+# Step 1. Create the Kallisto index for the metagenomic assembly
+echo -en "$(date) \t Building Kallisto Index \n\t kallisto index -i $INDEX_NAME $METAGENOME\n\n" >$OUTPUT_DIR/kallisto_progress.txt
+cd $INDEX_DIR
+kallisto index -i $INDEX_NAME $METAGENOME
+echo -en "$(date) \t Kallisto Index completed\n" >>$OUTPUT_DIR/kallisto_progress.txt
+
+# Step 2. kallisto defaults paired-end and you need to specify pairA_1.fastq pairA_2.fastq pairB_1.fastq pairB_2.fastq, etc... To do that, I am going to do a for loop and create a string to specify all the pairs.
+cd $FASTQ_DIR
+R1S=($(ls $FASTQ_DIR/*.$R1_EXT)) #Get a list of the pe1/r1 reads
+R2S=($(ls $FASTQ_DIR/*.$R2_EXT)) #Get a list of the pe2/r2 reads
+nsamples=${#R1S[@]} #Number of samples to process
+
+#Double check that we have the same number of R1/R2 files
+if [ $nsamples -ne ${#R2S[@]} ]; then
+    echo "Different Number of R1s ($nsamples) and R2s (${#R2S[@]})"
+    exit -1
+fi
+
+#Create the string to pass to Kallisto
+SAMPLE_STRING=""
+for ((i=0; i<nsamples; i++)); do
+    SAMPLE_STRING+="${R1S[$i]} ${R2S[$i]} "
+done
+
+# Step 3. Run Kallisto
+echo -en "$(date) \t Running Kallisto with $nsamples samples ($((nsamples*2)) fastq files) \n\t kallisto quant -t $SLURM_CPUS_PER_TASK -i $INDEX_DIR/$INDEX_NAME -o $OUTPUT_DIR $SAMPLE_STRING\n" >>$OUTPUT_DIR/kallisto_progress.txt
+kallisto quant -t $SLURM_CPUS_PER_TASK -i $INDEX_DIR/$INDEX_NAME -o $OUTPUT_DIR $SAMPLE_STRING
+echo -en "$(date) \t Kallisto Run complete\n\nResources:\n" >>$OUTPUT_DIR/kallisto_progress.txt
+#js -j $SLURM_JOB_ID >>$OUTPUT_DIR/kallisto_progress.txt

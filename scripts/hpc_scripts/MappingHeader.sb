@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --account shadeash-colej
+
+cd /mnt/home/$USER/bin/anaconda3/bin
+
+{
+	./activate microbe
+} || { 
+	echo "Couldn't activate the microbe conda enviroment"
+	exit -1
+}
+
+
