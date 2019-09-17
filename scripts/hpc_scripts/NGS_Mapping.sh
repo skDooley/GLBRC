@@ -75,7 +75,7 @@ for fastq in "${files[@]}"; do
 	# echo "echo \"Completed Splitting Reads\"" >>$SAMPLE_SCRIPTS/$sample.sb
 
 	# #################################### Step 3. Trim adapters and QC reads #################################### 
-	# echo -en "trimmomatic PE -phred33 -threads $THREADS $PAIRED/$sample.fastq.pe1.gz $PAIRED/$sample.fastq.pe2.gz $TRIMMED/$sample.fastq.pe1.gz $TRIMMED/$sample.fastq.se1.gz $TRIMMED/$sample.fastq.pe2.gz $TRIMMED/$sample.fastq.se2.gz ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10:8:TRUE LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 2>$TRIMSTATS/$sample.E.log \n\n" >>$SAMPLE_SCRIPTS/$sample.sb
+	echo -en "trimmomatic PE -phred33 -threads $THREADS $PAIRED/$sample.fastq.pe1.gz $PAIRED/$sample.fastq.pe2.gz $TRIMMED/$sample.fastq.pe1.gz $TRIMMED/$sample.fastq.se1.gz $TRIMMED/$sample.fastq.pe2.gz $TRIMMED/$sample.fastq.se2.gz ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10:8:TRUE LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 2>$TRIMSTATS/$sample.E.log \n\n" >>$SAMPLE_SCRIPTS/$sample.sb
 	# echo -en "cat $TRIMMED/$sample.fastq.se1.gz $TRIMMED/$sample.fastq.se2.gz > $TRIMMED/$sample.fastq.se12.gz\n #rm $TRIMMED/$sample.fastq.se1.gz $TRIMMED/$sample.fastq.se2.gz\n\n" >>$SAMPLE_SCRIPTS/$sample.sb
 	echo "echo \"Completed Trimming Reads\"" >>$SAMPLE_SCRIPTS/$sample.sb
 	
@@ -106,37 +106,37 @@ for fastq in "${files[@]}"; do
 	echo -en "run_microbe_census.py -t $THREADS $CLEANED_FASTQS/$sample.R1.fastq,$CLEANED_FASTQS/$sample.R2.fastq $SINGLEGENES/$sample.txt\n\n" >>$SAMPLE_SCRIPTS/$sample.sb
 	echo "echo \"Completed microbe census\"" >>$SAMPLE_SCRIPTS/$sample.sb
 
-	#################################### Step 6. Align the cleaned reads to the metagenomic assembly #################################### 
+	################################### Step 6. Align the cleaned reads to the metagenomic assembly #################################### 
 	echo -en "bowtie2 --threads $THREADS -x $CONTIGS_FILE -1 $CLEANED_FASTQS/$sample.R1.fastq -2 $CLEANED_FASTQS/$sample.R2.fastq -S $SAMS/$sample.sam >$FLAGSTATS/$sample.stat 2>&1 \n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 	echo "echo \"Completed Alignment\"" >>$SAMPLE_SCRIPTS/$sample.sb
 	
-	#################################### Step 7. Compress the sam file to make a bam #################################### 
+	# #################################### Step 7. Compress the sam file to make a bam #################################### 
 	echo -en "samtools view --threads $THREADS -b -S $SAMS/$sample.sam -t $CONTIGS_FILE >$BAMS/$sample.bam\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 	#Remove the sam file to save space, commented out because everything done on scratch which will auto delete after time runs out
 	#echo -en "rm $SAMS/$sample.sam\n\n">> $SAMPLE_SCRIPTS/$sample.sb
 
-	#################################### Step 8. Sort the reads #####################################
+	# #################################### Step 8. Sort the reads #####################################
 	echo -en "samtools sort -o $BAMS/$sample.sorted.bam $BAMS/$sample.bam\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 	#Remove the unsorted bam file to save space and because we have the sorted bam now, and no need to keep both
 	echo -en "rm $BAMS/$sample.bam\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 
-	#################################### Step 9. Index the reads #####################################
+	# #################################### Step 9. Index the reads #####################################
 	echo -en "samtools index -@ $THREADS $BAMS/$sample.sorted.bam\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 	
-	#################################### Step 10. Get the read counts along the contigs #####################################
+	# #################################### Step 10. Get the read counts along the contigs #####################################
 	echo -en "samtools idxstats $BAMS/$sample.sorted.bam >$IDXSTATS/$sample.tsv\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 
 	#Finally: Launch the script on the hpc
 	echo -en "$counter $sample Job: "
 
-	# If it's the last sample to process, then add an email flag so I know when it is done
+	#If it's the last sample to process, then add an email flag so I know when it is done
 	if [ $counter = $nsamples ]; then
 		#echo "$SAMPLE_SCRIPTS/$sample.sb"
-		sbatch --time=08:00:00 --mem=20G --cpus-per-task=20 -e "run_logs/$sample.$READTYPE.err" -o "run_logs/$sample.$READTYPE.out" --mail-type=ALL --mail-user=dooley.shanek@gmail.com "$SAMPLE_SCRIPTS/$sample.sb"
+		sbatch --time=04:00:00 --mem=50G --cpus-per-task=$THREADS -e "run_logs/$sample.$READTYPE.2err" -o "run_logs/$sample.$READTYPE.2out" --mail-type=ALL --mail-user=dooley.shanek@gmail.com "$SAMPLE_SCRIPTS/$sample.sb"
 		echo "Done"
 	else 
 		#echo "$SAMPLE_SCRIPTS/$sample.sb"
-		sbatch --time=08:00:00 --mem=20G --cpus-per-task=20 -e "run_logs/$sample.$READTYPE.err" -o "run_logs/$sample.$READTYPE.out" "$SAMPLE_SCRIPTS/$sample.sb"
+		sbatch --time=04:00:00 --mem=50G --cpus-per-task=$THREADS -e "run_logs/$sample.$READTYPE.2err" -o "run_logs/$sample.$READTYPE.2out" "$SAMPLE_SCRIPTS/$sample.sb"
 	fi
 done
 
