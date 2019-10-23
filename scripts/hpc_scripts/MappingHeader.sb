@@ -13,4 +13,3 @@ cd /mnt/home/$USER/bin/anaconda3/bin
 	exit -1
 }
 
-

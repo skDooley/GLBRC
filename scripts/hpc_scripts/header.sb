@@ -9,16 +9,16 @@
 #SBATCH --cpus-per-task=20
 #
 # Memory per node:
-#SBATCH --mem=25G
+#SBATCH --mem=400G
 #
 # Wall time 
-#SBATCH --time=12:00:00
+#SBATCH --time=4:00:00
 # 
 # Mail type:
-##SBATCH --mail-type=END
+#SBATCH --mail-type=END
 #
 # Mail user:
-##SBATCH --mail-user=dooley.shanek@gmail.com
+#SBATCH --mail-user=dooley.shanek@gmail.com
 #
 # Priority flag
 #SBATCH --account shadeash-colej 

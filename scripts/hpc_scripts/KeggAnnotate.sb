@@ -14,8 +14,10 @@
 #Launched with
 #sbatch -o logs/AnnotateLog.out -e logs/AnnotationLog.err scripts/hpc_scripts/KeggAnnotate.sb
 
-cd /mnt/research/germs/shane/glbrc/                 ### change to the directory where your code is located
+cd /mnt/research/ShadeLab/GLBRC 
  
-diamond blastx --query /mnt/gs18/scratch/users/dooleys1/bowtieDB/Final.contigs.fa --out annotations/final.contigs_diamond.KEGG_Prokaryotic.annotations.txt --outfmt 6 --max-hsps 5 --threads 30 --db annotations/KEGG_Prok          
+#diamond makedb --in $KEGG_GENES/prokaryotes.pep.gz --db annotations/KEGG_Prok
+diamond makedb --in $KEGG_GENES/eukaryotes.pep.gz --db annotations/KEGG_Euka
 
-
+# diamond blastx --query /mnt/gs18/scratch/users/dooleys1/bowtieDB/Final.contigs.fa --out annotations/final.contigs_diamond.KEGG_Prokaryotic.annotations.txt --outfmt 6 --max-hsps 5 --threads 30 --db annotations/KEGG_Prok          
+diamond blastx --max-target-seqs 1 --query /mnt/gs18/scratch/users/dooleys1/bowtieDB/Final.contigs.fa --out annotations/final.contigs_diamond.KEGG_Eukaryotic.annotations.txt --outfmt 6 --threads 30 --db annotations/KEGG_Euka   

@@ -3,11 +3,11 @@
 #SBATCH --time=24:00:00            
 #SBATCH --ntasks=1                
 #SBATCH --cpus-per-task=20         
-#SBATCH --mem=400G                 
-#SBATCH --job-name kallisto        
+#SBATCH --mem=400G       # Building the index takes a MASSIVE amount of memory, 7gb metagenome took 322 gb, if not building an index you only need ~XXX gb          
+#SBATCH --job-name kallistoT        
 #SBATCH --account shadeash-colej 
-#SBATCH --output=/mnt/research/ShadeLab/GLBRC/logs/kallisto.out
-#SBATCH --error=/mnt/research/ShadeLab/GLBRC/logs/kallisto.err
+#SBATCH --output=/mnt/research/ShadeLab/GLBRC/logs/kallistoT.out
+#SBATCH --error=/mnt/research/ShadeLab/GLBRC/logs/kallistoT.err
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=dooley.shanek@gmail.com
 
@@ -15,28 +15,36 @@
 # Using the command: sbatch scripts/hpc_scripts/Kallisto.sb
 
 #### Activate environment or load kallisto module and store variables for the run
-~/bin/anaconda3/bin/activate
-conda activate microbe
-METAGENOME=/mnt/gs18/scratch/users/dooleys1/bowtieDB/GLBRC_Metagenome/final.contigs.fa #Assembly to be indexed
-INDEX_DIR=/mnt/gs18/scratch/users/dooleys1/bowtieDB #Path of index file kallisto will create
+# ~/bin/anaconda3/bin/activate
+# conda activate microbe
+READ_TYPE="metaT"
+GLBRC=/mnt/research/ShadeLab/GLBRC
+
+METAGENOME=$SCRATCH/bowtieDB/GLBRC_Metagenome/final.contigs.fa #Assembly to be indexed
+INDEX_DIR=$SCRATCH/bowtieDB #Path of index file kallisto will create
 INDEX_NAME="KallistoIndex.kai"
-FASTQ_DIR=/mnt/gs18/scratch/users/dooleys1/metaT/cleaned_fastqs #Where R1,R2 files are located. To improve runtime, both the index and the fastq files should be on scratch but are not required to be
+FASTQ_DIR=$SCRATCH/$READ_TYPE/cleaned_fastqs
+# FASTQ_DIR=$SCRATCH/metaT/cleaned_fastqs #Where R1,R2 files are located. To improve runtime, both the index and the fastq files should be on scratch but are not required to be
 R1_EXT="R1.fastq" #The extension type for reads 1 files. Eg Sample1.R1.fastq
 R2_EXT="R2.fastq" #The extension type for reads 2 files. Eg Sample1.R2.fastq  
-OUTPUT_DIR=/mnt/research/ShadeLab/GLBRC/mapping/metaT #Output directory for kallisto counts
+SCRATCH_OUT=$SCRATCH/$READ_TYPE/kallistoOut
+OUTPUT_DIR=$GLBRC/mapping/$READ_TYPE/kallistoOut #Output directory for kallisto counts
+SCRIPTS_DIR=/mnt/research/ShadeLab/GLBRC/scripts/hpc_scripts/kallisto
+mkdir -p $SCRATCH_OUT $OUTPUT_DIR
 
+HEADER=$GLBRC/scripts/hpc_scripts/header.sb
 
 ############### You shouldn't have to change anything below here ###############
 # Step 1. Create the Kallisto index for the metagenomic assembly
-echo -en "$(date) \t Building Kallisto Index \n\t kallisto index -i $INDEX_NAME $METAGENOME\n\n" >$OUTPUT_DIR/kallisto_progress.txt
-cd $INDEX_DIR
-kallisto index -i $INDEX_NAME $METAGENOME
-echo -en "$(date) \t Kallisto Index completed\n" >>$OUTPUT_DIR/kallisto_progress.txt
+# echo -en "$(date) \t Building Kallisto Index \n\t kallisto index -i $INDEX_NAME $METAGENOME\n\n" >$OUTPUT_DIR/kallisto_progress.txt
+# cd $INDEX_DIR
+# kallisto index -i $INDEX_NAME $METAGENOME
+# echo -en "$(date) \t Kallisto Index completed\n" >>$OUTPUT_DIR/kallisto_progress.txt
 
 # Step 2. kallisto defaults paired-end and you need to specify pairA_1.fastq pairA_2.fastq pairB_1.fastq pairB_2.fastq, etc... To do that, I am going to do a for loop and create a string to specify all the pairs.
 cd $FASTQ_DIR
-R1S=($(ls $FASTQ_DIR/*.$R1_EXT)) #Get a list of the pe1/r1 reads
-R2S=($(ls $FASTQ_DIR/*.$R2_EXT)) #Get a list of the pe2/r2 reads
+R1S=($(ls *.$R1_EXT)) #Get a list of the pe1/r1 reads
+R2S=($(ls *.$R2_EXT)) #Get a list of the pe2/r2 reads
 nsamples=${#R1S[@]} #Number of samples to process
 
 #Double check that we have the same number of R1/R2 files
@@ -45,14 +53,38 @@ if [ $nsamples -ne ${#R2S[@]} ]; then
     exit -1
 fi
 
+
 #Create the string to pass to Kallisto
 SAMPLE_STRING=""
 for ((i=0; i<nsamples; i++)); do
+	sample=${R1S[$i]}
+	sample=${sample:0:-9}
+	mkdir -p $SCRATCH_OUT/$sample
+	cat $HEADER >$SCRIPTS_DIR/$sample.$READ_TYPE.sb
+	echo "cd $FASTQ_DIR" >>$SCRIPTS_DIR/$sample.$READ_TYPE.sb
+	echo "mkdir -p $SCRATCH_OUT/$sample" >>$SCRIPTS_DIR/$sample.$READ_TYPE.sb
+	echo "kallisto quant -t \$SLURM_CPUS_PER_TASK -i $INDEX_DIR/$INDEX_NAME -o $SCRATCH_OUT/$sample ${R1S[$i]} ${R2S[$i]}" >>$SCRIPTS_DIR/$sample.$READ_TYPE.sb
+	echo "echo \"Run Completed\"" >>$SCRIPTS_DIR/$sample.$READ_TYPE.sb
+	
+	
+	if [ $i = $((nsamples - 1)) ]; then
+		sbatch --mail-user=dooley.shanek@gmail.com --mail-type=ALL --error=$GLBRC/logs/kallisto/$sample.$READ_TYPE.err --output=$GLBRC/logs/kallisto/$sample.$READ_TYPE.out $SCRIPTS_DIR/$sample.$READ_TYPE.sb 
+		echo "Done"
+	else
+		sbatch --mail-user=dooley.shanek@gmail.com --mail-type=ALL --error=$GLBRC/logs/kallisto/$sample.$READ_TYPE.err --output=$GLBRC/logs/kallisto/$sample.$READ_TYPE.out $SCRIPTS_DIR/$sample.$READ_TYPE.sb 
+		echo $SCRIPTS_DIR/$sample.$READ_TYPE.sb $SCRATCH_OUT/$sample
+		echo "Done"
+		# sbatch --error=$GLBRC/logs/kallisto/$sample.$READ_TYPE.err --output=$GLBRC/logs/kallisto/$sample.$READ_TYPE.out $SCRIPTS_DIR/$sample.$READ_TYPE.sb
+	fi
+
+	break
+	#--output-dir=
     SAMPLE_STRING+="${R1S[$i]} ${R2S[$i]} "
 done
-
+echo "done"
 # Step 3. Run Kallisto
-echo -en "$(date) \t Running Kallisto with $nsamples samples ($((nsamples*2)) fastq files) \n\t kallisto quant -t $SLURM_CPUS_PER_TASK -i $INDEX_DIR/$INDEX_NAME -o $OUTPUT_DIR $SAMPLE_STRING\n" >>$OUTPUT_DIR/kallisto_progress.txt
-kallisto quant -t $SLURM_CPUS_PER_TASK -i $INDEX_DIR/$INDEX_NAME -o $OUTPUT_DIR $SAMPLE_STRING
-echo -en "$(date) \t Kallisto Run complete\n\nResources:\n" >>$OUTPUT_DIR/kallisto_progress.txt
+# echo -en "$(date) \t Running Kallisto with $nsamples samples ($((nsamples*2)) fastq files) \n\t kallisto quant -t $SLURM_CPUS_PER_TASK -i $INDEX_DIR/$INDEX_NAME -o $SCRATCH_OUT $SAMPLE_STRING\n" #>>$OUTPUT_DIR/kallisto_progressG.txt
+# kallisto bus -t $SLURM_CPUS_PER_TASK -i $INDEX_DIR/$INDEX_NAME -o $SCRATCH_OUT $SAMPLE_STRING
+# echo -en "$(date) \t Kallisto Run complete\n\nResources:\n" #>>$OUTPUT_DIR/kallisto_progressG.txt
+# cp $SCRATCH_OUT/* $OUTPUT_DIR/
 #js -j $SLURM_JOB_ID >>$OUTPUT_DIR/kallisto_progress.txt
