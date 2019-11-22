@@ -13146,7 +13146,7 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">from</span> <span class="nn">glob</span> <span class="k">import</span> <span class="n">glob</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">Text</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">interact</span>
@@ -13178,7 +13178,7 @@ div#notebook {
 <span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_datetime</span><span class="p">(</span><span class="n">metadataG</span><span class="o">.</span><span class="n">sampling_date</span><span class="p">)</span>
 <span class="n">metadataG</span><span class="o">=</span><span class="n">metadataG</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span>
 <span class="n">metadataG</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;sampling_date&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">metadataG</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># print(metadataG.shape)</span>
 
 <span class="n">metaG_Reads</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;mapping/metaG/hostRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.stat&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -13200,16 +13200,6 @@ div#notebook {
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-
-    
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(136, 3)
-</pre>
-</div>
-</div>
 
 <div class="output_area">
 
@@ -13350,7 +13340,7 @@ div#notebook {
   </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Hello-world2">Hello world2<a class="anchor-link" href="#Hello-world2">&#182;</a></h1>
+<h1 id="Hello-world3">Hello world3<a class="anchor-link" href="#Hello-world3">&#182;</a></h1>
 </div>
 </div>
 </div>
