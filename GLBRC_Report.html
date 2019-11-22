@@ -13140,14 +13140,14 @@ div#notebook {
 
   
 
-  <div class="nbinteract-hide_in nbinteract-hide_in
+  <div class="nbinteract-hide_in
       cell border-box-sizing code_cell rendered">
     <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="c1"># nbi:hide_in</span>
+
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">Text</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">AppLayout</span><span class="p">,</span> <span class="n">interact</span>  <span class="c1"># If not already imported</span>
 
 <span class="n">output_radio_selected</span> <span class="o">=</span> <span class="n">Text</span><span class="p">()</span> <span class="c1"># Used to take the user input and access it when needed</span>
@@ -13156,7 +13156,7 @@ div#notebook {
     <span class="n">value</span><span class="o">=</span><span class="s1">&#39;Percentage&#39;</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Reads by:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="p">)</span> <span class="c1"># nbid:hide_ind remove ds</span>
 <span class="c1"># radio_input = widgets.RadioButtons(options=[&#39;Option 1&#39;, &#39;Option 2&#39;]) # Declare the set of radio buttons and provide options</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
 
