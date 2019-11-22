@@ -13168,7 +13168,7 @@ div#notebook {
     <span class="n">scalar</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">-</span> <span class="nb">int</span><span class="p">((</span><span class="n">i</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="mi">120</span><span class="p">)</span> 
     <span class="k">if</span> <span class="n">pickColor</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;#</span><span class="si">%02X%02X%02X</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="n">scalar</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
     <span class="k">return</span> <span class="s1">&#39;#</span><span class="si">%02X%02X%02X</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="n">scalar</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
-
+<span class="k">global</span> <span class="n">metadataG</span>
 <span class="c1"># For metaG</span>
 <span class="n">metadataG</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;metadata/GLBRC_MetaG_Metadata.tsv&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">metadataG</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;nucleic_acid_name&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -13179,13 +13179,18 @@ div#notebook {
 <span class="n">metadataG</span><span class="o">=</span><span class="n">metadataG</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span>
 <span class="n">metadataG</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;sampling_date&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">metadataG</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
 <span class="n">metaG_Reads</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;mapping/metaG/hostRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.stat&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">metadataG</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">metadataG</span><span class="p">,</span><span class="n">metaG_Reads</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">metadataG</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># metadataG.head(3)</span>
+<span class="nd">@interact</span>
+<span class="k">def</span> <span class="nf">show_articles_more_than</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_reads&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_total&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_none&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_one&#39;</span><span class="p">],</span> 
+                            <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)):</span>
+    <span class="k">return</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">metadataG</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13205,141 +13210,6 @@ div#notebook {
 </pre>
 </div>
 </div>
-
-<div class="output_area">
-
-    
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>plot_name</th>
-      <th>type</th>
-      <th>Date</th>
-      <th>total_reads</th>
-      <th>paired_total</th>
-      <th>paired_aligned_none</th>
-      <th>paired_aligned_one</th>
-      <th>paired_aligned_multi</th>
-      <th>paired_aligned_discord_one</th>
-      <th>paired_aligned_mate_none</th>
-      <th>paired_aligned_mate_one</th>
-      <th>paired_aligned_mate_multi</th>
-      <th>overall_alignment_rate</th>
-      <th>paired_aligned_mate_multi_halved</th>
-      <th>paired_aligned_mate_none_halved</th>
-      <th>paired_aligned_mate_one_halved</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>G5R2_MAIN_09MAY2016_LD1</td>
-      <td>G5R2_MAIN</td>
-      <td>G5</td>
-      <td>2016-05-09</td>
-      <td>5733910</td>
-      <td>5682372</td>
-      <td>3473446</td>
-      <td>712198</td>
-      <td>1496728</td>
-      <td>21090</td>
-      <td>6474973</td>
-      <td>148098</td>
-      <td>281641</td>
-      <td>43.02</td>
-      <td>140820.5</td>
-      <td>3237486.5</td>
-      <td>74049.0</td>
-    </tr>
-    <tr>
-      <td>G6R4_MAIN_09MAY2016_LD1</td>
-      <td>G6R4_MAIN</td>
-      <td>G6</td>
-      <td>2016-05-09</td>
-      <td>12499818</td>
-      <td>12361687</td>
-      <td>2856755</td>
-      <td>2533104</td>
-      <td>6971828</td>
-      <td>86453</td>
-      <td>3362351</td>
-      <td>727701</td>
-      <td>1450552</td>
-      <td>86.36</td>
-      <td>725276.0</td>
-      <td>1681175.5</td>
-      <td>363850.5</td>
-    </tr>
-    <tr>
-      <td>G6R2_NF_09MAY2016_LD1</td>
-      <td>G6R2_NF</td>
-      <td>G6</td>
-      <td>2016-05-09</td>
-      <td>13450044</td>
-      <td>13316083</td>
-      <td>3166964</td>
-      <td>2673265</td>
-      <td>7475854</td>
-      <td>94385</td>
-      <td>3666061</td>
-      <td>790979</td>
-      <td>1688118</td>
-      <td>86.22</td>
-      <td>844059.0</td>
-      <td>1833030.5</td>
-      <td>395489.5</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="nbinteract-hide_in
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">show_articles_more_than</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;total_reads&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_total&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_none&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_one&#39;</span><span class="p">],</span> 
-                            <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)):</span>
-    <span class="k">return</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">metadataG</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
 
 <div class="output_area">
 
@@ -13480,7 +13350,7 @@ div#notebook {
   </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Hello-world">Hello world<a class="anchor-link" href="#Hello-world">&#182;</a></h1>
+<h1 id="Hello-world2">Hello world2<a class="anchor-link" href="#Hello-world2">&#182;</a></h1>
 </div>
 </div>
 </div>
