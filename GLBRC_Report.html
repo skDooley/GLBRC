@@ -13147,9 +13147,9 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span>   <span class="c1">#ANDOTHER#hIDDEN</span>
-
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">Text</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">AppLayout</span><span class="p">,</span> <span class="n">interact</span>  <span class="c1"># If not already imported</span>
-
+<span class="kn">import</span> <span class="nn">ipywidgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">Text</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">interact</span>  <span class="c1"># If not already imported</span>
+<span class="c1">#AppLayout</span>
 <span class="n">output_radio_selected</span> <span class="o">=</span> <span class="n">Text</span><span class="p">()</span> <span class="c1"># Used to take the user input and access it when needed</span>
 <span class="n">displayType</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span>
     <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Percentage&quot;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">],</span>
@@ -13264,40 +13264,7 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># # %matplotlib inline</span>
-<span class="c1"># from ipywidgets import AppLayout, Button, Output, Dropdown</span>
-<span class="c1"># from IPython.display import display</span>
-<span class="c1"># # top = Button(description=&quot;Top&quot;)</span>
-
-<span class="c1"># top = Dropdown(</span>
-<span class="c1">#     options=[&quot;Percentage&quot;,&quot;Count&quot;],</span>
-<span class="c1">#     value=&#39;Percentage&#39;,</span>
-<span class="c1">#     description=&#39;Reads by:&#39;,</span>
-<span class="c1">#     disabled=False,</span>
-<span class="c1"># )</span>
-<span class="c1"># # bottom = Button(description=&quot;Bottom&quot;)</span>
-<span class="c1"># # l = AppLayout(header=top, footer=bottom )</span>
-<span class="c1"># display(top)</span>
-
-<span class="c1"># output = Output()</span>
-
-<span class="c1"># @output.capture()</span>
-<span class="c1"># def helloWorld(button):</span>
-<span class="c1">#     print(dir(button))</span>
-<span class="c1">#     output.clear_output();</span>
-<span class="c1">#     print(&quot;Hello World&quot;)</span>
-<span class="c1">#     if button.new == &quot;Count&quot;:</span>
-<span class="c1">#         print(&quot;Count&quot;)</span>
-<span class="c1">#     else:</span>
-<span class="c1">#         print(&quot;Percentage&quot;)</span>
-<span class="c1"># #     print(button.variables[button][:])</span>
-<span class="c1"># #     print(dir(button))</span>
-<span class="c1"># #     print(button)</span>
-<span class="c1"># #     print(button.new)</span>
-
-<span class="c1"># top.observe(helloWorld)</span>
-
-<span class="c1"># display(output)</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>
