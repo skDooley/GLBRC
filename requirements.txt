@@ -5,3 +5,8 @@ pandas
 scipy
 jupyterlab
 sklearn
+matplotlib
+cufflinks
+plotly
+matplotlib_venn
+nodejs
