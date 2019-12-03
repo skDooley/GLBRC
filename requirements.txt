@@ -3,4 +3,5 @@ ipywidgets
 nbinteract
 pandas
 scipy
+jupyterlab
 sklearn

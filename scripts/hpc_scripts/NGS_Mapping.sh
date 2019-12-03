@@ -28,7 +28,8 @@ UNPAIRED=$META_DIR/unpaired
 FUNGAL_REMOVED=$SCRATCH_DIR/fungalCleaned
 
 #Log files dir
-CLEANING_STATS=$META_DIR/hostRemovalFlagstats
+HCLEANING_STATS=$META_DIR/hostRemovalFlagstats
+FCLEANING_STATS=$META_DIR/fungalRemovalFlagstats
 FLAGSTATS=$META_DIR/$ASSEMBLY_TYPE/flagstats
 IDXSTATS=$META_DIR/$ASSEMBLY_TYPE/idxStats
 COUNTS=$META_DIR/$ASSEMBLY_TYPE/counts
@@ -42,9 +43,9 @@ SAMPLE_SCRIPTS=$SCRATCH_DIR/scripts/$READTYPE
 HEADER=$GLBRC/scripts/hpc_scripts/MappingHeader.sb #Group Should be able to access this
 cd $META_DIR/unpaired  #Starting Location
 
-# THREADS=20    ## of threads for trimming and alignment
-THREADS=1
-MEM="1G"
+THREADS=20    ## of threads for trimming and alignment
+# THREADS=1
+MEM="80G"
 # CONTIGS_FILE=$SCRATCH/bowtieDB/AnnotatedContigs.fa
 CONTIGS_FILE=$SCRATCH/bowtieDB/Final.contigs.fa
 SWITCHGRASS=$SCRATCH/bowtieDB/Pvirgatum_516_v5.0.fa
@@ -56,7 +57,7 @@ nsamples=${#files[@]} #Number of samples to process
 counter=0 #Counter to keep track of what sample we are processing
 
 #If the dirs for output don't exist create them
-mkdir -p $BAMS $SAMS $CLEANED_FASTQS $PAIRED $TRIMMED $CLEANING_STATS $FLAGSTATS $IDXSTATS $SAMPLE_SCRIPTS $TRIMSTATS $SINGLEGENES $COUNTS
+mkdir -p $BAMS $SAMS $CLEANED_FASTQS $PAIRED $TRIMMED $FCLEANING_STATS $FCLEANING_STATS $FLAGSTATS $IDXSTATS $SAMPLE_SCRIPTS $TRIMSTATS $SINGLEGENES $COUNTS
 
 cd $SCRATCH_DIR
 
@@ -76,6 +77,7 @@ for fastq in "${files[@]}"; do
 	echo "echo \"Processing sample: $sample\""  >> $SAMPLE_SCRIPTS/$sample.sb
 	echo "echo \"Staring at: \$(date)\"" >> $SAMPLE_SCRIPTS/$sample.sb
 	echo "newgrp ShadeLab" >> $SAMPLE_SCRIPTS/$sample.sb
+	
 	#################################### Step 2. Separate combined reads into separate files (PE1, PE2, SE) ####################################
 	# echo -en "split-paired-reads.py --gzip -1 $PAIRED/$sample.fastq.pe1.gz -2 $PAIRED/$sample.fastq.pe2.gz $UNPAIRED/$fastq 2>/dev/null\n\n" >>$SAMPLE_SCRIPTS/$sample.sb
 	# echo "echo \"Completed Splitting Reads\"" >>$SAMPLE_SCRIPTS/$sample.sb
@@ -85,83 +87,95 @@ for fastq in "${files[@]}"; do
 	# echo -en "cat $TRIMMED/$sample.fastq.se1.gz $TRIMMED/$sample.fastq.se2.gz > $TRIMMED/$sample.fastq.se12.gz\n #rm $TRIMMED/$sample.fastq.se1.gz $TRIMMED/$sample.fastq.se2.gz\n\n" >>$SAMPLE_SCRIPTS/$sample.sb
 	# echo "echo \"Completed Trimming Reads\"" >>$SAMPLE_SCRIPTS/$sample.sb
 	
-	
+	echo -en "bowtie2 --threads $THREADS -x $CONTIGS_FILE -1 $TRIMMED/$sample.fastq.pe1.gz -2 $TRIMMED/$sample.fastq.pe2.gz -S $SAMS/$sample.metaG.sam \n\n" >> $SAMPLE_SCRIPTS/$sample.sb
+	echo "echo \"\$(date) Completed Alignment to the metagenomic assembly.\""          >>$SAMPLE_SCRIPTS/$sample.sb
+	# echo "samtools view -bS $SAMS/$sample.metaG.sam > $BAMS/$sample.metaG.bam" >>$SAMPLE_SCRIPTS/$sample.sb
+	# echo "samtools sort -n $BAMS/$sample.metaG.bam -o $BAMS/$sample.metaG_sorted.bam"  >>$SAMPLE_SCRIPTS/$sample.sb
+	# samtools index $BAMS/$sample.metaG_sorted.bam
+
 	#################################### Step 4. Remove the host related reads #################################### 
 	#4a) bowtie2 mapping against host sequence
 	# if [[ $sample == *"G5"* ]]; then
  # 		SAMFILE=$SAMS/$sample.SWGRASS.sam
  # 		BAMFILE=$BAMS/$sample.SWGRASS.bam
- # 		echo -en "bowtie2 --threads $THREADS -x $SWITCHGRASS -1 $TRIMMED/$sample.fastq.pe1.gz -2 $TRIMMED/$sample.fastq.pe2.gz -U $TRIMMED/$sample.fastq.se12.gz -S $SAMS/$sample.SWGRASS.sam >$CLEANING_STATS/$sample.stat 2>&1 \n\n" >> $SAMPLE_SCRIPTS/$sample.sb
+ # 		echo -en "bowtie2 --threads $THREADS -x $SWITCHGRASS -1 $TRIMMED/$sample.fastq.pe1.gz -2 $TRIMMED/$sample.fastq.pe2.gz -U $TRIMMED/$sample.fastq.se12.gz -S $SAMS/$sample.SWGRASS.sam >$HCLEANING_STATS/$sample.stat 2>&1 \n\n" >> $SAMPLE_SCRIPTS/$sample.sb
  # 	else
  # 		SAMFILE=$SAMS/$sample.MISCANTS.sam
  # 		BAMFILE=$BAMS/$sample.MISCANTS.bam
- # 		echo -en "bowtie2 --threads $THREADS -x $MISCANTHUS -1 $TRIMMED/$sample.fastq.pe1.gz -2 $TRIMMED/$sample.fastq.pe2.gz -U $TRIMMED/$sample.fastq.se12.gz -S $SAMS/$sample.MISCANTS.sam >$CLEANING_STATS/$sample.stat 2>&1 \n\n" >> $SAMPLE_SCRIPTS/$sample.sb
+ # 		echo -en "bowtie2 --threads $THREADS -x $MISCANTHUS -1 $TRIMMED/$sample.fastq.pe1.gz -2 $TRIMMED/$sample.fastq.pe2.gz -U $TRIMMED/$sample.fastq.se12.gz -S $SAMS/$sample.MISCANTS.sam >$HCLEANING_STATS/$sample.stat 2>&1 \n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 	# fi
 	# echo "samtools view -bS $SAMFILE > $BAMFILE" >>$SAMPLE_SCRIPTS/$sample.sb
 	# echo "echo \"\$(date) Completed Alignment to plant assembly.\""          >>$SAMPLE_SCRIPTS/$sample.sb
 
-	#4b) filter to get reads that are unmapped to the plant assemblies
-	# echo "samtools view -b -f 12 -F 256 $BAMFILE > $BAMS/$sample.unmapped.bam"  >>$SAMPLE_SCRIPTS/$sample.sb
+	# #4b) filter to get reads that are unmapped to the plant assemblies
+	# echo "samtools view -b -f 4 -F 256 $BAMFILE > $BAMS/$sample.unmapped.bam"  >>$SAMPLE_SCRIPTS/$sample.sb
 
-	#4c) split paired-end reads into separated fastq files .._R1 .._R2
+	# #4c) split paired-end reads into separated fastq files .._R1 .._R2
 	# echo "samtools sort -n $BAMS/$sample.unmapped.bam -o $BAMS/$sample.unmapped_sorted.bam"  >>$SAMPLE_SCRIPTS/$sample.sb
 	# echo "bedtools bamtofastq -i $BAMS/$sample.unmapped_sorted.bam -fq $CLEANED_FASTQS/$sample.R1.fastq -fq2 $CLEANED_FASTQS/$sample.R2.fastq"  >>$SAMPLE_SCRIPTS/$sample.sb
 
-	# echo "bowtie2 --threads $THREADS -x $FUNGAL -1 $CLEANED_FASTQS/$sample.R1.fastq -2 $CLEANED_FASTQS/$sample.R2.fastq -S $SAMS/$sample.fungal.sam 2>$CLEANING_STATS/$sample.fungal.stat" >> $SAMPLE_SCRIPTS/$sample.sb
+	# echo "bowtie2 --threads $THREADS -x $FUNGAL -1 $CLEANED_FASTQS/$sample.R1.fastq -2 $CLEANED_FASTQS/$sample.R2.fastq -S $SAMS/$sample.fungal.sam 2>$FCLEANING_STATS/$sample.fungal.stat" >> $SAMPLE_SCRIPTS/$sample.sb
 	# echo "samtools view -bS $SAMS/$sample.fungal.sam > $BAMS/$sample.fungal.bam" >>$SAMPLE_SCRIPTS/$sample.sb
-	# echo "samtools view -b -f 12 -F 256 $BAMS/$sample.fungal.bam > $BAMS/$sample.fungal.unmapped.bam"  >>$SAMPLE_SCRIPTS/$sample.sb
+	# echo "samtools view -b -f 4 -F 256 $BAMS/$sample.fungal.bam > $BAMS/$sample.fungal.unmapped.bam"  >>$SAMPLE_SCRIPTS/$sample.sb
 	# echo "samtools sort -n $BAMS/$sample.fungal.unmapped.bam -o $BAMS/$sample.fungal.unmapped_sorted.bam"  >>$SAMPLE_SCRIPTS/$sample.sb
+	# echo "rm $BAMS/$sample.fungal.unmapped.bam" >>$SAMPLE_SCRIPTS/$sample.sb
 	# echo "bedtools bamtofastq -i $BAMS/$sample.fungal.unmapped_sorted.bam -fq $CLEANED_FASTQS/$sample.FR1.fastq -fq2 $CLEANED_FASTQS/$sample.FR2.fastq"  >>$SAMPLE_SCRIPTS/$sample.sb
 	# echo "echo \"\$(date) Completed Alignment to the fungal assemblies/\""          >>$SAMPLE_SCRIPTS/$sample.sb
-	#################################### Step 5. Run MicrobeCensus to normalize samples by single copy gene #################################### 
-	# echo -en "run_microbe_census.py -t $THREADS $CLEANED_FASTQS/$sample.FR1.fastq,$CLEANED_FASTQS/$sample.FR2.fastq $SINGLEGENES/$sample.txt\n\n" >>$SAMPLE_SCRIPTS/$sample.sb
-	# echo "echo \"Completed microbe census\"" >>$SAMPLE_SCRIPTS/$sample.sb
+	# #################################### Step 5. Run MicrobeCensus to normalize samples by single copy gene #################################### 
+	# # echo -en "run_microbe_census.py -t $THREADS $CLEANED_FASTQS/$sample.FR1.fastq,$CLEANED_FASTQS/$sample.FR2.fastq $SINGLEGENES/$sample.txt\n\n" >>$SAMPLE_SCRIPTS/$sample.sb
+	# # echo "echo \"Completed microbe census\"" >>$SAMPLE_SCRIPTS/$sample.sb
 
-	################################### Step 6. Align the cleaned reads to the metagenomic assembly #################################### 
+	# ################################### Step 6. Align the cleaned reads to the metagenomic assembly #################################### 
 	# echo -en "bowtie2 --threads $THREADS -x $CONTIGS_FILE -1 $CLEANED_FASTQS/$sample.FR1.fastq -2 $CLEANED_FASTQS/$sample.FR2.fastq -S $SAMS/$sample.sam >$FLAGSTATS/$sample.stat 2>&1 \n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 	# echo "echo \"\$(date) Completed Alignment to the metagenomic assembly.\""          >>$SAMPLE_SCRIPTS/$sample.sb
 	
-	#################################### Step 7. Compress the sam file to make a bam #################################### 
+	# #################################### Step 7. Compress the sam file to make a bam #################################### 
 	# echo -en "samtools view --threads $THREADS -bt $CONTIGS_FILE.fai $SAMS/$sample.sam &>$BAMS/$sample.bam\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
-	# Remove the sam file to save space, commented out because everything done on scratch which will auto delete after time runs out
+	echo -en "\n\nsamtools view --threads $THREADS -bt $CONTIGS_FILE.fai $SAMS/$sample.metaG.sam &>$BAMS/$sample.metaG.bam  \n  
+	echo \"Done converting\"; \n 
+	samtools sort -n $BAMS/$sample.metaG.bam -o $BAMS/$sample.metaG_sorted.bam \n
+	samtools index -@ $THREADS $BAMS/$sample.metaG_sorted.bam \n\n" >> $SAMPLE_SCRIPTS/$sample.sb
+
+	# # Remove the sam file to save space, commented out because everything done on scratch which will auto delete after time runs out
 	# echo -en "rm $SAMS/$sample.sam\n\n">> $SAMPLE_SCRIPTS/$sample.sb
 
-	#################################### Step 8. Sort the reads #####################################
+	# #################################### Step 8. Sort the reads #####################################
 	# echo -en "samtools sort -o $BAMS/$sample.sorted.bam $BAMS/$sample.bam\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
-	#Remove the unsorted bam file to save space and because we have the sorted bam now, and no need to keep both
+	# #Remove the unsorted bam file to save space and because we have the sorted bam now, and no need to keep both
 	# echo -en "rm $BAMS/$sample.bam\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 
-	#################################### Step 9. Index the reads #####################################
+	# #################################### Step 9. Index the reads #####################################
 	# echo -en "samtools index -@ $THREADS $BAMS/$sample.sorted.bam\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
 	
-	# # #################################### Step 10. Get the read counts along the contigs #####################################
-	# echo "bedtools coverage -hist -a $SCRATCH/bowtieDB/Final.contigs.fa.bed -b $BAMS/$sample.sorted.bam > $COUNTS/$sample.map.hist" >> $SAMPLE_SCRIPTS/$sample.sb
+	# # # #################################### Step 10. Get the read counts along the contigs #####################################
+	# echo "bedtools coverage -hist -a $SCRATCH/bowtieDB/Final.contigs.filtered.bed -b $BAMS/$sample.sorted.bam > $COUNTS/$sample.map.hist" >> $SAMPLE_SCRIPTS/$sample.sb
 
 	# echo "python $GLBRC/scripts/get_coverage_for_genes.py -i <(echo $COUNTS/$sample.map.hist) > $COUNTS/$sample.coverage" >> $SAMPLE_SCRIPTS/$sample.sb
 	# echo -en "samtools idxstats $BAMS/$sample.sorted.bam >$IDXSTATS/$sample.tsv\n\n" >> $SAMPLE_SCRIPTS/$sample.sb
-	echo $sample
-	python $GLBRC/scripts/genes.to.kronaTable.py -i $GLBRC/annotations/PROKKA.ec -m $GLBRC/annotations/metagenomics-workshop/reference_db/kegg/ec.to.pwy -H $GLBRC/annotations/metagenomics-workshop/reference_db/kegg/pwy.hierarchy -n $sample -l <(grep "minpath 1" $GLBRC/annotations/KEGG.minpath) -c $COUNTS/$sample.coverage -o $COUNTS/$sample.krona.kegg.minpath.tab  #" >> $SAMPLE_SCRIPTS/$sample.sb
+
+	# #Filtering EC file took the number of genes from 524.470 to 54,630
+	# echo "python $GLBRC/scripts/genes.to.kronaTable.py -i $GLBRC/annotations/PROKKA.filtered.ec -m $GLBRC/annotations/metagenomics-workshop/reference_db/kegg/ec.to.pwy -H $GLBRC/annotations/metagenomics-workshop/reference_db/kegg/pwy.hierarchy -n $sample -l <(grep \"minpath 1\" $GLBRC/annotations/KEGG.minpath) -c $COUNTS/$sample.coverage -o $COUNTS/$sample.krona.kegg.minpath.tab" >> $SAMPLE_SCRIPTS/$sample.sb
 
 
 	echo "echo \"Done \$(date)\"" >> $SAMPLE_SCRIPTS/$sample.sb
 
-	#Finally: Launch the script on the hpc
-	# echo -en "$counter $sample Job: "
+	# #Finally: Launch the script on the hpc
+	echo -en "$counter $sample Job: "
 
-	# #If it's the last sample to process, then add an email flag so I know when it is done
-	# if [ $counter = $nsamples ]; then
-	# 	#echo "$SAMPLE_SCRIPTS/$sample.sb"
-	# 	sbatch --time=0:20:00 --mem=$MEM --cpus-per-task=$THREADS -e "$SCRATCH_DIR/run_logs/$sample.$READTYPE.err" -o "$SCRATCH_DIR/run_logs/$sample.$READTYPE.out" --mail-type=ALL --mail-user=dooley.shanek@gmail.com "$SAMPLE_SCRIPTS/$sample.sb"
-	# 	echo "Done"
-	# else 
-	# 	#echo "$SAMPLE_SCRIPTS/$sample.sb"
-	# 	sbatch --time=0:20:00 --mem=$MEM --cpus-per-task=$THREADS -e "$SCRATCH_DIR/run_logs/$sample.$READTYPE.err" -o "$SCRATCH_DIR/run_logs/$sample.$READTYPE.out" "$SAMPLE_SCRIPTS/$sample.sb"
-	# fi
-	# break
+	#If it's the last sample to process, then add an email flag so I know when it is done
+	if [ $counter = $nsamples ]; then
+		#echo "$SAMPLE_SCRIPTS/$sample.sb"
+		sbatch --time=2:00:00 --mem=$MEM --cpus-per-task=$THREADS -e "$SCRATCH_DIR/run_logs/$sample.$READTYPE.err2" -o "$SCRATCH_DIR/run_logs/$sample.$READTYPE.out" --mail-type=ALL --mail-user=dooley.shanek@gmail.com "$SAMPLE_SCRIPTS/$sample.sb"
+		echo "Done"
+	else 
+		#echo "$SAMPLE_SCRIPTS/$sample.sb"
+		sbatch --time=2:00:00 --mem=$MEM --cpus-per-task=$THREADS -e "$SCRATCH_DIR/run_logs/$sample.$READTYPE.err2" -o "$SCRATCH_DIR/run_logs/$sample.$READTYPE.out" "$SAMPLE_SCRIPTS/$sample.sb"
+	fi
+	break
 done
 
-echo $SAMPLE_SCRIPTS/$sample.sb
-
+export last=$SAMPLE_SCRIPTS/$sample.sb
+echo $last $SCRATCH_DIR/run_logs/$sample.$READTYPE.err
 
 
 #################################### Alternative way to do the count files ####################################
