@@ -13196,15 +13196,15 @@ div#notebook {
 
   
 
-  <div class="nbinteract-hide_in
+  <div class="
       cell border-box-sizing code_cell rendered">
     <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install matplotlib_venn cufflinks sklearn numpy pandas scipy matplotlib <span class="nv">plotly</span><span class="o">==</span><span class="m">4</span>.3.0 nbinteract
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install matplotlib_venn cufflinks sklearn numpy pandas scipy matplotlib <span class="nv">plotly</span><span class="o">==</span><span class="m">4</span>.3.0 nbinteract jupyter_contrib_nbextensions 
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter contrib nbextension install --user
 </pre></div>
 
     </div>
@@ -13415,13 +13415,14 @@ Skip to:
 
   
 
-  <div class="
+  <div class="nbinteract-hide_in
       cell border-box-sizing code_cell rendered">
     <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@interact</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
+<span class="nd">@interact</span>
 <span class="k">def</span> <span class="nf">graph</span><span class="p">(</span><span class="n">Host_Plant</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">,</span><span class="s2">&quot;Switchgrass&quot;</span><span class="p">,</span><span class="s2">&quot;Miscanthus&quot;</span><span class="p">],</span><span class="n">By</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Percentage&quot;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">]):</span>
     <span class="n">G5Data</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G5&#39;</span><span class="p">]</span>
     <span class="n">G6Data</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G6&#39;</span><span class="p">]</span>
@@ -13730,41 +13731,14 @@ Skip to:
 
   
 
-  <div class="
+  <div class="nbinteract-hide_in
       cell border-box-sizing code_cell rendered">
     <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># EukaryoticContigIDs, ProkaryoticContigIDs = set(), set()</span>
-<span class="c1"># for line in open(&quot;annotations/EukAnnotatedContigIDs2.txt&quot;):  EukaryoticContigIDs.add(line.strip())</span>
-<span class="c1"># for line in open(&quot;annotations/ProkAnnotatedContigIDs.txt&quot;): ProkaryoticContigIDs.add(line.strip())</span>
-<span class="c1"># len(EukaryoticContigIDs), len(ProkaryoticAnnotations)</span>
-<span class="c1"># import matplotlib.pyplot as plt</span>
-<span class="c1"># from matplotlib_venn import venn2</span>
-<span class="c1"># # First way to call the 2 group Venn diagram:</span>
-<span class="c1"># venn2(subsets = (len(ProkaryoticContigIDs.difference(EukaryoticContigIDs)), </span>
-<span class="c1">#                  len(ProkaryoticContigIDs.intersection(EukaryoticContigIDs)), </span>
-<span class="c1">#                  len(EukaryoticContigIDs.difference(ProkaryoticContigIDs))), set_labels = (&#39;Prokaryotic Contigs&#39;,&#39;Eukaryotic Contigs&#39;))</span>
-<span class="c1"># plt.title(&#39;Contigs with an Annotation&#39;)</span>
-<span class="c1"># plt.show()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
+<span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
 
 <span class="n">nbi</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;skdooley/GLBRC/master&quot;</span><span class="p">,</span> <span class="s2">&quot;GLBRC_Report2.ipynb&quot;</span><span class="p">)</span>
 </pre></div>
@@ -13784,10 +13758,10 @@ Skip to:
 
 
 
-<div id="0c20fed6-b50e-4994-8be0-9e54ab53a973"></div>
+<div id="4b4413d4-839e-46a1-bb51-11f6d02e9795"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#0c20fed6-b50e-4994-8be0-9e54ab53a973');
+var element = $('#4b4413d4-839e-46a1-bb51-11f6d02e9795');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -13801,10 +13775,10 @@ IPython.notebook.save_checkpoint();
 
 
 
-<div id="896a32cd-5880-426f-b7f6-af1da18f1069"></div>
+<div id="42f39532-0a9f-46b5-8a27-62af451e2995"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#896a32cd-5880-426f-b7f6-af1da18f1069');
+var element = $('#42f39532-0a9f-46b5-8a27-62af451e2995');
 IPython.notebook.save_notebook();
 </script>
 </div>
