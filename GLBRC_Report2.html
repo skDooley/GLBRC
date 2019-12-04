@@ -13203,7 +13203,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install matplotlib_venn cufflinks sklearn numpy pandas scipy matplotlib <span class="nv">plotly</span><span class="o">==</span><span class="m">4</span>.3.0 nbinteract jupyter_contrib_nbextensions 
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install nodejs jupyterlab matplotlib_venn cufflinks sklearn numpy pandas scipy matplotlib <span class="nv">plotly</span><span class="o">==</span><span class="m">4</span>.3.0 nbinteract jupyter_contrib_nbextensions 
 <span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter contrib nbextension install --user
 </pre></div>
 
@@ -13322,6 +13322,47 @@ div#notebook {
         </script>
         
 </div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Hidden</span>
+<span class="k">def</span> <span class="nf">friends</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> has </span><span class="si">{}</span><span class="s1"> friends!&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
+<span class="n">interact</span><span class="p">(</span><span class="n">friends</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Sam&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;One&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Five&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Ten&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">});</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
 
 </div>
 
@@ -13758,10 +13799,10 @@ Skip to:
 
 
 
-<div id="4b4413d4-839e-46a1-bb51-11f6d02e9795"></div>
+<div id="a6cd635d-33c3-4bb3-904c-e54f574d5c82"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#4b4413d4-839e-46a1-bb51-11f6d02e9795');
+var element = $('#a6cd635d-33c3-4bb3-904c-e54f574d5c82');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -13775,10 +13816,10 @@ IPython.notebook.save_checkpoint();
 
 
 
-<div id="42f39532-0a9f-46b5-8a27-62af451e2995"></div>
+<div id="b563fe7d-db16-4769-bad4-12bd77e41f95"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#42f39532-0a9f-46b5-8a27-62af451e2995');
+var element = $('#b563fe7d-db16-4769-bad4-12bd77e41f95');
 IPython.notebook.save_notebook();
 </script>
 </div>
@@ -16274,7 +16315,7 @@ def lookupFSTQ(name,rawFastqFiles):
     }
 
     var interact = new window.NbInteract({
-      spec: 'skdooley/GLBRC/master',
+      spec: 'skDooley/GLBRC/master',
       baseUrl: 'https://mybinder.org',
       provider: 'gh',
     })
