@@ -1,11 +1,11 @@
 #!/bin/bash --login
 ########## Define Resources Needed with SBATCH Lines ##########
  
-#SBATCH --time=6:00:00             # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --time=4:00:00             # limit of wall clock time - how long the job will run (same as -t)
 #SBATCH --ntasks=1                  # number of tasks - how many tasks (nodes) that you require (same as -n)
-#SBATCH --cpus-per-task=30           # number of CPUs (or cores) per task (same as -c)
+#SBATCH --cpus-per-task=20           # number of CPUs (or cores) per task (same as -c)
 #SBATCH --mem=80G                    # memory required per node - amount of memory (in bytes)
-#SBATCH --job-name buildIndex      # you can give your job a name for easier identification (same as -J)
+#SBATCH --job-name buildIndex2      # you can give your job a name for easier identification (same as -J)
 #SBATCH --account shadeash-colej 
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=dooley.shanek@gmail.com
@@ -14,11 +14,11 @@ cd /mnt/home/dooleys1/bin/anaconda3/bin
 ./activate microbe
 
 cd /mnt/gs18/scratch/users/dooleys1/bowtieDB/
-srun -A shadeash-colej bowtie2-build --threads 30 --seed 12 Final.contigs.fa Final.contigs.fa              ### call your executable
+# srun -A shadeash-colej bowtie2-build --threads 20 --seed 12 Final.contigs.fa Final.Contigs.fa              ### call your executable
  
-# srun -A shadeash-colej bowtie2-build --threads 20 --seed 12 Pvirgatum_516_v5.0.fa Pvirgatum_516_v5.0.fa              ### call your executable
+srun -A shadeash-colej bowtie2-build --threads 20 --seed 12 Pvirgatum_516_v5.0.fa Pvirgatum_516_v5.0.fa              ### call your executable
 
-# srun -A shadeash-colej bowtie2-build --threads 20 --seed 12 Msinensis_497_v7.0.fa Msinensis_497_v7.0.fa              ### call your executable
+srun -A shadeash-colej bowtie2-build --threads 20 --seed 12 Msinensis_497_v7.0.fa Msinensis_497_v7.0.fa              ### call your executable
 
 scontrol show job $SLURM_JOB_ID     ### write job information to output file
 

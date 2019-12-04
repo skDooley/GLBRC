@@ -3,24 +3,26 @@
  
 #SBATCH --time=144:00:00             # limit of wall clock time - 6 Days
 #SBATCH --ntasks=1                  # number of tasks - how many tasks (nodes) that you require (same as -n)
-#SBATCH --cpus-per-task=30           # number of CPUs (or cores) per task (same as -c)
+#SBATCH --cpus-per-task=40           # number of CPUs (or cores) per task (same as -c)
 #SBATCH --mem=400G                    # memory required per node - amount of memory (in bytes)
 #SBATCH --job-name metagenome      # you can give your job a name for easier identification (same as -J)
 #SBATCH --account shadeash-colej 
-
-
+#SBATCH --mail-type ALL
+#SBATCH --mail-user dooley.shanek@gmail.com
+#SBATCH --output=assembly.log.o
+#SBATCH --error=assembly.log.e
 cd ~/bin/anaconda3/bin
-./activate
+source ./activate
 
-conda activate microbe
 # module load cuda
 
-cd $SCRATCH/metaG/cleaned     ### change to the directory where your code is located
+cd $SCRATCH/metaG/trimmed     ### change to the directory where your code is located
 
-THREADS=30
+THREADS=40
 MEM=400e9
 
-srun -A shadeash-colej --mail-type=ALL --mail-user=dooley.shanek@gmail.com megahit --kmin-1pass -1 $(cat R1s.txt) -2 $(cat R2s.txt) --presets meta-large -o GLBRC_Metagenome -m $MEM            ### call your executable
- 
-scontrol show job $SLURM_JOB_ID     ### write job information to output file
+echo "Starting the metagenome assembly at: ${date}"
 
+megahit --kmin-1pass -1 $(cat R1s.txt) -2 $(cat R2s.txt) --presets meta-large -o GLBRC_UNFILTERED_Metagenome --num-cpu-threads 40 -m $MEM           
+
+echo "Finished the metagenome assembly at: ${date}"

@@ -3,6 +3,7 @@ ipywidgets
 nbinteract
 pandas
 scipy
+jupyter
 jupyterlab
 sklearn
 matplotlib

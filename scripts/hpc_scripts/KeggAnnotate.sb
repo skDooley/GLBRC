@@ -5,19 +5,22 @@
 #SBATCH --ntasks=1                  # number of tasks - how many tasks (nodes) that you require (same as -n)
 #SBATCH --cpus-per-task=30           # number of CPUs (or cores) per task (same as -c)
 #SBATCH --mem=100G                    # memory required per node - amount of memory (in bytes)
-#SBATCH --job-name kegg      # you can give your job a name for easier identification (same as -J)
+#SBATCH --job-name keggProk      # you can give your job a name for easier identification (same as -J)
 #SBATCH --account shadeash-colej 
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=dooley.shanek@gmail.com
 
-
 #Launched with
 #sbatch -o logs/AnnotateLog.out -e logs/AnnotationLog.err scripts/hpc_scripts/KeggAnnotate.sb
+source ~/bin/anaconda3/bin/activate
 
-cd /mnt/research/ShadeLab/GLBRC 
- 
+TYPE="Prok"
+TNAME="$TYPE""aryotic"
+
+cd /mnt/gs18/scratch/users/dooleys1/bowtieDB 
+GLBRC_ANNO="/mnt/research/ShadeLab/GLBRC/annotations"
 #diamond makedb --in $KEGG_GENES/prokaryotes.pep.gz --db annotations/KEGG_Prok
-diamond makedb --in $KEGG_GENES/eukaryotes.pep.gz --db annotations/KEGG_Euka
+#diamond makedb --in $KEGG_GENES/eukaryotes.pep.gz --db KEGG_Euka
 
-# diamond blastx --query /mnt/gs18/scratch/users/dooleys1/bowtieDB/Final.contigs.fa --out annotations/final.contigs_diamond.KEGG_Prokaryotic.annotations.txt --outfmt 6 --max-hsps 5 --threads 30 --db annotations/KEGG_Prok          
-diamond blastx --max-target-seqs 1 --query /mnt/gs18/scratch/users/dooleys1/bowtieDB/Final.contigs.fa --out annotations/final.contigs_diamond.KEGG_Eukaryotic.annotations.txt --outfmt 6 --threads 30 --db annotations/KEGG_Euka   
+diamond blastx --max-target-seqs 1 --query Final.contigs.fa --out "$GLBRC_ANNO/final.contigs_diamond.KEGG_"$TNAME".annotations.txt" --outfmt 6 --threads 30 --db KEGG_$TYPE        
+# diamond blastx --max-target-seqs 1 --query Final.contigs.fa --out $GLBRC_ANNO/final.contigs_diamond.KEGG_Eukaryotic.annotations.txt  --outfmt 6 --threads 30 --db KEGG_Euka   

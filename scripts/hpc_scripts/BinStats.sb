@@ -1,22 +1,21 @@
 #!/bin/bash --login
 ########## Define Resources Needed with SBATCH Lines ##########
  
-#SBATCH --time=6:00:00            # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --time=2:00:00            # limit of wall clock time - how long the job will run (same as -t)
 #SBATCH --ntasks=1                 # number of tasks - how many tasks (nodes) that you require (same as -n)
 #SBATCH --cpus-per-task=20         # number of CPUs (or cores) per task (same as -c)
 #SBATCH --mem=50G                  # memory required per node - amount of memory (in bytes)
 #SBATCH --job-name checkstats        # you can give your job a name for easier identification (same as -J)
 #SBATCH --account shadeash-colej 
-#SBATCH --output=logs/checkm.out
-#SBATCH --error=logs/checkm.err
+#SBATCH --output=checkm.out
+#SBATCH --error=checkm.err
 #SBATCH --mail-type=ALL 
 #SBATCH --mail-user=dooley.shanek@gmail.com
 
+source ~/bin/anaconda3/bin/activate
 
-cd /mnt/research/ShadeLab/GLBRC/mags                 ### change to the directory where your code is located
-~/bin/anaconda3/bin/activate 
-conda activate py2
+cd /mnt/research/ShadeLab/GLBRC/mags/  
 
-checkm lineage_wf -t 20 -x fa Final.contigs.fa.metabat-bins20 metaBinsStats             ### call your executable
- 
-
+echo -en "${date}\tStarting checkm report"
+checkm lineage_wf -t 20 -x fa Final.contigs.fa.metabat-bins40 metaBinsStats             
+echo -en "${date}\Finished checkm report"
