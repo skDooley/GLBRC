@@ -13210,6 +13210,11 @@ div#notebook {
 <span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter labextension install @jupyter-widgets/jupyterlab-manager
 <span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter nbextension <span class="nb">enable</span> --py --sys-prefix widgetsnbextension
 <span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter nbextension <span class="nb">enable</span> --py --sys-prefix bqplot
+<span class="c1">#Hidden</span>
+<span class="c1"># %matplotlib inline</span>
+<span class="c1"># def friends(name, number):</span>
+<span class="c1">#     return &#39;{} has {} friends!&#39;.format(name, number)</span>
+<span class="c1"># interact(friends, name=&#39;Sam&#39;, number={&#39;One&#39;: 1, &#39;Five&#39;: 5, &#39;Ten&#39;: 10});</span>
 </pre></div>
 
     </div>
@@ -13334,27 +13339,6 @@ div#notebook {
 </div>
 
   </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Hidden</span>
-<span class="c1"># %matplotlib inline</span>
-<span class="c1"># def friends(name, number):</span>
-<span class="c1">#     return &#39;{} has {} friends!&#39;.format(name, number)</span>
-<span class="c1"># interact(friends, name=&#39;Sam&#39;, number={&#39;One&#39;: 1, &#39;Five&#39;: 5, &#39;Ten&#39;: 10});</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="seqSums"></a></p>
@@ -13378,6 +13362,11 @@ div#notebook {
         </div>
     </p>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="alert alert-block alert-success">
 
 [Outline](#home)
@@ -13424,6 +13413,11 @@ Skip to:
         </div>
     </p>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="alert alert-block alert-success">
 
 [Outline](#home)
@@ -13633,20 +13627,17 @@ Skip to:
 [Outline](#home)
 
 Skip to: 
+*  Functional annotation accumulation over time
 *  [Is time a factor that affects the functional richness of phylosphere communities (Alpha Diversity)?](#alphaD)
 *  [Do we see changes over time in functional richness?](#funcRich)
-*  [plantDif](#plantDif)
 *  [Is there a difference between treatment (Fertilized vs. Unfertilized)?](#treatComp)
+*  [Is there a difference between host plant?](#plantDif)    
 *  [PCoA of functional counts](#pcoa)
 *  [Is there similarity between the WGS communities and the 16S data?](#comp16S)
-*  []()
-*  []()
-*  []()
-*  []()
 *  [How variable are metagenomes across replicate time points?](#permdisp)
 
 
-</div><h4>Gene accumulation over time</h4><p><img src="ShadeLabCode/R/Figures/Figure1B_GenesAccumulation2.png" alt="pcoa"></p>
+</div><h4>COG accumulation over time</h4><p><img src="ShadeLabCode/R/Figures/Figure1B_COG_GenesAccumulation2.png" alt="pcoa"></p>
 
 </div>
 </div>
@@ -13654,7 +13645,7 @@ Skip to:
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="alphaD"></a></p>
-<h4 id="Is-time-a-factor-that-affects-the-functional-richness-of-phylosphere-communities-(Alpha-Diversity)?">Is time a factor that affects the functional richness of phylosphere communities (Alpha Diversity)?<a class="anchor-link" href="#Is-time-a-factor-that-affects-the-functional-richness-of-phylosphere-communities-(Alpha-Diversity)?">&#182;</a></h4><table>
+<h4 style="color:blue">Is time a factor that affects the functional richness of phylosphere communities (Alpha Diversity)?</h4><table>
     <tr>
         <td>
             <table style="border: 1px solid black;">
@@ -13780,8 +13771,7 @@ Skip to:
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="funcRich"></a></p>
-<p><h2 style="text-decoration: underline;">Overarching analysis - changes in metagenome content over time</h2></p>
-<h5 style="color:blue">Do we see changes over time in functional richness?</h5>
+<h4 style="color:blue">Do we see changes over time in functional richness?</h4>
 </div>
 </div>
 </div>
@@ -13890,7 +13880,7 @@ Skip to:
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="pcoa"></a></p>
-<h5 style="color:blue">PCoA</h5>
+<h4 style="color:blue">PCoA</h4>
 </div>
 </div>
 </div>
@@ -13940,6 +13930,13 @@ Skip to:
 </div>
 
   </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="ShadeLabCode/R/Figures/Figure2B_PhyllospherePCoAGenes2.png" alt="text"></p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="comp16S"></a></p>
