@@ -13203,22 +13203,70 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install nodejs <span class="nv">ipywidgets</span><span class="o">==</span><span class="m">7</span>.5.0 jupyterlab matplotlib_venn cufflinks sklearn numpy pandas scipy matplotlib <span class="nv">plotly</span><span class="o">==</span><span class="m">4</span>.3.0 nbinteract jupyter_contrib_nbextensions 
-<span class="c1"># nbextension</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter contrib nbextension install --user
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter labextension install @jupyter-widgets/jupyterlab-manager
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter nbextension <span class="nb">enable</span> --py --sys-prefix widgetsnbextension
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter nbextension <span class="nb">enable</span> --py --sys-prefix bqplot
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m jupyter labextension install @jupyterlab/celltags
-<span class="c1">#Hidden</span>
-<span class="c1"># %matplotlib inline</span>
-<span class="c1"># def friends(name, number):</span>
-<span class="c1">#     return &#39;{} has {} friends!&#39;.format(name, number)</span>
-<span class="c1"># interact(friends, name=&#39;Sam&#39;, number={&#39;One&#39;: 1, &#39;Five&#39;: 5, &#39;Ten&#39;: 10});</span>
+<span class="c1"># import sys</span>
+<span class="c1"># !{sys.executable} -m pip install nodejs ipywidgets==7.5.0 jupyterlab matplotlib_venn cufflinks sklearn numpy pandas scipy matplotlib plotly==4.3.0 nbinteract jupyter_contrib_nbextensions </span>
+<span class="c1"># # nbextension</span>
+<span class="c1"># !{sys.executable} -m jupyter contrib nbextension install --user</span>
+<span class="c1"># !{sys.executable} -m jupyter labextension install @jupyter-widgets/jupyterlab-manager</span>
+<span class="c1"># !{sys.executable} -m jupyter nbextension enable --py --sys-prefix widgetsnbextension</span>
+<span class="c1"># !{sys.executable} -m jupyter nbextension enable --py --sys-prefix bqplot</span>
+<span class="c1"># !{sys.executable} -m jupyter labextension install @jupyterlab/celltags</span>
+
+<span class="c1"># !conda update jupyterlab &amp;&amp; jupyter labextension update --all</span>
+<span class="c1"># !jupyter contrib nbextension install</span>
+<span class="c1"># !jupyter labextension install jupyter-matplotlib</span>
+<span class="c1"># !jupyter labextension install @jupyter-widgets/jupyterlab-manager</span>
+<span class="c1"># !jupyter labextension install @jupyterlab/plotly-extension</span>
+<span class="c1"># !jupyter labextension install @jupyterlab/celltags</span>
+<span class="c1"># !jupyter lab build</span>
+<span class="c1"># !jupyter nbextension enable --py --sys-prefix bqplot</span>
+<span class="c1"># !jupyter nbextension enable --py widgetsnbextension --sys-prefix</span>
+<span class="c1"># !jupyter nbextension enable --py plotlywidget --sys-prefix</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Hidden</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">interact</span>
+<span class="k">def</span> <span class="nf">friends</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> has </span><span class="si">{}</span><span class="s1"> friends!&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
+<span class="n">interact</span><span class="p">(</span><span class="n">friends</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Sam&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;One&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Five&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Ten&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">});</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
 </div>
 </div>
 
