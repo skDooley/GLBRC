@@ -13202,7 +13202,7 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #12</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #14</span>
 </pre></div>
 
     </div>
@@ -13219,13 +13219,13 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import plotly</span>
+<span class="c1"># import plotly.graph_objs as go</span>
 
-<span class="n">plotly</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">plot</span><span class="p">({</span>
-    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])],</span>
-    <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;hello world1&quot;</span><span class="p">)</span>
-<span class="p">},</span> <span class="n">auto_open</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># plotly.offline.plot({</span>
+<span class="c1">#     &quot;data&quot;: [go.Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],</span>
+<span class="c1">#     &quot;layout&quot;: go.Layout(title=&quot;hello world1&quot;)</span>
+<span class="c1"># }, auto_open=True)</span>
 </pre></div>
 
     </div>
@@ -13261,13 +13261,13 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import plotly</span>
+<span class="c1"># import plotly.graph_objs as go</span>
 
-<span class="n">plotly</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">plot</span><span class="p">({</span>
-    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])],</span>
-    <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;hello world2&quot;</span><span class="p">)</span>
-<span class="p">})</span>
+<span class="c1"># plotly.offline.plot({</span>
+<span class="c1">#     &quot;data&quot;: [go.Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],</span>
+<span class="c1">#     &quot;layout&quot;: go.Layout(title=&quot;hello world2&quot;)</span>
+<span class="c1"># })</span>
 </pre></div>
 
     </div>
@@ -13329,6 +13329,27 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
 </div>
 </div>
 
@@ -13659,14 +13680,14 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
-    <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; jupLab&quot;</span>
-<span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;jupyterlab&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import plotly.io as pio</span>
+<span class="c1"># import plotly.graph_objects as go</span>
+<span class="c1"># print(pio.renderers)</span>
+<span class="c1"># fig = go.Figure(</span>
+<span class="c1">#     data=[go.Bar(y=[2, 1, 3])],</span>
+<span class="c1">#     layout_title_text=&quot;Testing dif options for rendeerers; jupLab&quot;</span>
+<span class="c1"># )</span>
+<span class="c1"># fig.show(renderer=&quot;jupyterlab&quot;)</span>
 </pre></div>
 
     </div>
@@ -13683,11 +13704,11 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
-    <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; nteract&quot;</span>
-<span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;nteract&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fig = go.Figure(</span>
+<span class="c1">#     data=[go.Bar(y=[2, 1, 3])],</span>
+<span class="c1">#     layout_title_text=&quot;Testing dif options for rendeerers; nteract&quot;</span>
+<span class="c1"># )</span>
+<span class="c1"># fig.show(renderer=&quot;nteract&quot;)</span>
 </pre></div>
 
     </div>
@@ -13704,16 +13725,16 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import plotly</span>
+<span class="c1"># import plotly.graph_objs as go</span>
 
-<span class="n">plotly</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">connected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># plotly.offline.init_notebook_mode(connected=True)</span>
 
-<span class="n">p</span> <span class="o">=</span> <span class="n">plotly</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">iplot</span><span class="p">({</span>
-    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])],</span>
-    <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">),</span>
-<span class="p">})</span>
-<span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="c1"># p = plotly.offline.iplot({</span>
+<span class="c1">#     &quot;data&quot;: [go.Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],</span>
+<span class="c1">#     &quot;layout&quot;: go.Layout(title=&quot;hello world&quot;),</span>
+<span class="c1"># })</span>
+<span class="c1"># str(p)</span>
 </pre></div>
 
     </div>
@@ -13730,11 +13751,11 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
-    <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; plotly_mimetype&quot;</span>
-<span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;plotly_mimetype&quot;</span><span class="p">,</span><span class="n">auto_open</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fig = go.Figure(</span>
+<span class="c1">#     data=[go.Bar(y=[2, 1, 3])],</span>
+<span class="c1">#     layout_title_text=&quot;Testing dif options for rendeerers; plotly_mimetype&quot;</span>
+<span class="c1"># )</span>
+<span class="c1"># fig.show(renderer=&quot;plotly_mimetype&quot;,auto_open=True)</span>
 </pre></div>
 
     </div>
@@ -13835,7 +13856,7 @@ Skip to:
             <span class="n">htmlName</span> <span class="o">=</span> <span class="s2">&quot;MiscanCount.html&quot;</span>
             <span class="n">ax</span> <span class="o">=</span> <span class="n">G5Data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Plant Reads&#39;</span><span class="p">,</span><span class="s1">&#39;Fungal Reads&#39;</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">htmlName</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Miscanthus Reads Counts By Source&quot;</span><span class="p">)</span>
     
-    <span class="n">HTML</span><span class="p">(</span><span class="n">htmlName</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">htmlName</span><span class="p">)</span>
 <span class="c1">#     return ax</span>
 </pre></div>
 
