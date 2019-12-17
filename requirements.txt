@@ -3,8 +3,6 @@ biopython==1.74
 bqplot==0.12.1
 bz2file==0.98
 certifi==2019.9.11
-conda==4.8.0
-conda-build==3.18.9
 cryptography==2.7
 cufflinks==0.17.0
 DendroPy==4.4.0
