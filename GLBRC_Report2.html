@@ -13399,7 +13399,7 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TEST</span> <span class="c1">#4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #3</span>
 </pre></div>
 
     </div>
@@ -13566,15 +13566,65 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="k">import</span> <span class="n">download_plotlyjs</span><span class="p">,</span> <span class="n">init_notebook_mode</span>
+<span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">connected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+<div class="output_html rendered_html output_subarea ">
+        <script type="text/javascript">
+        window.PlotlyConfig = {MathJaxConfig: 'local'};
+        if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+        if (typeof require !== 'undefined') {
+        require.undef("plotly");
+        requirejs.config({
+            paths: {
+                'plotly': ['https://cdn.plot.ly/plotly-latest.min']
+            }
+        });
+        require(['plotly'], function(Plotly) {
+            window._Plotly = Plotly;
+        });
+        }
+        </script>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
 <span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="p">)</span>
-<span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;jupyterlab&quot;</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
     <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; jupLab&quot;</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;jupyterlab&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13618,37 +13668,30 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;browser&quot;</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
-    <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; browser&quot;</span>
-<span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;json&quot;</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
     <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; json&quot;</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+
+</div>
+
 </div>
 </div>
 
@@ -13662,15 +13705,34 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;nteract&quot;</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
     <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; nteract&quot;</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;nteract&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABWEAAAHCCAYAAACOrgsVAAAgAElEQVR4Xuzdedxmc/348ffMMAZjbKGxJAlZSgvCtyKRJXsipJRCyNogQ7IVydgZY18SRtn3PVIJSVp+pbTYGYOsY5bf4xxddzPjnvs+93zOuea+znlef8Wc8znXeb7PNZrXnPtcA6ZMmTIlvAgQIECAAAECBAgQIECAAAECBAgQIECgEoEBImwlrhYlQIAAAQIECBAgQIAAAQIECBAgQIBALiDCuhAIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQICDCugYIECBAgAABAgQIECBAgAABAgQIECBQoYAIWyGupQkQIECAAAECBAgQIECAAAECBAgQ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9qiD6V+dHHtE2N6m7tc7TeDY0y+JsdfcGXdfeXL+PGgvAgQIECBAgAABAgQIECBAoB4CImw95tjrWTz5zLj4/Z/+nv+Ycfa4hCWGLxQfWmHp/Md/O/WV/Wj4VTfdmz8aIXv+rheBThfInqmcPYZkziFzdPqpeP8ECBAgQIAAAQIECBAgQIDAVAIirMuBAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWmn/mWsAACAASURBVJoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIirGuAAAECBAgQIECAAAECBAgQIECAAAECFQqIsBXiWpoAAQIECBAgQIAAAQIECBAgQIAAAQIibOI18OS41xNXsDsBAgQIECBAgAABAgQIECBAgACB/i2w6IJz9u832M/fnQibOCARNhHQ7gQIECBAgAABAgQIECBAgAABAv1eQIRNG5EIm+YXImwioN0JECBAgAABAgQIECBAgAABAgT6vYAImzYiETbNT4RN9LM7AQIECBAgQIAAAQIECBAgQIBA/xcQYdNmJMKm+YmwiX52J0CAAAECBAgQIECAAAECBAgQ6P8CImzajETYND8RNtHP7gQIECBAgAABAgQIECBAgAABAv1fQIRNm5EIm+Ynwib62Z0AAQIECBAgQIAAAQIECBAgQKD/C4iwaTMSYdP8RNhEP7sTIECAAAECBAgQIECAAAECBAj0fwERNm1GImwBv0mTJsXzL7wUkydPiYUXmj8GDRzYtdeT414vsIJNCBAgQIAAAQIECBAgQIAAAQIECHSugAibNjsRthe/S6++Iw4fdX7XVosstECcfOS3YsXllsr/nQibdgHamwABAgQIECBAgAABAgQIECBAoP8LiLBpMxJhe/G75pZ7Y75h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LA1FLsCZEzflJtyAS5UwLH9rpe1Q8sZ7xuP0613taVKftp2dnozLi/P1G0z8fC0gwv7ylbH62M90e2vsbE/iIyyeXsb8/nEcHuyNycRbsiOYX/hzAj/5e/lzT94TIvBJYPUxn6vru3F4MBubmxvf+qy+FH9+vxjPL2/j+Gjfdyt5NREgQIBAJbBcLsfN/HH9GKv/Q95FXnEaEyBA4N8LvL69j5vbhzGdbo3Z7vTfeyQAETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCQBETYJuRMgQIAAAQIECBAgQIAAAQIECBAgQKAQEGELPFMCBAgQIECAAAECBAgQIECAAAECBAgkARE2CbkTIECAAAECBAgQIECAAAECBAgQIECgEBBhCzxTAgQIECBAgAABAgQIECBAgAABAgQIJAERNgm5EyBAgAABAgQIECBAgAABAgQIECBAoBAQYQs8UwIECBAgQIAAAQIECBAgQIAAAQIECCSBDx6VPG0PSAEPAAAAAElFTkSuQmCC"
+>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13684,15 +13746,80 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;chrome&quot;</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
     <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; chrome&quot;</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;chrome&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">Error</span>                                     Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-22-46dcd426b84b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     layout_title_text<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;Testing dif options for rendeerers; chrome&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> )
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> </span>fig<span class="ansi-blue-fg">.</span>show<span class="ansi-blue-fg">(</span>renderer<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;chrome&#34;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/basedatatypes.py</span> in <span class="ansi-cyan-fg">show</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2781</span>         <span class="ansi-red-fg"># -------------</span>
+<span class="ansi-green-intense-fg ansi-bold">   2782</span>         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>_frame_objs<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2783</span><span class="ansi-red-fg">             </span>frames_props <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>frame<span class="ansi-blue-fg">.</span>_props <span class="ansi-green-fg">for</span> frame <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>_frame_objs<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">   2784</span>             result<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;frames&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> BaseFigure<span class="ansi-blue-fg">.</span>_to_ordered_dict<span class="ansi-blue-fg">(</span>frames_props<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2785</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_renderers.py</span> in <span class="ansi-cyan-fg">show</span><span class="ansi-blue-fg">(fig, renderer, validate, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    389</span> 
+<span class="ansi-green-intense-fg ansi-bold">    390</span>     <span class="ansi-red-fg"># external renderers</span>
+<span class="ansi-green-fg">--&gt; 391</span><span class="ansi-red-fg">     </span>renderers<span class="ansi-blue-fg">.</span>_perform_external_rendering<span class="ansi-blue-fg">(</span>fig_dict<span class="ansi-blue-fg">,</span> renderers_string<span class="ansi-blue-fg">=</span>renderer<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    392</span> 
+<span class="ansi-green-intense-fg ansi-bold">    393</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_renderers.py</span> in <span class="ansi-cyan-fg">_perform_external_rendering</span><span class="ansi-blue-fg">(self, fig_dict, renderers_string, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    338</span>                         setattr<span class="ansi-blue-fg">(</span>renderer<span class="ansi-blue-fg">,</span> k<span class="ansi-blue-fg">,</span> v<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    339</span> 
+<span class="ansi-green-fg">--&gt; 340</span><span class="ansi-red-fg">                 </span>renderer<span class="ansi-blue-fg">.</span>render<span class="ansi-blue-fg">(</span>fig_dict<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    341</span> 
+<span class="ansi-green-intense-fg ansi-bold">    342</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_base_renderers.py</span> in <span class="ansi-cyan-fg">render</span><span class="ansi-blue-fg">(self, fig_dict)</span>
+<span class="ansi-green-intense-fg ansi-bold">    734</span>             validate<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    735</span>         )
+<span class="ansi-green-fg">--&gt; 736</span><span class="ansi-red-fg">         </span>open_html_in_browser<span class="ansi-blue-fg">(</span>html<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>using<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>new<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>autoraise<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    737</span> 
+<span class="ansi-green-intense-fg ansi-bold">    738</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_base_renderers.py</span> in <span class="ansi-cyan-fg">open_html_in_browser</span><span class="ansi-blue-fg">(html, using, new, autoraise)</span>
+<span class="ansi-green-intense-fg ansi-bold">    679</span> 
+<span class="ansi-green-intense-fg ansi-bold">    680</span>     server <span class="ansi-blue-fg">=</span> HTTPServer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;127.0.0.1&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> OneShotRequestHandler<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 681</span><span class="ansi-red-fg">     webbrowser.get(using).open(
+</span><span class="ansi-green-intense-fg ansi-bold">    682</span>         <span class="ansi-blue-fg">&#34;http://127.0.0.1:%s&#34;</span> <span class="ansi-blue-fg">%</span> server<span class="ansi-blue-fg">.</span>server_port<span class="ansi-blue-fg">,</span> new<span class="ansi-blue-fg">=</span>new<span class="ansi-blue-fg">,</span> autoraise<span class="ansi-blue-fg">=</span>autoraise
+<span class="ansi-green-intense-fg ansi-bold">    683</span>     )
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/webbrowser.py</span> in <span class="ansi-cyan-fg">get</span><span class="ansi-blue-fg">(using)</span>
+<span class="ansi-green-intense-fg ansi-bold">     63</span>             <span class="ansi-green-fg">elif</span> command<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     64</span>                 <span class="ansi-green-fg">return</span> command<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 65</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">raise</span> Error<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;could not locate runnable browser&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     66</span> 
+<span class="ansi-green-intense-fg ansi-bold">     67</span> <span class="ansi-red-fg"># Please note: the following definition hides a builtin function.</span>
+
+<span class="ansi-red-fg">Error</span>: could not locate runnable browser</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13706,12 +13833,205 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;plotly_mimetype&quot;</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
+    <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; chrome&quot;</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;chrome&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">Error</span>                                     Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-21-46dcd426b84b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     layout_title_text<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;Testing dif options for rendeerers; chrome&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> )
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> </span>fig<span class="ansi-blue-fg">.</span>show<span class="ansi-blue-fg">(</span>renderer<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;chrome&#34;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/basedatatypes.py</span> in <span class="ansi-cyan-fg">show</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2781</span>         <span class="ansi-red-fg"># -------------</span>
+<span class="ansi-green-intense-fg ansi-bold">   2782</span>         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>_frame_objs<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2783</span><span class="ansi-red-fg">             </span>frames_props <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>frame<span class="ansi-blue-fg">.</span>_props <span class="ansi-green-fg">for</span> frame <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>_frame_objs<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">   2784</span>             result<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;frames&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> BaseFigure<span class="ansi-blue-fg">.</span>_to_ordered_dict<span class="ansi-blue-fg">(</span>frames_props<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2785</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_renderers.py</span> in <span class="ansi-cyan-fg">show</span><span class="ansi-blue-fg">(fig, renderer, validate, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    389</span> 
+<span class="ansi-green-intense-fg ansi-bold">    390</span>     <span class="ansi-red-fg"># external renderers</span>
+<span class="ansi-green-fg">--&gt; 391</span><span class="ansi-red-fg">     </span>renderers<span class="ansi-blue-fg">.</span>_perform_external_rendering<span class="ansi-blue-fg">(</span>fig_dict<span class="ansi-blue-fg">,</span> renderers_string<span class="ansi-blue-fg">=</span>renderer<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    392</span> 
+<span class="ansi-green-intense-fg ansi-bold">    393</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_renderers.py</span> in <span class="ansi-cyan-fg">_perform_external_rendering</span><span class="ansi-blue-fg">(self, fig_dict, renderers_string, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    338</span>                         setattr<span class="ansi-blue-fg">(</span>renderer<span class="ansi-blue-fg">,</span> k<span class="ansi-blue-fg">,</span> v<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    339</span> 
+<span class="ansi-green-fg">--&gt; 340</span><span class="ansi-red-fg">                 </span>renderer<span class="ansi-blue-fg">.</span>render<span class="ansi-blue-fg">(</span>fig_dict<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    341</span> 
+<span class="ansi-green-intense-fg ansi-bold">    342</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_base_renderers.py</span> in <span class="ansi-cyan-fg">render</span><span class="ansi-blue-fg">(self, fig_dict)</span>
+<span class="ansi-green-intense-fg ansi-bold">    734</span>             validate<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    735</span>         )
+<span class="ansi-green-fg">--&gt; 736</span><span class="ansi-red-fg">         </span>open_html_in_browser<span class="ansi-blue-fg">(</span>html<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>using<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>new<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>autoraise<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    737</span> 
+<span class="ansi-green-intense-fg ansi-bold">    738</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_base_renderers.py</span> in <span class="ansi-cyan-fg">open_html_in_browser</span><span class="ansi-blue-fg">(html, using, new, autoraise)</span>
+<span class="ansi-green-intense-fg ansi-bold">    679</span> 
+<span class="ansi-green-intense-fg ansi-bold">    680</span>     server <span class="ansi-blue-fg">=</span> HTTPServer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;127.0.0.1&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> OneShotRequestHandler<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 681</span><span class="ansi-red-fg">     webbrowser.get(using).open(
+</span><span class="ansi-green-intense-fg ansi-bold">    682</span>         <span class="ansi-blue-fg">&#34;http://127.0.0.1:%s&#34;</span> <span class="ansi-blue-fg">%</span> server<span class="ansi-blue-fg">.</span>server_port<span class="ansi-blue-fg">,</span> new<span class="ansi-blue-fg">=</span>new<span class="ansi-blue-fg">,</span> autoraise<span class="ansi-blue-fg">=</span>autoraise
+<span class="ansi-green-intense-fg ansi-bold">    683</span>     )
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/webbrowser.py</span> in <span class="ansi-cyan-fg">get</span><span class="ansi-blue-fg">(using)</span>
+<span class="ansi-green-intense-fg ansi-bold">     63</span>             <span class="ansi-green-fg">elif</span> command<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     64</span>                 <span class="ansi-green-fg">return</span> command<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 65</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">raise</span> Error<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;could not locate runnable browser&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     66</span> 
+<span class="ansi-green-intense-fg ansi-bold">     67</span> <span class="ansi-red-fg"># Please note: the following definition hides a builtin function.</span>
+
+<span class="ansi-red-fg">Error</span>: could not locate runnable browser</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
+    <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; chrome&quot;</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;notebook_connected&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+<div class="output_html rendered_html output_subarea ">
+        <script type="text/javascript">
+        window.PlotlyConfig = {MathJaxConfig: 'local'};
+        if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+        if (typeof require !== 'undefined') {
+        require.undef("plotly");
+        requirejs.config({
+            paths: {
+                'plotly': ['https://cdn.plot.ly/plotly-latest.min']
+            }
+        });
+        require(['plotly'], function(Plotly) {
+            window._Plotly = Plotly;
+        });
+        }
+        </script>
+        
+</div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+        
+        
+            <div id="624e71ce-78fa-4343-ab9b-920abd24e2da" class="plotly-graph-div" style="height:525px; width:100%;"></div>
+            <script type="text/javascript">
+                require(["plotly"], function(Plotly) {
+                    window.PLOTLYENV=window.PLOTLYENV || {};
+                    
+                if (document.getElementById("624e71ce-78fa-4343-ab9b-920abd24e2da")) {
+                    Plotly.newPlot(
+                        '624e71ce-78fa-4343-ab9b-920abd24e2da',
+                        [{"type": "bar", "y": [2, 1, 3]}],
+                        {"template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "Testing dif options for rendeerers; chrome"}},
+                        {"responsive": true}
+                    ).then(function(){
+                            
+var gd = document.getElementById('624e71ce-78fa-4343-ab9b-920abd24e2da');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })
+                };
+                });
+            </script>
+        </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
     <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; plotly_mimetype&quot;</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;plotly_mimetype&quot;</span><span class="p">,</span><span class="n">auto_open</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13733,6 +14053,114 @@ Skip to:
 >
 </div>
 
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])],</span>
+    <span class="n">layout_title_text</span><span class="o">=</span><span class="s2">&quot;Testing dif options for rendeerers; browser&quot;</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;browser&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-26-dd779d0b3309&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     layout_title_text<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;Testing dif options for rendeerers; browser&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> )
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> </span>fig<span class="ansi-blue-fg">.</span>show<span class="ansi-blue-fg">(</span>renderer<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;browser&#34;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/basedatatypes.py</span> in <span class="ansi-cyan-fg">show</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2781</span>         <span class="ansi-red-fg"># -------------</span>
+<span class="ansi-green-intense-fg ansi-bold">   2782</span>         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>_frame_objs<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2783</span><span class="ansi-red-fg">             </span>frames_props <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>frame<span class="ansi-blue-fg">.</span>_props <span class="ansi-green-fg">for</span> frame <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>_frame_objs<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">   2784</span>             result<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;frames&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> BaseFigure<span class="ansi-blue-fg">.</span>_to_ordered_dict<span class="ansi-blue-fg">(</span>frames_props<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2785</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_renderers.py</span> in <span class="ansi-cyan-fg">show</span><span class="ansi-blue-fg">(fig, renderer, validate, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    389</span> 
+<span class="ansi-green-intense-fg ansi-bold">    390</span>     <span class="ansi-red-fg"># external renderers</span>
+<span class="ansi-green-fg">--&gt; 391</span><span class="ansi-red-fg">     </span>renderers<span class="ansi-blue-fg">.</span>_perform_external_rendering<span class="ansi-blue-fg">(</span>fig_dict<span class="ansi-blue-fg">,</span> renderers_string<span class="ansi-blue-fg">=</span>renderer<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    392</span> 
+<span class="ansi-green-intense-fg ansi-bold">    393</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_renderers.py</span> in <span class="ansi-cyan-fg">_perform_external_rendering</span><span class="ansi-blue-fg">(self, fig_dict, renderers_string, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    338</span>                         setattr<span class="ansi-blue-fg">(</span>renderer<span class="ansi-blue-fg">,</span> k<span class="ansi-blue-fg">,</span> v<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    339</span> 
+<span class="ansi-green-fg">--&gt; 340</span><span class="ansi-red-fg">                 </span>renderer<span class="ansi-blue-fg">.</span>render<span class="ansi-blue-fg">(</span>fig_dict<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    341</span> 
+<span class="ansi-green-intense-fg ansi-bold">    342</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_base_renderers.py</span> in <span class="ansi-cyan-fg">render</span><span class="ansi-blue-fg">(self, fig_dict)</span>
+<span class="ansi-green-intense-fg ansi-bold">    734</span>             validate<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    735</span>         )
+<span class="ansi-green-fg">--&gt; 736</span><span class="ansi-red-fg">         </span>open_html_in_browser<span class="ansi-blue-fg">(</span>html<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>using<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>new<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>autoraise<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    737</span> 
+<span class="ansi-green-intense-fg ansi-bold">    738</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/site-packages/plotly/io/_base_renderers.py</span> in <span class="ansi-cyan-fg">open_html_in_browser</span><span class="ansi-blue-fg">(html, using, new, autoraise)</span>
+<span class="ansi-green-intense-fg ansi-bold">    680</span>     server <span class="ansi-blue-fg">=</span> HTTPServer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;127.0.0.1&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> OneShotRequestHandler<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    681</span>     webbrowser.get(using).open(
+<span class="ansi-green-fg">--&gt; 682</span><span class="ansi-red-fg">         </span><span class="ansi-blue-fg">&#34;http://127.0.0.1:%s&#34;</span> <span class="ansi-blue-fg">%</span> server<span class="ansi-blue-fg">.</span>server_port<span class="ansi-blue-fg">,</span> new<span class="ansi-blue-fg">=</span>new<span class="ansi-blue-fg">,</span> autoraise<span class="ansi-blue-fg">=</span>autoraise
+<span class="ansi-green-intense-fg ansi-bold">    683</span>     )
+<span class="ansi-green-intense-fg ansi-bold">    684</span> 
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/webbrowser.py</span> in <span class="ansi-cyan-fg">open</span><span class="ansi-blue-fg">(self, url, new, autoraise)</span>
+<span class="ansi-green-intense-fg ansi-bold">    162</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    163</span>                 p <span class="ansi-blue-fg">=</span> subprocess<span class="ansi-blue-fg">.</span>Popen<span class="ansi-blue-fg">(</span>cmdline<span class="ansi-blue-fg">,</span> close_fds<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 164</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> <span class="ansi-green-fg">not</span> p<span class="ansi-blue-fg">.</span>wait<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    165</span>         <span class="ansi-green-fg">except</span> OSError<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    166</span>             <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">False</span>
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/subprocess.py</span> in <span class="ansi-cyan-fg">wait</span><span class="ansi-blue-fg">(self, timeout)</span>
+<span class="ansi-green-intense-fg ansi-bold">    988</span>             endtime <span class="ansi-blue-fg">=</span> _time<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">+</span> timeout
+<span class="ansi-green-intense-fg ansi-bold">    989</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 990</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_wait<span class="ansi-blue-fg">(</span>timeout<span class="ansi-blue-fg">=</span>timeout<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    991</span>         <span class="ansi-green-fg">except</span> KeyboardInterrupt<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    992</span>             <span class="ansi-red-fg"># https://bugs.python.org/issue25942</span>
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/subprocess.py</span> in <span class="ansi-cyan-fg">_wait</span><span class="ansi-blue-fg">(self, timeout)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1622</span>                         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>returncode <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   1623</span>                             <span class="ansi-green-fg">break</span>  <span class="ansi-red-fg"># Another thread waited.</span>
+<span class="ansi-green-fg">-&gt; 1624</span><span class="ansi-red-fg">                         </span><span class="ansi-blue-fg">(</span>pid<span class="ansi-blue-fg">,</span> sts<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_try_wait<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1625</span>                         <span class="ansi-red-fg"># Check the pid and loop as waitpid has been known to</span>
+<span class="ansi-green-intense-fg ansi-bold">   1626</span>                         <span class="ansi-red-fg"># return 0 even without WNOHANG in odd situations.</span>
+
+<span class="ansi-green-fg">~/bin/anaconda3/lib/python3.7/subprocess.py</span> in <span class="ansi-cyan-fg">_try_wait</span><span class="ansi-blue-fg">(self, wait_flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1580</span>             <span class="ansi-blue-fg">&#34;&#34;&#34;All callers to this function MUST hold self._waitpid_lock.&#34;&#34;&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">   1581</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 1582</span><span class="ansi-red-fg">                 </span><span class="ansi-blue-fg">(</span>pid<span class="ansi-blue-fg">,</span> sts<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>waitpid<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>pid<span class="ansi-blue-fg">,</span> wait_flags<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1583</span>             <span class="ansi-green-fg">except</span> ChildProcessError<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   1584</span>                 <span class="ansi-red-fg"># This happens if SIGCLD is set to be ignored or waiting</span>
+
+<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
+</div>
 </div>
 
 </div>
@@ -14403,10 +14831,10 @@ Number of permutations: 999</p>
 
 
 
-<div id="acf07bf3-d1e0-4e8e-bbbd-b70d804cd5a9"></div>
+<div id="fbdcb2d7-cea5-43a8-aef4-abbb741ae5ef"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#acf07bf3-d1e0-4e8e-bbbd-b70d804cd5a9');
+var element = $('#fbdcb2d7-cea5-43a8-aef4-abbb741ae5ef');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -14420,10 +14848,10 @@ IPython.notebook.save_checkpoint();
 
 
 
-<div id="a5e5404d-1436-4ef9-aa99-af0fab5b76eb"></div>
+<div id="fd0473df-98d7-4c39-9e3f-1ecea465a842"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#a5e5404d-1436-4ef9-aa99-af0fab5b76eb');
+var element = $('#fd0473df-98d7-4c39-9e3f-1ecea465a842');
 IPython.notebook.save_notebook();
 </script>
 </div>
