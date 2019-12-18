@@ -26,7 +26,7 @@ matplotlib-venn==0.11.5
 nbconvert==5.6.0
 nbformat==4.4.0
 nbinteract==0.2.4
-nodejs==13.0.0
+nodejs
 notebook==6.0.1
 numpy==1.17.2
 numpydoc==0.9.1
