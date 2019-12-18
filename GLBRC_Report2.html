@@ -13202,7 +13202,7 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #17</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #20 yo</span>
 </pre></div>
 
     </div>
@@ -13973,7 +13973,18 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
+
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="n">disp</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Percentage&quot;</span><span class="p">:{</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/BothPerc.html&quot;</span><span class="p">),</span>
+                      <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/SwitchPerc.html&quot;</span><span class="p">),</span>
+                      <span class="s2">&quot;Miscanthus&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/MiscanPerc.html&quot;</span><span class="p">),</span>
+                     <span class="p">}}</span>
+
+<span class="nd">@interact</span>
+<span class="k">def</span> <span class="nf">graph2</span><span class="p">(</span><span class="n">Host_Plant</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">,</span><span class="s2">&quot;Switchgrass&quot;</span><span class="p">,</span><span class="s2">&quot;Miscanthus&quot;</span><span class="p">],</span><span class="n">By</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Percentage&quot;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">]):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">disp</span><span class="p">[</span><span class="n">By</span><span class="p">][</span><span class="n">Host_Plant</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -14574,6 +14585,94 @@ Number of permutations: 999</p>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+
+<div id="45363255-efa4-41bc-9f4f-ada2c5f8c203"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#45363255-efa4-41bc-9f4f-ada2c5f8c203');
+IPython.notebook.save_checkpoint();
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+
+
+<div id="0877bd2b-9ce6-442c-bd56-dc5a3ffb252b"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#0877bd2b-9ce6-442c-bd56-dc5a3ffb252b');
+IPython.notebook.save_notebook();
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Saving notebook... </pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:root:Could not save your notebook (timed out waiting for IPython save). Make sure your notebook is saved and export again.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Converting notebook...
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<p>Successfully converted!</p>
+<p><a href="GLBRC_Report2.html" target="_blank" download>Click to download your webpage.</a></p>
+<p>To host your webpage, see the documentation:
+<a href="https://www.nbinteract.com/tutorial/tutorial_publishing.html"
+        target="_blank">
+    https://www.nbinteract.com/tutorial/tutorial_publishing.html
+</a></p>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
