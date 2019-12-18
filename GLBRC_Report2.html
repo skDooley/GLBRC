@@ -13202,7 +13202,7 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #14</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #16</span>
 </pre></div>
 
     </div>
@@ -13480,6 +13480,8 @@ div#notebook {
        <span class="s1">&#39;paired_aligned_mate_one&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_multi&#39;</span><span class="p">,</span>
        <span class="s1">&#39;overall_alignment_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_multi_halved&#39;</span><span class="p">,</span>
        <span class="s1">&#39;paired_aligned_mate_none_halved&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_one_halved&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">G5Data</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G5&#39;</span><span class="p">]</span>
+<span class="n">G6Data</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G6&#39;</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13489,32 +13491,6 @@ div#notebook {
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-
-    
-
-
-<div class="output_html rendered_html output_subarea ">
-        <script type="text/javascript">
-        window.PlotlyConfig = {MathJaxConfig: 'local'};
-        if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
-        if (typeof require !== 'undefined') {
-        require.undef("plotly");
-        requirejs.config({
-            paths: {
-                'plotly': ['https://cdn.plot.ly/plotly-latest.min']
-            }
-        });
-        require(['plotly'], function(Plotly) {
-            window._Plotly = Plotly;
-        });
-        }
-        </script>
-        
-</div>
-
-</div>
 
 <div class="output_area">
 
@@ -14003,34 +13979,34 @@ Skip to:
 
 <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
 
-<span class="n">disp</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Percentage&quot;</span><span class="p">:{</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/BothPerc.html&quot;</span><span class="p">),</span>
-                      <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/SwitchPerc.html&quot;</span><span class="p">),</span>
-                      <span class="s2">&quot;Miscanthus&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/MiscanPerc.html&quot;</span><span class="p">),</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Percentage&quot;</span><span class="p">:{</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">:</span> <span class="s2">&quot;html/BothPerc.html&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span> <span class="s2">&quot;html/SwitchPerc.html&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;Miscanthus&quot;</span><span class="p">:</span> <span class="s2">&quot;html/MiscanPerc.html&quot;</span><span class="p">,</span>
                      <span class="p">}}</span>
 
 <span class="nd">@interact</span>
 <span class="k">def</span> <span class="nf">graph</span><span class="p">(</span><span class="n">Host_Plant</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">,</span><span class="s2">&quot;Switchgrass&quot;</span><span class="p">,</span><span class="s2">&quot;Miscanthus&quot;</span><span class="p">],</span><span class="n">By</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Percentage&quot;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">]):</span>
-    <span class="k">return</span> <span class="n">disp</span><span class="p">[</span><span class="n">By</span><span class="p">][</span><span class="n">Host_Plant</span><span class="p">]</span>
+<span class="c1">#     return HTML(disp[By][Host_Plant])</span>
 <span class="c1">#     G5Data = metadataG[metadataG[&#39;type&#39;] == &#39;G5&#39;]</span>
 <span class="c1">#     G6Data = metadataG[metadataG[&#39;type&#39;] == &#39;G6&#39;]</span>
 <span class="c1">#     fig = None</span>
 <span class="c1">#     htmlName = &quot;&quot;</span>
-<span class="c1">#     if By == &quot;Percentage&quot;:</span>
-<span class="c1">#         if (Host_Plant == &quot;Switchgrass &amp; Miscanthus&quot;):</span>
+    <span class="k">if</span> <span class="n">By</span> <span class="o">==</span> <span class="s2">&quot;Percentage&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">Host_Plant</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">):</span>
 <span class="c1">#             htmlName = &quot;html/BothPerc.html&quot;</span>
 <span class="c1"># #             print(htmlName)</span>
 <span class="c1"># #             print(&quot;SDJFDSJFDS&quot;)</span>
-<span class="c1"># #             fig = metadataG.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percPlantAligned&#39;].unstack().iplot(asFigure=True,filename=htmlName,title=&quot;% Reads Aligning to Respective Plant Host Assembly G5=Switchgrass G6=Miscanthus&quot;);</span>
+            <span class="k">return</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;% Reads Aligning to Respective Plant Host Assembly G5=Switchgrass G6=Miscanthus&quot;</span><span class="p">);</span>
 <span class="c1"># #             print(&quot;Done&quot;)</span>
 <span class="c1">#             #             print(dir(ax))</span>
 <span class="c1"># #             f = ax.get_figure()</span>
 <span class="c1"># #             f.savefig(&quot;images/CombinedPlantLineGraph.png&quot;)</span>
-<span class="c1">#         elif Host_Plant == &quot;Switchgrass&quot;:</span>
+        <span class="k">elif</span> <span class="n">Host_Plant</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span>
 <span class="c1">#             htmlName = &quot;html/SwitchPerc.html&quot;</span>
-<span class="c1"># #             fig = G5Data.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percPlantAligned&#39;].unstack().iplot(asFigure=True,filename=htmlName,title=&quot;% Reads Aligning to Switchgrass Assembly&quot;,fontsize=12);</span>
-<span class="c1">#         else: # &quot;Miscanthus&quot;:</span>
+            <span class="k">return</span> <span class="n">G5Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;% Reads Aligning to Switchgrass Assembly&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># &quot;Miscanthus&quot;:</span>
 <span class="c1">#             htmlName = &quot;html/MiscanPerc.html&quot;</span>
-<span class="c1"># #             fig = G6Data.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percPlantAligned&#39;].unstack().iplot(asFigure=True,filename=htmlName,title=&quot;% Reads Aligning to Micanthus Assembly&quot;,fontsize=12);</span>
+            <span class="k">return</span> <span class="n">G6Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;% Reads Aligning to Micanthus Assembly&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
 <span class="c1">#         ylim = 100</span>
 <span class="c1">#         ylab = &quot;% Reads&quot;</span>
 <span class="c1">#     else:</span>
