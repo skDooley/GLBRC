@@ -13202,7 +13202,42 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #16</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TEST #17</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Avoid &quot;JavaScript heap out of memory&quot; errors during extension installation</span>
+<span class="c1"># (OS X/Linux)</span>
+<span class="o">!</span><span class="nb">export</span> <span class="nv">NODE_OPTIONS</span><span class="o">=</span>--max-old-space-size<span class="o">=</span><span class="m">4096</span>
+
+<span class="c1"># Jupyter widgets extension</span>
+<span class="o">!</span>jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.1 --no-build
+
+<span class="c1"># FigureWidget support</span>
+<span class="o">!</span>jupyter labextension install plotlywidget@1.4.0 --no-build
+
+<span class="c1"># and jupyterlab renderer support</span>
+<span class="o">!</span>jupyter labextension install jupyterlab-plotly@1.4.0 --no-build
+
+<span class="c1"># Build extensions (must be done to activate extensions since --no-build is used above)</span>
+<span class="o">!</span>jupyter lab build
+
+<span class="c1"># Unset NODE_OPTIONS environment variable</span>
+<span class="c1"># (OS X/Linux)</span>
+<span class="o">!</span><span class="nb">unset</span> NODE_OPTIONS
 </pre></div>
 
     </div>
@@ -14009,17 +14044,17 @@ Skip to:
             <span class="k">return</span> <span class="n">G6Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;% Reads Aligning to Micanthus Assembly&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
 <span class="c1">#         ylim = 100</span>
 <span class="c1">#         ylab = &quot;% Reads&quot;</span>
-<span class="c1">#     else:</span>
-<span class="c1">#         colors = [&quot;#74C476&quot;, &quot;#f26d07&quot;,&quot;#794955&quot;]</span>
-<span class="c1">#         if (Host_Plant == &quot;Switchgrass &amp; Miscanthus&quot;):</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#74C476&quot;</span><span class="p">,</span> <span class="s2">&quot;#f26d07&quot;</span><span class="p">,</span><span class="s2">&quot;#794955&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">Host_Plant</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">):</span>
 <span class="c1">#             htmlName = &quot;html/BothCount.html&quot;</span>
-<span class="c1"># #             fig = metadataG.loc[:,[&#39;Plant Reads&#39;,&#39;Fungal Reads&#39;, &#39;Remaining&#39;]].iplot(asFigure=True,kind=&#39;bar&#39;, barmode = &#39;stack&#39;, color=colors, title=&quot;Reads Counts By Source&quot;)</span>
-<span class="c1">#         elif Host_Plant == &quot;Switchgrass&quot;:</span>
+            <span class="k">return</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Plant Reads&#39;</span><span class="p">,</span><span class="s1">&#39;Fungal Reads&#39;</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Reads Counts By Source&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">Host_Plant</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span>
 <span class="c1">#             htmlName = &quot;html/SwitchCount.html&quot;</span>
-<span class="c1"># #             fig = G5Data.loc[:,[&#39;Plant Reads&#39;,&#39;Fungal Reads&#39;, &#39;Remaining&#39;]].iplot(asFigure=True,kind=&#39;bar&#39;, barmode = &#39;stack&#39;, color=colors, title=&quot;Switchgrass Reads Counts&quot;)</span>
-<span class="c1">#         else:</span>
+            <span class="k">return</span> <span class="n">G5Data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Plant Reads&#39;</span><span class="p">,</span><span class="s1">&#39;Fungal Reads&#39;</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Switchgrass Reads Counts&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
 <span class="c1">#             htmlName = &quot;html/MiscanCount.html&quot;</span>
-<span class="c1"># #             fig = G5Data.loc[:,[&#39;Plant Reads&#39;,&#39;Fungal Reads&#39;, &#39;Remaining&#39;]].iplot(asFigure=True,kind=&#39;bar&#39;, barmode = &#39;stack&#39;, color=colors, title=&quot;Miscanthus Reads Counts By Source&quot;)</span>
+            <span class="k">return</span> <span class="n">G5Data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Plant Reads&#39;</span><span class="p">,</span><span class="s1">&#39;Fungal Reads&#39;</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Miscanthus Reads Counts By Source&quot;</span><span class="p">)</span>
 <span class="c1"># #     py.offline.plot(fig,filename=htmlName)</span>
 <span class="c1">#     return HTML(htmlName)</span>
 <span class="c1">#     return ax</span>
