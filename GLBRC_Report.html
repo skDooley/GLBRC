@@ -13290,6 +13290,32 @@ div#notebook {
 
 </div>
 
+<div class="output_area">
+
+    
+
+
+<div class="output_html rendered_html output_subarea ">
+        <script type="text/javascript">
+        window.PlotlyConfig = {MathJaxConfig: 'local'};
+        if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+        if (typeof require !== 'undefined') {
+        require.undef("plotly");
+        requirejs.config({
+            paths: {
+                'plotly': ['https://cdn.plot.ly/plotly-latest.min']
+            }
+        });
+        require(['plotly'], function(Plotly) {
+            window._Plotly = Plotly;
+        });
+        }
+        </script>
+        
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13372,72 +13398,6 @@ div#notebook {
 
 </div>
 
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thelist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">metadataT</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">thelist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="n">other</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">,</span><span class="s2">&quot;plotID&quot;</span><span class="p">,</span><span class="s2">&quot;month&quot;</span><span class="p">,</span><span class="s2">&quot;sampleID&quot;</span><span class="p">,</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;weather&quot;</span><span class="p">,</span> <span class="s2">&quot;air_temp_c&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">,</span> <span class="s2">&quot;rep&quot;</span><span class="p">,</span> <span class="s2">&quot;time_zone&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;altitude&quot;</span><span class="p">,</span> <span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;soil_name&quot;</span><span class="p">,</span> <span class="s2">&quot;number_cores&quot;</span><span class="p">,</span> <span class="s2">&quot;SPNL_date&quot;</span><span class="p">,</span> <span class="s2">&quot;pH&quot;</span><span class="p">,</span> <span class="s2">&quot;lime_index&quot;</span><span class="p">,</span> <span class="s2">&quot;P_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;K_ppm&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;Ca_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;Mg_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;organic_matter&quot;</span><span class="p">,</span> <span class="s2">&quot;NO3N_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;NH4_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;soil_moisture_percent&quot;</span><span class="p">,</span> <span class="s2">&quot;soil_temp_10cm&quot;</span><span class="p">,</span> <span class="s2">&quot;LDMC_mg_per_g&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;nitrogen_percent&quot;</span><span class="p">,</span> <span class="s2">&quot;carbon_percent&quot;</span><span class="p">,</span> <span class="s2">&quot;carbon_per_nitrogen&quot;</span><span class="p">,</span> <span class="s2">&quot;height_mean_cm&quot;</span><span class="p">,</span> <span class="s2">&quot;mass_per_leaf_g&quot;</span><span class="p">,</span> <span class="s2">&quot;date_of_extraction&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;nucleic_acid_type&quot;</span><span class="p">,</span> <span class="s2">&quot;replicate_extraction&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;source_mass&quot;</span><span class="p">,</span> <span class="s2">&quot;extraction_method&quot;</span><span class="p">,</span> <span class="s2">&quot;elution_vol_ul&quot;</span><span class="p">,</span> <span class="s2">&quot;concentration_ng_per_ul&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;ratio_260_280&quot;</span><span class="p">,</span> <span class="s2">&quot;conc_ng_per_g_source&quot;</span><span class="p">,</span> <span class="s2">&quot;extracted_by&quot;</span><span class="p">,</span> <span class="s2">&quot;sequence_name&quot;</span><span class="p">,</span> <span class="s2">&quot;sequencing_date&quot;</span><span class="p">,</span> <span class="s2">&quot;conc_sent_ng_per_ul&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;sequencing_type&quot;</span><span class="p">,</span> <span class="s2">&quot;sequencing_facility&quot;</span><span class="p">,</span> <span class="s2">&quot;primers&quot;</span><span class="p">,</span> <span class="s2">&quot;submitted_for_sequencing&quot;</span><span class="p">,</span> <span class="s2">&quot;sequencing_successful&quot;</span><span class="p">,</span> <span class="s2">&quot;duplicate_submitted&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;dup_sequencing_name&quot;</span><span class="p">,</span> <span class="s2">&quot;exclude_from_analysis&quot;</span><span class="p">,</span> <span class="s2">&quot;itemID_JGI&quot;</span><span class="p">,</span> <span class="s2">&quot;sampleID_JGI&quot;</span><span class="p">,</span> <span class="s2">&quot;barcode&quot;</span><span class="p">,</span> <span class="s2">&quot;JGI_library&quot;</span><span class="p">,</span> <span class="s2">&quot;HPCC_path&quot;</span><span class="p">,</span> <span class="s2">&quot;JGI_taxonOID&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;JGI_rawdataname&quot;</span><span class="p">,</span> <span class="s2">&quot;time_numeric&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;precipitation&quot;</span><span class="p">,</span> <span class="s2">&quot;Air_temp_mean&quot;</span><span class="p">,</span> <span class="s2">&quot;air_temp_max&quot;</span><span class="p">,</span> <span class="s2">&quot;Air_Temp_Min&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;Air_Pressure&quot;</span><span class="p">,</span><span class="s2">&quot;plant_name&quot;</span><span class="p">,</span> <span class="s2">&quot;RH&quot;</span><span class="p">,</span> <span class="s2">&quot;AH&quot;</span><span class="p">,</span> <span class="s2">&quot;Wind_Speed_Mean&quot;</span><span class="p">,</span> <span class="s2">&quot;Wind_Direction_Mean&quot;</span><span class="p">,</span> <span class="s2">&quot;Solar_Radiation&quot;</span><span class="p">,</span> <span class="s2">&quot;PAR&quot;</span><span class="p">,</span> <span class="s2">&quot;soil_temp_5_cm_bare_avg&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;soil_temp_5_cm_sod_avg&quot;</span><span class="p">]</span>
-<span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">thelist</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>set()</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -13556,6 +13516,13 @@ Skip to:
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Link to the interactive <a href="html/MetaT_TrimStats.html">metaT trim report</a>.</h3>
+<h3>Link to the interactive <a href="html/MetaG_TrimStats.html">metaG trim report</a>.</h3>
+</div>
+</div>
+</div>
 
   
 
@@ -13566,7 +13533,7 @@ Skip to:
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="n">tImages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;MetaG&quot;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images/TrimReport_MetaG.png&quot;</span><span class="p">),</span><span class="s2">&quot;MetaT&quot;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images/TrimReport_MetaT.png&quot;</span><span class="p">)}</span>
+<span class="n">tImages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;MetaG&quot;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images/TrimReport_MetaG.png&quot;</span><span class="p">),</span><span class="s2">&quot;MetaT&quot;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images/MetaT_trimmomatic_plot.png&quot;</span><span class="p">)}</span>
 <span class="nd">@interact</span>
 <span class="k">def</span> <span class="nf">trimReport</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MetaG&quot;</span><span class="p">,</span><span class="s2">&quot;MetaT&quot;</span><span class="p">]):</span><span class="k">return</span> <span class="n">tImages</span><span class="p">[</span><span class="n">Source</span><span class="p">]</span>
 </pre></div>
@@ -13691,6 +13658,27 @@ Skip to:
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
   </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13751,6 +13739,27 @@ Skip to:
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
   </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13803,6 +13812,27 @@ Skip to:
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
   </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13830,7 +13860,7 @@ Skip to:
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="alphaD"></a></p>
-<h4 style="color:blue">Is time a factor that affects the functional richness of phylosphere communities (Alpha Diversity)?</h4><table>
+<h4 style="color:blue">Is time a factor that affects the functional richness of phylosphere communities (Alpha Diversity)?</h4><table align="left">
     <tr>
         <td>
             <table style="border: 1px solid black;">
@@ -14089,9 +14119,46 @@ Number of permutations: 999</p>
 <pre><code>           Df SumsOfSqs  MeanSqs F.Model      R2 Pr(&gt;F)  
 </code></pre>
 <p>map_16S$plant   1    0.1617 0.161704  3.0101 0.02197  0.027 *
-Residuals     134    7.1986 0.053721         0.97803</p>
-<h2 id="Total---------135----7.3603------------------1.00000---------">Total         135    7.3603                  1.00000         <a class="anchor-link" href="#Total---------135----7.3603------------------1.00000---------">&#182;</a></h2><p>Signif. codes:  0 '<strong>*' 0.001 '</strong>' 0.01 '*' 0.05 '.' 0.1 ' ' 1</p>
-
+Residuals     134    7.1986 0.053721         0.97803<br>
+Total         135    7.3603                  1.00000</p>
+<table align="left">
+    <tr>
+        <th></th>
+        <th>Df</th>
+        <th>SumsOfSqs</th>
+        <th>MeanSqs</th>
+        <th>F.Model</th>
+        <th>R2</th>
+        <th>Pr(&gt;F)</th>
+    </tr>
+    <tr>
+        <td>map_16S$plant</td>
+        <td>1</td>
+        <td>0.1617</td>
+        <td>0.161704</td>
+        <td>3.0101</td>
+        <td>0.02197</td>
+        <td>0.027 *</td>
+    </tr>
+    <tr>
+        <td>Residuals</td>
+        <td>134</td>
+        <td>7.1986</td>
+        <td>0.053721</td>
+        <td></td>
+        <td>0.97803</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td>135</td>
+        <td>7.3603</td>
+        <td></td>
+        <td></td>
+        <td>1.000000</td>
+        <td></td>
+    </tr>
+</table>
 </div>
 </div>
 </div>
@@ -14149,30 +14216,29 @@ Residuals     134    7.1986 0.053721         0.97803</p>
 <h4 style="color:blue">Is there similarity between the WGS communities and the 16S data (mantel/procrustes)?</h4>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Mantel statistic based on Pearson's product-moment correlation</p>
-<p>Call:
-mantel(xdis = genes.dist, ydis = otu.dist)</p>
-<p>Mantel statistic r: 0.6526 
-      Significance: 0.001</p>
-<p>Upper quantiles of permutations (null model):
+</div>Mantel statistic based on Pearson's product-moment correlation 
+
+Call:
+mantel(xdis = genes.dist, ydis = otu.dist) 
+
+Mantel statistic r: 0.6526 
+      Significance: 0.001 
+
+Upper quantiles of permutations (null model):
    90%    95%  97.5%    99% 
 0.0833 0.1194 0.1458 0.1849 
 Permutation: free
-Number of permutations: 999</p>
-<p>Call:
-protest(X = genes.pcoa, Y = otu.pcoa)</p>
-<p>Procrustes Sum of Squares (m12 squared):        0.5402 
-Correlation in a symmetric Procrustes rotation: 0.6781 
-Significance:  0.001</p>
-<p>Permutation: free
-Number of permutations: 999</p>
+Number of permutations: 999
 
-</div>
-</div>
-</div>
+Call:
+protest(X = genes.pcoa, Y = otu.pcoa) 
+
+Procrustes Sum of Squares (m12 squared):        0.5402 
+Correlation in a symmetric Procrustes rotation: 0.6781 
+Significance:  0.001 
+
+Permutation: free
+Number of permutations: 999
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="MetaT-Kallisto">MetaT Kallisto<a class="anchor-link" href="#MetaT-Kallisto">&#182;</a></h1><p><p><a href="html/MetaT_Mags_alignment.html">Link</a> to the interactive table. Static table shown below.<p></p>
@@ -14224,7 +14290,7 @@ Number of permutations: 999</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Next-Steps">Next Steps<a class="anchor-link" href="#Next-Steps">&#182;</a></h1><ol>
-    <li>Fix the metadata to ensure that each sample is accounted for and we have the seq files <b>(Nejc)</b></li>
+    <li>Fix the metadata to ensure that each sample is accounted for and we have the seq files <b>(Nejc)</b> &nbsp;&nbsp;&nbsp;&nbsp; &#10003; Completed Wednesday, delivered by Kiera</li>
     <li>Modify the R analysis script to read results from the MetaT data <b>(Nejc &amp; Shane)</b></li>
     <li>Explore the Kallisto output to determine how to extract annotations <b>(Shane)</b></li>
 </ol>
@@ -14238,6 +14304,23 @@ Number of permutations: 999</p>
 </div>
 </div>
 </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+  </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1><a id="annoMeth">Annotation Methodology</a></h1><ul>
@@ -14331,10 +14414,10 @@ Number of permutations: 999</p>
 
 
 
-<div id="c9aee944-4ab4-4c12-9065-0bed0479837b"></div>
+<div id="a0d2af1f-b725-4514-b7f6-def30ef1669a"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#c9aee944-4ab4-4c12-9065-0bed0479837b');
+var element = $('#a0d2af1f-b725-4514-b7f6-def30ef1669a');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -14348,10 +14431,10 @@ IPython.notebook.save_checkpoint();
 
 
 
-<div id="fa2529d5-74cf-48a0-8ffc-8e9d45b18008"></div>
+<div id="8050bcc8-be93-4ad5-a251-d4f0630b73e4"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#fa2529d5-74cf-48a0-8ffc-8e9d45b18008');
+var element = $('#8050bcc8-be93-4ad5-a251-d4f0630b73e4');
 IPython.notebook.save_notebook();
 </script>
 </div>
