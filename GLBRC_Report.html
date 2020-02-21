@@ -13114,82 +13114,51 @@ div#notebook {
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a id="home"></a></p>
-<h1 id="GLBRC-collaboration">GLBRC collaboration<a class="anchor-link" href="#GLBRC-collaboration">&#182;</a></h1><h4 id="Adina,-Ashley,-Shane,-Nejc">Adina, Ashley, Shane, Nejc<a class="anchor-link" href="#Adina,-Ashley,-Shane,-Nejc">&#182;</a></h4><ol>
-<li><a href="#seqSums">Sequencing and alignment Summaries</a><ul>
-<li><u>Inputs:<br/></u><ul>
-<li>136 Phred-33 fastq files from samples obtained from washes of Switchgrass and Miscanthus transfered from JGI.</li>
-<li>Illumina TruSeq version 3.2 sequencing adapters. </li>
-</ul>
-</li>
-<li><u>Outputs:<br/></u><ul>
-<li><a href="#seqSums">Adapter Trimming and QC (Trimmomatic) Report</a></li>
-<li><a href="#pAlign">Host Plant Alignment Report</a></li>
-<li><a href="#fAlign">Fungal Alignments</a></li>
-<li><a href="#aConc">Alignment Conclusions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Overarching analysis - changes in metagenome content over time<ul>
-<li><u>Inputs:<br/></u><ul>
-<li>Functional Gene Count table, mapped to KEGG/functions <a href="#annoMeth">Annotation Methodology</a></li>
-</ul>
-</li>
-<li><u>Outputs:<br/></u><ul>
-<li><a href="#pcoa">PCoA and analysis of changes over time – related time/season – use</a><ul>
-<li><a href="#pDisp">How variable are metagenomes across replicate time points?  - PERMDISP</a></li>
-</ul>
-</li>
-<li><a href="#synch">Synchrony – does the 16S change in concert with functional?</a><ul>
-<li><a href="#proTest">PROTEST – Procustes superimposition, Mantel</a><ul>
-<li><a href="#sCheck">Sanity check:  core metabolism changing over time?</a></li>
-</ul>
-</li>
-<li>Assembly of functional genes - is it stable over time, does it accumulate/convergence faster than 16S -John G infant gut - consecutive v. end point –<ul>
-<li>Bray-Curtis distance of 16S t1 v t2, T1 v T3, T1 v TFinal, model of convergence for both</li>
-<li>Hierarchical clustering – clusters can inform this question (e.g. T4, 5,6 grouped with final time</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Core functional genes – Nejc is the point person<ul>
-<li>Omit core metabolism from the normalized table to focus only on non-housekeeping functions- -</li>
-<li>Discovery/identify Occupancy 100% at a time point<ul>
-<li>All genes that are in all samples – Shane is using the median</li>
-</ul>
-</li>
-<li>Who are those core genes?<ul>
-<li>Levy paper – symbiosis genes?  How to search?<ul>
-<li>Map pfams from the Levy paper to sequence level homology in KEGG?</li>
-</ul>
-</li>
-<li>Other genes that are not mentioned in Levy but are leaf-specific (e.g., irradiation/desiccation exposure)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Analysis of bins (MAGs)<ul>
-<li>Annotate them – who has which core functional genes (identified above)</li>
-<li>How well do they overlap with our Core from the 16S paper?  %coverage – Jackson will be the point person for that</li>
-<li>Match 16S (but this is problematic because probably won&#39;t assemble well)</li>
-<li>Use Udeobacter paper as a guide for MAG recovery analysis as compared to 16S – use the most resolved taxonomy –</li>
-<li>Basic stats on MAGs – how abundant are those taxa in the dataset and how persistent are they over time?  Where are the gaps, given the core</li>
-</ul>
-</li>
-<li>metaT<ul>
-<li>Map both to metaG and to MAGs</li>
-<li>Subset the core genes for this analysis?</li>
-<li>Do we see the same patterns in metaG and metaT, over time?</li>
-<li>Is everyone active?  What proportion of the community?  Only certain members? Can we &quot;get away&quot; with just metaG to understand who is active?</li>
-</ul>
-</li>
-</ol>
+<!-- <a id="home"></a>
 
+# GLBRC collaboration
+#### Adina, Ashley, Shane, Nejc
+
+0. [Sequencing and alignment Summaries](#seqSums)
+    *  <u>Inputs:<br/></u>
+        *  136 Phred-33 fastq files from samples obtained from washes of Switchgrass and Miscanthus transfered from JGI.
+        *  Illumina TruSeq version 3.2 sequencing adapters. 
+    *  <u>Outputs:<br/></u>
+        *  [Adapter Trimming and QC (Trimmomatic) Report](#seqSums)
+        *  [Host Plant Alignment Report](#pAlign)
+        *  [Fungal Alignments](#fAlign)
+        *  [Alignment Conclusions](#aConc)
+1. Overarching analysis - changes in metagenome content over time
+    *  <u>Inputs:<br/></u>
+        *  Functional Gene Count table, mapped to KEGG/functions [Annotation Methodology](#annoMeth)
+    *  <u>Outputs:<br/></u>
+        *  [PCoA and analysis of changes over time – related time/season – use](#pcoa)
+            *  [How variable are metagenomes across replicate time points?  - PERMDISP](#pDisp)
+        *  [Synchrony – does the 16S change in concert with functional?](#synch)
+            *  [PROTEST – Procustes superimposition, Mantel](#proTest)
+                *  [Sanity check:  core metabolism changing over time?](#sCheck)
+            *  Assembly of functional genes - is it stable over time, does it accumulate/convergence faster than 16S -John G infant gut - consecutive v. end point –
+                *  Bray-Curtis distance of 16S t1 v t2, T1 v T3, T1 v TFinal, model of convergence for both
+                *  Hierarchical clustering – clusters can inform this question (e.g. T4, 5,6 grouped with final time
+        *  Core functional genes – Nejc is the point person
+             *  Omit core metabolism from the normalized table to focus only on non-housekeeping functions- -
+             *  Discovery/identify Occupancy 100% at a time point
+                *  All genes that are in all samples – Shane is using the median
+             *  Who are those core genes?
+                *  Levy paper – symbiosis genes?  How to search?
+                   *  Map pfams from the Levy paper to sequence level homology in KEGG?
+                *  Other genes that are not mentioned in Levy but are leaf-specific (e.g., irradiation/desiccation exposure)
+2.  Analysis of bins (MAGs)
+  - Annotate them – who has which core functional genes (identified above)
+  - How well do they overlap with our Core from the 16S paper?  %coverage – Jackson will be the point person for that
+    - Match 16S (but this is problematic because probably won&#39;t assemble well)
+    - Use Udeobacter paper as a guide for MAG recovery analysis as compared to 16S – use the most resolved taxonomy –
+    - Basic stats on MAGs – how abundant are those taxa in the dataset and how persistent are they over time?  Where are the gaps, given the core
+3.  metaT
+  - Map both to metaG and to MAGs
+  - Subset the core genes for this analysis?
+  - Do we see the same patterns in metaG and metaT, over time?
+  - Is everyone active?  What proportion of the community?  Only certain members? Can we &quot;get away&quot; with just metaG to understand who is active? -->
 </div>
 </div>
 </div>
