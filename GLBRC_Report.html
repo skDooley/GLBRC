@@ -13202,32 +13202,62 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">interact</span>
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="n">interact</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Hidden</span>
 <span class="c1">#%matplotlib inline</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="k">import</span> <span class="n">glob</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Audio</span><span class="p">,</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">Text</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">interact</span>
-<span class="kn">from</span> <span class="nn">matplotlib.collections</span> <span class="k">import</span> <span class="n">LineCollection</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="k">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">read_csv</span><span class="p">,</span> <span class="n">Series</span><span class="p">,</span> <span class="n">to_datetime</span>
-<span class="kn">from</span> <span class="nn">pickle</span> <span class="k">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
-<span class="kn">from</span> <span class="nn">random</span> <span class="k">import</span> <span class="n">randint</span> 
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">manifold</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">euclidean_distances</span>
-<span class="kn">import</span> <span class="nn">cufflinks</span> <span class="k">as</span> <span class="nn">cf</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">qgrid</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">cf</span><span class="o">.</span><span class="n">go_offline</span><span class="p">()</span>
-<span class="c1"># cf.set_config_file(offline=False, world_readable=True)</span>
-<span class="n">cf</span><span class="o">.</span><span class="n">set_config_file</span><span class="p">(</span><span class="n">offline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">world_readable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">done</span> <span class="o">=</span> <span class="n">Audio</span><span class="p">(</span><span class="s1">&#39;done.wav&#39;</span><span class="p">,</span><span class="n">autoplay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">comma</span><span class="p">(</span><span class="n">number</span><span class="p">):</span> <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{:,}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">scolor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">pickColor</span><span class="p">):</span> 
-    <span class="n">scalar</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">-</span> <span class="nb">int</span><span class="p">((</span><span class="n">i</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="mi">120</span><span class="p">)</span> 
-    <span class="k">if</span> <span class="n">pickColor</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;#</span><span class="si">%02X%02X%02X</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="n">scalar</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-    <span class="k">return</span> <span class="s1">&#39;#</span><span class="si">%02X%02X%02X</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="n">scalar</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="c1"># from glob import glob</span>
+<span class="c1"># from IPython.display import Image</span>
+<span class="c1"># from ipywidgets import Text, Dropdown, Output, interact</span>
+<span class="c1"># from matplotlib.collections import LineCollection</span>
+<span class="c1"># from matplotlib import pyplot as plt</span>
+<span class="c1"># from pandas import DataFrame, merge, read_csv, Series, to_datetime</span>
+<span class="c1"># from pickle import dump, load</span>
+<span class="c1"># from random import randint </span>
+<span class="c1"># import cufflinks as cf</span>
+<span class="c1"># import numpy as np</span>
+<span class="c1"># import qgrid</span>
+<span class="c1"># cf.go_offline()</span>
+<span class="c1"># # cf.set_config_file(offline=False, world_readable=True)</span>
+<span class="c1"># cf.set_config_file(offline=True, world_readable=True)</span>
 </pre></div>
 
     </div>
@@ -13335,45 +13365,45 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="c1"># For metaG</span>
-<span class="n">metadataG</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;metadata/GLBRC_MetaG_Metadata.tsv&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;nucleic_acid_name&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="s2">&quot;sampling ID&quot;</span><span class="p">,</span><span class="s2">&quot;sequencing_type&quot;</span><span class="p">,</span><span class="s2">&quot;height_mean_cm&quot;</span><span class="p">,</span><span class="s2">&quot;air_temp_c&quot;</span><span class="p">,</span><span class="s2">&quot;rep&quot;</span><span class="p">,</span><span class="s2">&quot;Sampling Time&quot;</span><span class="p">,</span><span class="s2">&quot;reads_file_name&quot;</span><span class="p">,</span><span class="s2">&quot;treatment&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
-<span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="n">metadataG</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">plot_name</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_datetime</span><span class="p">(</span><span class="n">metadataG</span><span class="o">.</span><span class="n">sampling_date</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="o">=</span><span class="n">metadataG</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;sampling_date&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metaG_Reads</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;mapping/metaG/hostRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.stat&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="n">metaG_Reads</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataG</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">metadataG</span><span class="p">,</span><span class="n">metaG_Reads</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;aligned&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;paired_total&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;paired_aligned_mate_none_halved&#39;</span><span class="p">])</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;percPlantAligned&quot;</span><span class="p">]</span><span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;overall_alignment_rate&quot;</span><span class="p">]</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;Plant Reads&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;aligned&quot;</span><span class="p">]</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;Total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;paired_total&quot;</span><span class="p">]</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;aligned&#39;</span><span class="p">,</span><span class="s1">&#39;total_reads&#39;</span><span class="p">,</span><span class="s1">&#39;paired_total&#39;</span><span class="p">,</span><span class="s1">&#39;paired_aligned_none&#39;</span><span class="p">,</span><span class="s1">&#39;paired_total&#39;</span><span class="p">,</span><span class="s1">&#39;paired_aligned_one&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_multi&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;paired_aligned_discord_one&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_none&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_one&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_multi&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;overall_alignment_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_multi_halved&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_none_halved&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_one_halved&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metaG_Reads</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;mapping/metaG/fungalRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metaG_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.fungal.stat&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="n">metaG_Reads</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataG</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">metadataG</span><span class="p">,</span><span class="n">metaG_Reads</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;Fungal Reads&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;paired_total&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;paired_aligned_mate_none_halved&#39;</span><span class="p">])</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;percFungalAligned&quot;</span><span class="p">]</span><span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;overall_alignment_rate&quot;</span><span class="p">]</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;percFungalAligned&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Series</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;percFungalAligned&#39;</span><span class="p">]],</span> <span class="n">index</span> <span class="o">=</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">Series</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]],</span> <span class="n">index</span> <span class="o">=</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;Remaining&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;paired_aligned_mate_none_halved&#39;</span><span class="p">]</span>
-<span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;percRemaining&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">metadataG</span><span class="p">[</span><span class="s2">&quot;Remaining&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;Total&#39;</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span>
-<span class="n">metadataG</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;total_reads&#39;</span><span class="p">,</span><span class="s1">&#39;paired_total&#39;</span><span class="p">,</span><span class="s1">&#39;paired_aligned_none&#39;</span><span class="p">,</span><span class="s1">&#39;paired_total&#39;</span><span class="p">,</span><span class="s1">&#39;paired_aligned_one&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_multi&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;paired_aligned_discord_one&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_none&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_one&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_multi&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;overall_alignment_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_multi_halved&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_none_halved&#39;</span><span class="p">,</span> <span class="s1">&#39;paired_aligned_mate_one_halved&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">G5Data</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G5&#39;</span><span class="p">]</span>
-<span class="n">G6Data</span> <span class="o">=</span> <span class="n">metadataG</span><span class="p">[</span><span class="n">metadataG</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G6&#39;</span><span class="p">]</span>
-<span class="n">qgrid_widgetMG</span> <span class="o">=</span> <span class="n">qgrid</span><span class="o">.</span><span class="n">show_grid</span><span class="p">(</span><span class="n">metadataG</span><span class="p">)</span>
-<span class="n">qgrid_widgetMG</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># # For metaG</span>
+<span class="c1"># metadataG = read_csv(&quot;metadata/GLBRC_MetaG_Metadata.tsv&quot;,sep=&#39;\t&#39;)</span>
+<span class="c1"># metadataG.set_index(&quot;nucleic_acid_name&quot;,inplace=True)</span>
+<span class="c1"># metadataG.drop([&quot;source&quot;,&quot;sampling ID&quot;,&quot;sequencing_type&quot;,&quot;height_mean_cm&quot;,&quot;air_temp_c&quot;,&quot;rep&quot;,&quot;Sampling Time&quot;,&quot;reads_file_name&quot;,&quot;treatment&quot;],axis=1,inplace=True) </span>
+<span class="c1"># for id in metadataG.index: metadataG.loc[id,&quot;type&quot;] = metadataG[metadataG.index == id].plot_name[0][0:2]</span>
+<span class="c1"># metadataG[&#39;Date&#39;] = to_datetime(metadataG.sampling_date)</span>
+<span class="c1"># metadataG=metadataG.sort_values(by=[&quot;type&quot;,&quot;Date&quot;])</span>
+<span class="c1"># metadataG.drop([&quot;sampling_date&quot;],axis=1,inplace=True)</span>
+<span class="c1"># metaG_Reads = read_csv(&quot;mapping/metaG/hostRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;,sep=&quot;\t&quot;)</span>
+<span class="c1"># for id in metaG_Reads.index: metaG_Reads.at[id,&quot;Sample&quot;] = metaG_Reads.at[id,&quot;Sample&quot;].replace(&quot;.stat&quot;,&quot;&quot;)</span>
+<span class="c1"># metaG_Reads.set_index(&quot;Sample&quot;,inplace=True)</span>
+<span class="c1"># metadataG = merge(metadataG,metaG_Reads,left_index=True,right_index=True)</span>
+<span class="c1"># metadataG.sort_values(&quot;Date&quot;,inplace=True)</span>
+<span class="c1"># metadataG[&quot;aligned&quot;] = (metadataG[&#39;paired_total&#39;]-metadataG[&#39;paired_aligned_mate_none_halved&#39;])</span>
+<span class="c1"># metadataG[&quot;percPlantAligned&quot;]= metadataG[&quot;overall_alignment_rate&quot;]</span>
+<span class="c1"># metadataG[&quot;Plant Reads&quot;] = metadataG[&quot;aligned&quot;]</span>
+<span class="c1"># metadataG[&quot;Total&quot;] = metadataG[&quot;paired_total&quot;]</span>
+<span class="c1"># metadataG.drop([&#39;aligned&#39;,&#39;total_reads&#39;,&#39;paired_total&#39;,&#39;paired_aligned_none&#39;,&#39;paired_total&#39;,&#39;paired_aligned_one&#39;, &#39;paired_aligned_multi&#39;,</span>
+<span class="c1">#        &#39;paired_aligned_discord_one&#39;, &#39;paired_aligned_mate_none&#39;, &#39;paired_aligned_mate_one&#39;, &#39;paired_aligned_mate_multi&#39;,</span>
+<span class="c1">#        &#39;overall_alignment_rate&#39;, &#39;paired_aligned_mate_multi_halved&#39;, &#39;paired_aligned_mate_none_halved&#39;, &#39;paired_aligned_mate_one_halved&#39;],axis=1,inplace=True)</span>
+<span class="c1"># metaG_Reads = read_csv(&quot;mapping/metaG/fungalRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;,sep=&quot;\t&quot;)</span>
+<span class="c1"># for id in metaG_Reads.index: metaG_Reads.at[id,&quot;Sample&quot;] = metaG_Reads.at[id,&quot;Sample&quot;].replace(&quot;.fungal.stat&quot;,&quot;&quot;)</span>
+<span class="c1"># metaG_Reads.set_index(&quot;Sample&quot;,inplace=True)</span>
+<span class="c1"># metadataG = merge(metadataG,metaG_Reads,left_index=True,right_index=True)</span>
+<span class="c1"># metadataG.sort_values(&quot;Date&quot;,inplace=True)</span>
+<span class="c1"># metadataG[&quot;Fungal Reads&quot;] = (metadataG[&#39;paired_total&#39;]-metadataG[&#39;paired_aligned_mate_none_halved&#39;])</span>
+<span class="c1"># metadataG[&quot;percFungalAligned&quot;]= metadataG[&quot;overall_alignment_rate&quot;]</span>
+<span class="c1"># metadataG[&#39;percFungalAligned&#39;] = Series([float(&quot;{0:.2f}%&quot;.format(val).replace(&quot;%&quot;,&quot;&quot;)) for val in metadataG[&#39;percFungalAligned&#39;]], index = metadataG.index)</span>
+<span class="c1"># metadataG[&#39;percPlantAligned&#39;]  = Series([float(&quot;{0:.2f}%&quot;.format(val).replace(&quot;%&quot;,&quot;&quot;)) for val in metadataG[&#39;percPlantAligned&#39;]], index = metadataG.index)</span>
+<span class="c1"># metadataG[&#39;Remaining&#39;] = metadataG[&#39;paired_aligned_mate_none_halved&#39;]</span>
+<span class="c1"># metadataG[&#39;percRemaining&#39;] = (metadataG[&quot;Remaining&quot;]/metadataG[&#39;Total&#39;])*100</span>
+<span class="c1"># metadataG.drop([&#39;total_reads&#39;,&#39;paired_total&#39;,&#39;paired_aligned_none&#39;,&#39;paired_total&#39;,&#39;paired_aligned_one&#39;, &#39;paired_aligned_multi&#39;,</span>
+<span class="c1">#        &#39;paired_aligned_discord_one&#39;, &#39;paired_aligned_mate_none&#39;, &#39;paired_aligned_mate_one&#39;, &#39;paired_aligned_mate_multi&#39;,</span>
+<span class="c1">#        &#39;overall_alignment_rate&#39;, &#39;paired_aligned_mate_multi_halved&#39;, &#39;paired_aligned_mate_none_halved&#39;, &#39;paired_aligned_mate_one_halved&#39;],axis=1,inplace=True)</span>
+<span class="c1"># G5Data = metadataG[metadataG[&#39;type&#39;] == &#39;G5&#39;]</span>
+<span class="c1"># G6Data = metadataG[metadataG[&#39;type&#39;] == &#39;G6&#39;]</span>
+<span class="c1"># qgrid_widgetMG = qgrid.show_grid(metadataG)</span>
+<span class="c1"># qgrid_widgetMG</span>
 </pre></div>
 
     </div>
@@ -13417,35 +13447,35 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="n">metadataT</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;metadata/GLBRC_MetaT_Metadata.tsv&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">metadataT</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;nucleic_acid_name&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataT</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">,</span><span class="s2">&quot;plotID&quot;</span><span class="p">,</span><span class="s2">&quot;month&quot;</span><span class="p">,</span><span class="s2">&quot;sampleID&quot;</span><span class="p">,</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;weather&quot;</span><span class="p">,</span> <span class="s2">&quot;air_temp_c&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">,</span> <span class="s2">&quot;rep&quot;</span><span class="p">,</span> <span class="s2">&quot;time_zone&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;altitude&quot;</span><span class="p">,</span> <span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;soil_name&quot;</span><span class="p">,</span> <span class="s2">&quot;number_cores&quot;</span><span class="p">,</span> <span class="s2">&quot;SPNL_date&quot;</span><span class="p">,</span> <span class="s2">&quot;pH&quot;</span><span class="p">,</span> <span class="s2">&quot;lime_index&quot;</span><span class="p">,</span> <span class="s2">&quot;P_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;K_ppm&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;Ca_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;Mg_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;organic_matter&quot;</span><span class="p">,</span> <span class="s2">&quot;NO3N_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;NH4_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;soil_moisture_percent&quot;</span><span class="p">,</span> <span class="s2">&quot;soil_temp_10cm&quot;</span><span class="p">,</span> <span class="s2">&quot;LDMC_mg_per_g&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;nitrogen_percent&quot;</span><span class="p">,</span> <span class="s2">&quot;carbon_percent&quot;</span><span class="p">,</span> <span class="s2">&quot;carbon_per_nitrogen&quot;</span><span class="p">,</span> <span class="s2">&quot;height_mean_cm&quot;</span><span class="p">,</span> <span class="s2">&quot;mass_per_leaf_g&quot;</span><span class="p">,</span> <span class="s2">&quot;date_of_extraction&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;nucleic_acid_type&quot;</span><span class="p">,</span> <span class="s2">&quot;replicate_extraction&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;source_mass&quot;</span><span class="p">,</span> <span class="s2">&quot;extraction_method&quot;</span><span class="p">,</span> <span class="s2">&quot;elution_vol_ul&quot;</span><span class="p">,</span> <span class="s2">&quot;concentration_ng_per_ul&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;ratio_260_280&quot;</span><span class="p">,</span> <span class="s2">&quot;conc_ng_per_g_source&quot;</span><span class="p">,</span> <span class="s2">&quot;extracted_by&quot;</span><span class="p">,</span> <span class="s2">&quot;sequence_name&quot;</span><span class="p">,</span> <span class="s2">&quot;sequencing_date&quot;</span><span class="p">,</span> <span class="s2">&quot;conc_sent_ng_per_ul&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;sequencing_type&quot;</span><span class="p">,</span> <span class="s2">&quot;sequencing_facility&quot;</span><span class="p">,</span> <span class="s2">&quot;primers&quot;</span><span class="p">,</span> <span class="s2">&quot;submitted_for_sequencing&quot;</span><span class="p">,</span> <span class="s2">&quot;sequencing_successful&quot;</span><span class="p">,</span> <span class="s2">&quot;duplicate_submitted&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;dup_sequencing_name&quot;</span><span class="p">,</span> <span class="s2">&quot;exclude_from_analysis&quot;</span><span class="p">,</span> <span class="s2">&quot;itemID_JGI&quot;</span><span class="p">,</span> <span class="s2">&quot;sampleID_JGI&quot;</span><span class="p">,</span> <span class="s2">&quot;barcode&quot;</span><span class="p">,</span> <span class="s2">&quot;JGI_library&quot;</span><span class="p">,</span> <span class="s2">&quot;HPCC_path&quot;</span><span class="p">,</span> <span class="s2">&quot;JGI_taxonOID&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;JGI_rawdataname&quot;</span><span class="p">,</span> <span class="s2">&quot;time_numeric&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;precipitation&quot;</span><span class="p">,</span> <span class="s2">&quot;Air_temp_mean&quot;</span><span class="p">,</span> <span class="s2">&quot;air_temp_max&quot;</span><span class="p">,</span> <span class="s2">&quot;Air_Temp_Min&quot;</span><span class="p">,</span>\
-               <span class="s2">&quot;Air_Pressure&quot;</span><span class="p">,</span><span class="s2">&quot;plant_name&quot;</span><span class="p">,</span> <span class="s2">&quot;RH&quot;</span><span class="p">,</span> <span class="s2">&quot;AH&quot;</span><span class="p">,</span> <span class="s2">&quot;Wind_Speed_Mean&quot;</span><span class="p">,</span> <span class="s2">&quot;Wind_Direction_Mean&quot;</span><span class="p">,</span> <span class="s2">&quot;Solar_Radiation&quot;</span><span class="p">,</span> <span class="s2">&quot;PAR&quot;</span><span class="p">,</span> <span class="s2">&quot;soil_temp_5_cm_bare_avg&quot;</span><span class="p">,</span> \
-               <span class="s2">&quot;soil_temp_5_cm_sod_avg&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
-<span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">metadataT</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> <span class="n">metadataT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadataT</span><span class="p">[</span><span class="n">metadataT</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">plot_name</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">metadataT</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_datetime</span><span class="p">(</span><span class="n">metadataT</span><span class="o">.</span><span class="n">sampling_date</span><span class="p">)</span>
-<span class="n">metadataT</span> <span class="o">=</span> <span class="n">metadataT</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span><span class="s2">&quot;treatment&quot;</span><span class="p">,</span><span class="s2">&quot;plot_name&quot;</span><span class="p">])</span>
-<span class="n">metadataT</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="c1">#Reads After host removal</span>
-<span class="n">metaT_Reads</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;mapping/metaT/hostRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">metaT_Reads</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> <span class="n">metaT_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metaT_Reads</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">id</span><span class="p">,</span><span class="s2">&quot;Sample&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.stat&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="n">metaT_Reads</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metaT_Reads</span><span class="p">[</span><span class="s2">&quot;percPlantAligned&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">((</span><span class="n">metaT_Reads</span><span class="p">[</span><span class="s1">&#39;total_reads&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">metaT_Reads</span><span class="p">[</span><span class="s1">&#39;paired_aligned_none&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">metaT_Reads</span><span class="p">[</span><span class="s1">&#39;total_reads&#39;</span><span class="p">])</span><span class="o">*</span><span class="mf">100.0</span>
-<span class="n">metadataT</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">metadataT</span><span class="p">,</span><span class="n">metaT_Reads</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataT</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataT</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># metadataT = read_csv(&quot;metadata/GLBRC_MetaT_Metadata.tsv&quot;,sep=&#39;\t&#39;)</span>
+<span class="c1"># metadataT.set_index(&quot;nucleic_acid_name&quot;,inplace=True)</span>
+<span class="c1"># metadataT.drop([&quot;name&quot;, &quot;Year&quot;,&quot;plotID&quot;,&quot;month&quot;,&quot;sampleID&quot;,&quot;day&quot;, &quot;year&quot;, &quot;time&quot;, &quot;weather&quot;, &quot;air_temp_c&quot;, &quot;notes&quot;, &quot;rep&quot;, &quot;time_zone&quot;, &quot;longitude&quot;, \</span>
+<span class="c1">#                &quot;latitude&quot;, &quot;altitude&quot;, &quot;country&quot;, &quot;soil_name&quot;, &quot;number_cores&quot;, &quot;SPNL_date&quot;, &quot;pH&quot;, &quot;lime_index&quot;, &quot;P_ppm&quot;, &quot;K_ppm&quot;, \</span>
+<span class="c1">#                &quot;Ca_ppm&quot;, &quot;Mg_ppm&quot;, &quot;organic_matter&quot;, &quot;NO3N_ppm&quot;, &quot;NH4_ppm&quot;, &quot;soil_moisture_percent&quot;, &quot;soil_temp_10cm&quot;, &quot;LDMC_mg_per_g&quot;, \</span>
+<span class="c1">#                &quot;nitrogen_percent&quot;, &quot;carbon_percent&quot;, &quot;carbon_per_nitrogen&quot;, &quot;height_mean_cm&quot;, &quot;mass_per_leaf_g&quot;, &quot;date_of_extraction&quot;,\</span>
+<span class="c1">#                &quot;nucleic_acid_type&quot;, &quot;replicate_extraction&quot;, &quot;source&quot;, &quot;source_mass&quot;, &quot;extraction_method&quot;, &quot;elution_vol_ul&quot;, &quot;concentration_ng_per_ul&quot;,\</span>
+<span class="c1">#                &quot;ratio_260_280&quot;, &quot;conc_ng_per_g_source&quot;, &quot;extracted_by&quot;, &quot;sequence_name&quot;, &quot;sequencing_date&quot;, &quot;conc_sent_ng_per_ul&quot;, \</span>
+<span class="c1">#                &quot;sequencing_type&quot;, &quot;sequencing_facility&quot;, &quot;primers&quot;, &quot;submitted_for_sequencing&quot;, &quot;sequencing_successful&quot;, &quot;duplicate_submitted&quot;,\</span>
+<span class="c1">#                &quot;dup_sequencing_name&quot;, &quot;exclude_from_analysis&quot;, &quot;itemID_JGI&quot;, &quot;sampleID_JGI&quot;, &quot;barcode&quot;, &quot;JGI_library&quot;, &quot;HPCC_path&quot;, &quot;JGI_taxonOID&quot;,\</span>
+<span class="c1">#                &quot;JGI_rawdataname&quot;, &quot;time_numeric&quot;, &quot;date&quot;, &quot;precipitation&quot;, &quot;Air_temp_mean&quot;, &quot;air_temp_max&quot;, &quot;Air_Temp_Min&quot;,\</span>
+<span class="c1">#                &quot;Air_Pressure&quot;,&quot;plant_name&quot;, &quot;RH&quot;, &quot;AH&quot;, &quot;Wind_Speed_Mean&quot;, &quot;Wind_Direction_Mean&quot;, &quot;Solar_Radiation&quot;, &quot;PAR&quot;, &quot;soil_temp_5_cm_bare_avg&quot;, \</span>
+<span class="c1">#                &quot;soil_temp_5_cm_sod_avg&quot;],axis=1,inplace=True) </span>
+<span class="c1"># for id in metadataT.index: metadataT.loc[id,&quot;type&quot;] = metadataT[metadataT.index == id].plot_name[0][0:2]</span>
+<span class="c1"># metadataT[&#39;Date&#39;] = to_datetime(metadataT.sampling_date)</span>
+<span class="c1"># metadataT = metadataT.sort_values(by=[&quot;type&quot;,&quot;Date&quot;,&quot;treatment&quot;,&quot;plot_name&quot;])</span>
+<span class="c1"># metadataT.head()</span>
+<span class="c1"># #Reads After host removal</span>
+<span class="c1"># metaT_Reads = read_csv(&quot;mapping/metaT/hostRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;,sep=&quot;\t&quot;)</span>
+<span class="c1"># for id in metaT_Reads.index: metaT_Reads.at[id,&quot;Sample&quot;] = metaT_Reads.at[id,&quot;Sample&quot;].replace(&quot;.stat&quot;,&quot;&quot;)</span>
+<span class="c1"># metaT_Reads.set_index(&quot;Sample&quot;,inplace=True)</span>
+<span class="c1"># metaT_Reads[&quot;percPlantAligned&quot;] =  ((metaT_Reads[&#39;total_reads&#39;] - metaT_Reads[&#39;paired_aligned_none&#39;]) / metaT_Reads[&#39;total_reads&#39;])*100.0</span>
+<span class="c1"># metadataT = merge(metadataT,metaT_Reads,left_index=True,right_index=True)</span>
+<span class="c1"># metadataT.sort_values(&quot;Date&quot;,inplace=True)</span>
+<span class="c1"># metadataT.head()</span>
 
-<span class="n">qgrid_widgetMT</span> <span class="o">=</span> <span class="n">qgrid</span><span class="o">.</span><span class="n">show_grid</span><span class="p">(</span><span class="n">metadataG</span><span class="p">)</span>
-<span class="n">qgrid_widgetMT</span>
+<span class="c1"># qgrid_widgetMT = qgrid.show_grid(metadataG)</span>
+<span class="c1"># qgrid_widgetMT</span>
 </pre></div>
 
     </div>
@@ -13532,10 +13562,10 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="n">tImages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;MetaG&quot;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images/TrimReport_MetaG.png&quot;</span><span class="p">),</span><span class="s2">&quot;MetaT&quot;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images/MetaT_trimmomatic_plot.png&quot;</span><span class="p">)}</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">trimReport</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MetaG&quot;</span><span class="p">,</span><span class="s2">&quot;MetaT&quot;</span><span class="p">]):</span><span class="k">return</span> <span class="n">tImages</span><span class="p">[</span><span class="n">Source</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># tImages = {&quot;MetaG&quot;:Image(&quot;images/TrimReport_MetaG.png&quot;),&quot;MetaT&quot;:Image(&quot;images/MetaT_trimmomatic_plot.png&quot;)}</span>
+<span class="c1"># @interact</span>
+<span class="c1"># def trimReport(Source=[&quot;MetaG&quot;,&quot;MetaT&quot;]):return tImages[Source]</span>
 </pre></div>
 
     </div>
@@ -13617,41 +13647,41 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="o">%</span><span class="k">matplotlib</span> widget
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
-<span class="n">disp</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Percentage&quot;</span><span class="p">:{</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">:</span> <span class="s2">&quot;html/BothPerc.html&quot;</span><span class="p">,</span> <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span> <span class="s2">&quot;html/SwitchPerc.html&quot;</span><span class="p">,</span> <span class="s2">&quot;Miscanthus&quot;</span><span class="p">:</span> <span class="s2">&quot;html/MiscanPerc.html&quot;</span><span class="p">}}</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">graph</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MetaG&quot;</span><span class="p">,</span><span class="s2">&quot;MetaT&quot;</span><span class="p">],</span><span class="n">Host_Plant</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">,</span><span class="s2">&quot;Switchgrass&quot;</span><span class="p">,</span><span class="s2">&quot;Miscanthus&quot;</span><span class="p">],</span><span class="n">By</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Percentage&quot;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">]):</span> <span class="c1">#return HTML(disp[By][Host_Plant])</span>
-    <span class="k">if</span> <span class="n">Source</span> <span class="o">==</span> <span class="s2">&quot;MetaG&quot;</span><span class="p">:</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">metadataG</span>
-    <span class="k">else</span><span class="p">:</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">metaT_metadata</span>
-    <span class="n">G5Data</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G5&#39;</span><span class="p">]</span>
-    <span class="n">G6Data</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G6&#39;</span><span class="p">]</span>
-<span class="c1">#     htmlName = &quot;&quot;; fig = None</span>
-    <span class="k">if</span> <span class="n">By</span> <span class="o">==</span> <span class="s2">&quot;Percentage&quot;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Host_Plant</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">):</span>
-<span class="c1">#             htmlName = &quot;html/BothPerc.html&quot;</span>
-            <span class="k">return</span> <span class="n">metadata</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;% Reads Aligning to Respective Plant Host Assembly G5=Switchgrass G6=Miscanthus&quot;</span><span class="p">);</span>
-        <span class="k">elif</span> <span class="n">Host_Plant</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span>
-<span class="c1">#             htmlName = &quot;html/SwitchPerc.html&quot;</span>
-            <span class="k">return</span> <span class="n">G5Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;% Reads Aligning to Switchgrass Assembly&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
-        <span class="k">else</span><span class="p">:</span> <span class="c1"># &quot;Miscanthus&quot;:</span>
-<span class="c1">#             htmlName = &quot;html/MiscanPerc.html&quot;</span>
-            <span class="k">return</span> <span class="n">G6Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;% Reads Aligning to Micanthus Assembly&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
-<span class="c1">#         ylim = 100; ylab = &quot;% Reads&quot;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#74C476&quot;</span><span class="p">,</span> <span class="s2">&quot;#f26d07&quot;</span><span class="p">,</span><span class="s2">&quot;#794955&quot;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Host_Plant</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">):</span>
-<span class="c1">#             htmlName = &quot;html/BothCount.html&quot;</span>
-            <span class="k">return</span> <span class="n">metadata</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Plant Reads&#39;</span><span class="p">,</span><span class="s1">&#39;Fungal Reads&#39;</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Reads Counts By Source&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">Host_Plant</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span>
-<span class="c1">#             htmlName = &quot;html/SwitchCount.html&quot;</span>
-            <span class="k">return</span> <span class="n">G5Data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Plant Reads&#39;</span><span class="p">,</span><span class="s1">&#39;Fungal Reads&#39;</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Switchgrass Reads Counts&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-<span class="c1">#             htmlName = &quot;html/MiscanCount.html&quot;</span>
-            <span class="k">return</span> <span class="n">G5Data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;Plant Reads&#39;</span><span class="p">,</span><span class="s1">&#39;Fungal Reads&#39;</span><span class="p">,</span> <span class="s1">&#39;Remaining&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Miscanthus Reads Counts By Source&quot;</span><span class="p">)</span>
-<span class="c1">#     py.offline.plot(fig,filename=htmlName)</span>
-<span class="c1">#     return ax #HTML(htmlName)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># %matplotlib widget</span>
+<span class="c1"># from IPython.core.display import HTML</span>
+<span class="c1"># disp = {&quot;Percentage&quot;:{&quot;Switchgrass &amp; Miscanthus&quot;: &quot;html/BothPerc.html&quot;, &quot;Switchgrass&quot;: &quot;html/SwitchPerc.html&quot;, &quot;Miscanthus&quot;: &quot;html/MiscanPerc.html&quot;}}</span>
+<span class="c1"># @interact</span>
+<span class="c1"># def graph(Source=[&quot;MetaG&quot;,&quot;MetaT&quot;],Host_Plant=[&quot;Switchgrass &amp; Miscanthus&quot;,&quot;Switchgrass&quot;,&quot;Miscanthus&quot;],By=[&quot;Percentage&quot;,&quot;Count&quot;]): #return HTML(disp[By][Host_Plant])</span>
+<span class="c1">#     if Source == &quot;MetaG&quot;: metadata = metadataG</span>
+<span class="c1">#     else: metadata = metaT_metadata</span>
+<span class="c1">#     G5Data = metadata[metadata[&#39;type&#39;] == &#39;G5&#39;]</span>
+<span class="c1">#     G6Data = metadata[metadata[&#39;type&#39;] == &#39;G6&#39;]</span>
+<span class="c1"># #     htmlName = &quot;&quot;; fig = None</span>
+<span class="c1">#     if By == &quot;Percentage&quot;:</span>
+<span class="c1">#         if (Host_Plant == &quot;Switchgrass &amp; Miscanthus&quot;):</span>
+<span class="c1"># #             htmlName = &quot;html/BothPerc.html&quot;</span>
+<span class="c1">#             return metadata.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percPlantAligned&#39;].unstack().iplot(asFigure=True,title=&quot;% Reads Aligning to Respective Plant Host Assembly G5=Switchgrass G6=Miscanthus&quot;);</span>
+<span class="c1">#         elif Host_Plant == &quot;Switchgrass&quot;:</span>
+<span class="c1"># #             htmlName = &quot;html/SwitchPerc.html&quot;</span>
+<span class="c1">#             return G5Data.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percPlantAligned&#39;].unstack().iplot(asFigure=True,title=&quot;% Reads Aligning to Switchgrass Assembly&quot;,fontsize=12);</span>
+<span class="c1">#         else: # &quot;Miscanthus&quot;:</span>
+<span class="c1"># #             htmlName = &quot;html/MiscanPerc.html&quot;</span>
+<span class="c1">#             return G6Data.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percPlantAligned&#39;].unstack().iplot(asFigure=True,title=&quot;% Reads Aligning to Micanthus Assembly&quot;,fontsize=12);</span>
+<span class="c1"># #         ylim = 100; ylab = &quot;% Reads&quot;</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         colors = [&quot;#74C476&quot;, &quot;#f26d07&quot;,&quot;#794955&quot;]</span>
+<span class="c1">#         if (Host_Plant == &quot;Switchgrass &amp; Miscanthus&quot;):</span>
+<span class="c1"># #             htmlName = &quot;html/BothCount.html&quot;</span>
+<span class="c1">#             return metadata.loc[:,[&#39;Plant Reads&#39;,&#39;Fungal Reads&#39;, &#39;Remaining&#39;]].iplot(asFigure=True,kind=&#39;bar&#39;, barmode = &#39;stack&#39;, color=colors, title=&quot;Reads Counts By Source&quot;)</span>
+<span class="c1">#         elif Host_Plant == &quot;Switchgrass&quot;:</span>
+<span class="c1"># #             htmlName = &quot;html/SwitchCount.html&quot;</span>
+<span class="c1">#             return G5Data.loc[:,[&#39;Plant Reads&#39;,&#39;Fungal Reads&#39;, &#39;Remaining&#39;]].iplot(asFigure=True,kind=&#39;bar&#39;, barmode = &#39;stack&#39;, color=colors, title=&quot;Switchgrass Reads Counts&quot;)</span>
+<span class="c1">#         else:</span>
+<span class="c1"># #             htmlName = &quot;html/MiscanCount.html&quot;</span>
+<span class="c1">#             return G5Data.loc[:,[&#39;Plant Reads&#39;,&#39;Fungal Reads&#39;, &#39;Remaining&#39;]].iplot(asFigure=True,kind=&#39;bar&#39;, barmode = &#39;stack&#39;, color=colors, title=&quot;Miscanthus Reads Counts By Source&quot;)</span>
+<span class="c1"># #     py.offline.plot(fig,filename=htmlName)</span>
+<span class="c1"># #     return ax #HTML(htmlName)</span>
 </pre></div>
 
     </div>
@@ -13727,12 +13757,12 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">fungalAlign</span><span class="p">(</span><span class="n">Samples</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Switchgrass&quot;</span><span class="p">,</span> <span class="s2">&quot;Miscanthus&quot;</span><span class="p">,</span> <span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">]):</span>
-    <span class="k">if</span> <span class="n">Samples</span> <span class="o">==</span> <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span> <span class="k">return</span> <span class="n">G5Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percFungalAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">yTitle</span><span class="o">=</span><span class="s2">&quot;Percentage of Reads&quot;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Switchgrass Samples Perctages of Reads Aligning to Combined Fungal Assemblies&quot;</span><span class="p">);</span>
-    <span class="k">elif</span> <span class="n">Samples</span> <span class="o">==</span> <span class="s2">&quot;Miscanthus&quot;</span><span class="p">:</span> <span class="k">return</span> <span class="n">G6Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percFungalAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">yTitle</span><span class="o">=</span><span class="s2">&quot;Percentage of Reads&quot;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Miscanthus Samples Perctages of Reads Aligning to Combined Fungal Assemblies&quot;</span><span class="p">);</span>
-    <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percFungalAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">yTitle</span><span class="o">=</span><span class="s2">&quot;Percentage of Reads&quot;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;All Samples Perctages of Reads Aligning to Combined Fungal Assemblies&quot;</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># @interact</span>
+<span class="c1"># def fungalAlign(Samples=[&quot;Switchgrass&quot;, &quot;Miscanthus&quot;, &quot;Switchgrass &amp; Miscanthus&quot;]):</span>
+<span class="c1">#     if Samples == &quot;Switchgrass&quot;: return G5Data.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percFungalAligned&#39;].unstack().iplot(yTitle=&quot;Percentage of Reads&quot;,title=&quot;Switchgrass Samples Perctages of Reads Aligning to Combined Fungal Assemblies&quot;);</span>
+<span class="c1">#     elif Samples == &quot;Miscanthus&quot;: return G6Data.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percFungalAligned&#39;].unstack().iplot(yTitle=&quot;Percentage of Reads&quot;,title=&quot;Miscanthus Samples Perctages of Reads Aligning to Combined Fungal Assemblies&quot;);</span>
+<span class="c1">#     else: return metadataG.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percFungalAligned&#39;].unstack().iplot(yTitle=&quot;Percentage of Reads&quot;,title=&quot;All Samples Perctages of Reads Aligning to Combined Fungal Assemblies&quot;);</span>
 </pre></div>
 
     </div>
@@ -13803,9 +13833,9 @@ Skip to:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;mags/MAG_Stats.tsv&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">qgrid_widgetMAGs</span> <span class="o">=</span> <span class="n">qgrid</span><span class="o">.</span><span class="n">show_grid</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="n">qgrid_widgetMAGs</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df = read_csv(&quot;mags/MAG_Stats.tsv&quot;,sep=&quot;\t&quot;)</span>
+<span class="c1"># qgrid_widgetMAGs = qgrid.show_grid(df)</span>
+<span class="c1"># qgrid_widgetMAGs</span>
 </pre></div>
 
     </div>
@@ -13830,6 +13860,23 @@ Skip to:
 
 </div>
 
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># qgrid_widgetMAGs.t</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -14178,10 +14225,10 @@ Total         135    7.3603                  1.00000</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="n">pcoaImgs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Total Reads&#39;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;ShadeLabCode/R/Figures/Figure2B_PhyllospherePCoAGenes.png&#39;</span><span class="p">),</span><span class="s1">&#39;Non Plant Reads&#39;</span><span class="p">:</span> <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;ShadeLabCode/R/Figures/Figure2B_PhyllospherePCoA_GenesMAGs.png&#39;</span><span class="p">)</span> <span class="p">}</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">dataSet</span><span class="p">(</span><span class="n">Normalized_By</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Non Plant Reads&quot;</span><span class="p">,</span><span class="s2">&quot;Total Reads&quot;</span><span class="p">]):</span> <span class="k">return</span> <span class="n">pcoaImgs</span><span class="p">[</span><span class="n">Normalized_By</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># pcoaImgs = {&#39;Total Reads&#39;:Image(&#39;ShadeLabCode/R/Figures/Figure2B_PhyllospherePCoAGenes.png&#39;),&#39;Non Plant Reads&#39;: Image(filename=&#39;ShadeLabCode/R/Figures/Figure2B_PhyllospherePCoA_GenesMAGs.png&#39;) }</span>
+<span class="c1"># @interact</span>
+<span class="c1"># def dataSet(Normalized_By=[&quot;Non Plant Reads&quot;,&quot;Total Reads&quot;]): return pcoaImgs[Normalized_By]</span>
 </pre></div>
 
     </div>
@@ -14255,10 +14302,10 @@ Number of permutations: 999
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Hidden</span>
-<span class="n">metD</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Count&quot;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images/MetaT_HostAln_Count.png&quot;</span><span class="p">),</span><span class="s2">&quot;Percentage&quot;</span><span class="p">:</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images/MetaT_HostAln_Perc.png&quot;</span><span class="p">)}</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">metaTaln</span><span class="p">(</span><span class="n">By</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Percentage&#39;</span><span class="p">,</span><span class="s1">&#39;Count&#39;</span><span class="p">]):</span><span class="k">return</span> <span class="n">metD</span><span class="p">[</span><span class="n">By</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #Hidden</span>
+<span class="c1"># metD = {&quot;Count&quot;:Image(&quot;images/MetaT_HostAln_Count.png&quot;),&quot;Percentage&quot;:Image(&quot;images/MetaT_HostAln_Perc.png&quot;)}</span>
+<span class="c1"># @interact</span>
+<span class="c1"># def metaTaln(By=[&#39;Percentage&#39;,&#39;Count&#39;]):return metD[By]</span>
 </pre></div>
 
     </div>
@@ -14367,16 +14414,16 @@ Number of permutations: 999
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="n">EukaryoticAnnotations</span><span class="p">,</span> <span class="n">ProkaryoticAnnotations</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(),</span> <span class="nb">set</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;annotations/EukAnnotatedContigIDs2.txt&quot;</span><span class="p">):</span>  <span class="n">EukaryoticAnnotations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;annotations/ProkAnnotatedContigIDs.txt&quot;</span><span class="p">):</span> <span class="n">ProkaryoticAnnotations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib_venn</span> <span class="k">import</span> <span class="n">venn2</span>
-<span class="c1"># First way to call the 2 group Venn diagram:</span>
-<span class="n">venn2</span><span class="p">(</span><span class="n">subsets</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ProkaryoticAnnotations</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">EukaryoticAnnotations</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">ProkaryoticAnnotations</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">EukaryoticAnnotations</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">EukaryoticAnnotations</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">ProkaryoticAnnotations</span><span class="p">))),</span> <span class="n">set_labels</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Prokaryotic Contigs&#39;</span><span class="p">,</span><span class="s1">&#39;Eukaryotic Contigs&#39;</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Contigs with an Annotation&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># EukaryoticAnnotations, ProkaryoticAnnotations = set(), set()</span>
+<span class="c1"># for line in open(&quot;annotations/EukAnnotatedContigIDs2.txt&quot;):  EukaryoticAnnotations.add(line.strip())</span>
+<span class="c1"># for line in open(&quot;annotations/ProkAnnotatedContigIDs.txt&quot;): ProkaryoticAnnotations.add(line.strip())</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># from matplotlib_venn import venn2</span>
+<span class="c1"># # First way to call the 2 group Venn diagram:</span>
+<span class="c1"># venn2(subsets = (len(ProkaryoticAnnotations.difference(EukaryoticAnnotations)), len(ProkaryoticAnnotations.intersection(EukaryoticAnnotations)), len(EukaryoticAnnotations.difference(ProkaryoticAnnotations))), set_labels = (&#39;Prokaryotic Contigs&#39;,&#39;Eukaryotic Contigs&#39;))</span>
+<span class="c1"># plt.title(&#39;Contigs with an Annotation&#39;)</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 
     </div>
@@ -14393,101 +14440,13 @@ Number of permutations: 999
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># import nbinteract as nbi</span>
 
-<span class="n">nbi</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;skdooley/GLBRC/master&quot;</span><span class="p">,</span> <span class="s2">&quot;GLBRC_Report2.ipynb&quot;</span><span class="p">)</span>
+<span class="c1"># nbi.publish(&quot;skdooley/GLBRC/master&quot;, &quot;GLBRC_Report.ipynb&quot;)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-
-<div id="a0d2af1f-b725-4514-b7f6-def30ef1669a"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#a0d2af1f-b725-4514-b7f6-def30ef1669a');
-IPython.notebook.save_checkpoint();
-</script>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-
-<div id="8050bcc8-be93-4ad5-a251-d4f0630b73e4"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#8050bcc8-be93-4ad5-a251-d4f0630b73e4');
-IPython.notebook.save_notebook();
-</script>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Saving notebook... </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING:root:Could not save your notebook (timed out waiting for IPython save). Make sure your notebook is saved and export again.
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Converting notebook...
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<p>Successfully converted!</p>
-<p><a href="GLBRC_Report2.html" target="_blank" download>Click to download your webpage.</a></p>
-<p>To host your webpage, see the documentation:
-<a href="https://www.nbinteract.com/tutorial/tutorial_publishing.html"
-        target="_blank">
-    https://www.nbinteract.com/tutorial/tutorial_publishing.html
-</a></p>
-
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -14507,102 +14466,102 @@ IPython.notebook.save_notebook();
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">friends</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> has </span><span class="si">{}</span><span class="s1"> friends!&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
-<span class="n">interact</span><span class="p">(</span><span class="n">friends</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Sam&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;One&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Five&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Ten&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">});</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># def friends(name, number):</span>
+<span class="c1">#     return &#39;{} has {} friends!&#39;.format(name, number)</span>
+<span class="c1"># interact(friends, name=&#39;Sam&#39;, number={&#39;One&#39;: 1, &#39;Five&#39;: 5, &#39;Ten&#39;: 10});</span>
 
-<span class="c1"># TEST #25 yo</span>
-<span class="c1"># Avoid &quot;JavaScript heap out of memory&quot; errors during extension installation</span>
-<span class="c1"># (OS X/Linux)</span>
-<span class="c1"># !export NODE_OPTIONS=--max-old-space-size=4096</span>
-<span class="c1"># # Jupyter widgets extension</span>
-<span class="c1"># !jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.1 --no-build</span>
-<span class="c1"># !jupyter labextension install plotlywidget@1.4.0 --no-build</span>
-<span class="c1"># # Unset NODE_OPTIONS environment variable</span>
+<span class="c1"># # TEST #25 yo</span>
+<span class="c1"># # Avoid &quot;JavaScript heap out of memory&quot; errors during extension installation</span>
 <span class="c1"># # (OS X/Linux)</span>
-<span class="c1"># !unset NODE_OPTIONS</span>
-
-<span class="kn">import</span> <span class="nn">plotly</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
-
-<span class="n">plotly</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">plot</span><span class="p">({</span>
-    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])],</span>
-    <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;hello world1&quot;</span><span class="p">)</span>
-<span class="p">},</span> <span class="n">auto_open</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
-<span class="c1"># html display</span>
-<span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;temp-plot.html&#39;</span><span class="p">)</span>
+<span class="c1"># # !export NODE_OPTIONS=--max-old-space-size=4096</span>
+<span class="c1"># # # Jupyter widgets extension</span>
+<span class="c1"># # !jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.1 --no-build</span>
+<span class="c1"># # !jupyter labextension install plotlywidget@1.4.0 --no-build</span>
+<span class="c1"># # # Unset NODE_OPTIONS environment variable</span>
+<span class="c1"># # # (OS X/Linux)</span>
+<span class="c1"># # !unset NODE_OPTIONS</span>
 
 <span class="c1"># import plotly</span>
 <span class="c1"># import plotly.graph_objs as go</span>
 
 <span class="c1"># plotly.offline.plot({</span>
 <span class="c1">#     &quot;data&quot;: [go.Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],</span>
-<span class="c1">#     &quot;layout&quot;: go.Layout(title=&quot;hello world2&quot;)</span>
-<span class="c1"># })</span>
+<span class="c1">#     &quot;layout&quot;: go.Layout(title=&quot;hello world1&quot;)</span>
+<span class="c1"># }, auto_open=True)</span>
 
-<span class="c1">#HIDDEN</span>
-<span class="c1"># import sys</span>
-<span class="c1"># !{sys.executable} -m pip install nodejs ipywidgets==7.5.0 jupyterlab matplotlib_venn cufflinks sklearn numpy pandas scipy matplotlib plotly==4.3.0 nbinteract jupyter_contrib_nbextensions </span>
-<span class="c1"># # nbextension</span>
-<span class="c1"># !{sys.executable} -m jupyter contrib nbextension install --user</span>
-<span class="c1"># !{sys.executable} -m jupyter labextension install @jupyter-widgets/jupyterlab-manager</span>
-<span class="c1"># !{sys.executable} -m jupyter nbextension enable --py --sys-prefix widgetsnbextension</span>
-<span class="c1"># !{sys.executable} -m jupyter nbextension enable --py --sys-prefix bqplot</span>
-<span class="c1"># !{sys.executable} -m jupyter labextension install @jupyterlab/celltags</span>
-<span class="c1"># !conda update jupyterlab &amp;&amp; jupyter labextension update --all</span>
-<span class="c1"># !jupyter contrib nbextension install</span>
-<span class="c1"># !jupyter labextension install jupyter-matplotlib</span>
-<span class="c1"># !jupyter labextension install @jupyter-widgets/jupyterlab-manager</span>
-<span class="c1"># !jupyter labextension install @jupyterlab/plotly-extension</span>
-<span class="c1"># !jupyter labextension install @jupyterlab/celltags</span>
-<span class="c1"># !jupyter lab build</span>
-<span class="c1"># !jupyter nbextension enable --py --sys-prefix bqplot</span>
-<span class="c1"># !jupyter nbextension enable --py widgetsnbextension --sys-prefix</span>
-<span class="c1"># !jupyter nbextension enable --py plotlywidget --sys-prefix</span>
-<span class="c1">#conda install -n base bedtools samtools khmer numpy scipy sra-tools trimmomatic jupyterlab </span>
-<span class="c1">#jupyter_contrib_nbextensions widgetsnbextension nodejs sra-tools r-essentials r-base r-rsqlite r-vegan bioconductor-biocinstaller </span>
-<span class="o">!</span>jupyter trust GLBRC_Report2.ipynb
-<span class="c1"># from plotly.offline import download_plotlyjs, init_notebook_mode</span>
-<span class="c1"># init_notebook_mode(connected=True)</span>
-<span class="c1"># import plotly.io as pio</span>
-<span class="c1"># import plotly.graph_objects as go</span>
-<span class="c1"># print(pio.renderers)</span>
-<span class="c1"># fig = go.Figure(</span>
-<span class="c1">#     data=[go.Bar(y=[2, 1, 3])],</span>
-<span class="c1">#     layout_title_text=&quot;Testing dif options for rendeerers; jupLab&quot;</span>
-<span class="c1"># )</span>
-<span class="c1"># fig.show(renderer=&quot;jupyterlab&quot;)</span>
-<span class="c1"># fig = go.Figure(</span>
-<span class="c1">#     data=[go.Bar(y=[2, 1, 3])],</span>
-<span class="c1">#     layout_title_text=&quot;Testing dif options for rendeerers; nteract&quot;</span>
-<span class="c1"># )</span>
-<span class="c1"># fig.show(renderer=&quot;nteract&quot;)</span>
-<span class="c1"># import plotly</span>
-<span class="c1"># import plotly.graph_objs as go</span>
-<span class="c1"># plotly.offline.init_notebook_mode(connected=True)</span>
-<span class="c1"># p = plotly.offline.iplot({</span>
-<span class="c1">#     &quot;data&quot;: [go.Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],</span>
-<span class="c1">#     &quot;layout&quot;: go.Layout(title=&quot;hello world&quot;),</span>
-<span class="c1"># })</span>
-<span class="c1"># str(p)</span>
-<span class="c1"># fig = go.Figure(</span>
-<span class="c1">#     data=[go.Bar(y=[2, 1, 3])],</span>
-<span class="c1">#     layout_title_text=&quot;Testing dif options for rendeerers; plotly_mimetype&quot;</span>
-<span class="c1"># )</span>
-<span class="c1"># fig.show(renderer=&quot;plotly_mimetype&quot;,auto_open=True)</span>
-<span class="c1"># import numpy as np</span>
-<span class="c1"># import chart_studio.plotly as py</span>
-<span class="c1"># import plotly.graph_objs as go</span>
-<span class="c1"># # py.offline.init_notebook_mode()</span>
-<span class="c1"># a = np.linspace(start=0, stop=36, num=36)</span>
-<span class="c1"># np.random.seed(25)</span>
-<span class="c1"># b = np.random.uniform(low=0.0, high=1.0, size=36)</span>
-<span class="c1"># trace = go.Scatter(x=a, y=b)</span>
-<span class="c1"># data = [trace]</span>
-<span class="c1"># py.iplot(data, filename = &#39;basic-file&#39;)</span>
-<span class="c1"># done I</span>
+<span class="c1"># from IPython.core.display import HTML</span>
+<span class="c1"># # html display</span>
+<span class="c1"># HTML(&#39;temp-plot.html&#39;)</span>
+
+<span class="c1"># # import plotly</span>
+<span class="c1"># # import plotly.graph_objs as go</span>
+
+<span class="c1"># # plotly.offline.plot({</span>
+<span class="c1"># #     &quot;data&quot;: [go.Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],</span>
+<span class="c1"># #     &quot;layout&quot;: go.Layout(title=&quot;hello world2&quot;)</span>
+<span class="c1"># # })</span>
+
+<span class="c1"># #HIDDEN</span>
+<span class="c1"># # import sys</span>
+<span class="c1"># # !{sys.executable} -m pip install nodejs ipywidgets==7.5.0 jupyterlab matplotlib_venn cufflinks sklearn numpy pandas scipy matplotlib plotly==4.3.0 nbinteract jupyter_contrib_nbextensions </span>
+<span class="c1"># # # nbextension</span>
+<span class="c1"># # !{sys.executable} -m jupyter contrib nbextension install --user</span>
+<span class="c1"># # !{sys.executable} -m jupyter labextension install @jupyter-widgets/jupyterlab-manager</span>
+<span class="c1"># # !{sys.executable} -m jupyter nbextension enable --py --sys-prefix widgetsnbextension</span>
+<span class="c1"># # !{sys.executable} -m jupyter nbextension enable --py --sys-prefix bqplot</span>
+<span class="c1"># # !{sys.executable} -m jupyter labextension install @jupyterlab/celltags</span>
+<span class="c1"># # !conda update jupyterlab &amp;&amp; jupyter labextension update --all</span>
+<span class="c1"># # !jupyter contrib nbextension install</span>
+<span class="c1"># # !jupyter labextension install jupyter-matplotlib</span>
+<span class="c1"># # !jupyter labextension install @jupyter-widgets/jupyterlab-manager</span>
+<span class="c1"># # !jupyter labextension install @jupyterlab/plotly-extension</span>
+<span class="c1"># # !jupyter labextension install @jupyterlab/celltags</span>
+<span class="c1"># # !jupyter lab build</span>
+<span class="c1"># # !jupyter nbextension enable --py --sys-prefix bqplot</span>
+<span class="c1"># # !jupyter nbextension enable --py widgetsnbextension --sys-prefix</span>
+<span class="c1"># # !jupyter nbextension enable --py plotlywidget --sys-prefix</span>
+<span class="c1"># #conda install -n base bedtools samtools khmer numpy scipy sra-tools trimmomatic jupyterlab </span>
+<span class="c1"># #jupyter_contrib_nbextensions widgetsnbextension nodejs sra-tools r-essentials r-base r-rsqlite r-vegan bioconductor-biocinstaller </span>
+<span class="c1"># !jupyter trust GLBRC_Report2.ipynb</span>
+<span class="c1"># # from plotly.offline import download_plotlyjs, init_notebook_mode</span>
+<span class="c1"># # init_notebook_mode(connected=True)</span>
+<span class="c1"># # import plotly.io as pio</span>
+<span class="c1"># # import plotly.graph_objects as go</span>
+<span class="c1"># # print(pio.renderers)</span>
+<span class="c1"># # fig = go.Figure(</span>
+<span class="c1"># #     data=[go.Bar(y=[2, 1, 3])],</span>
+<span class="c1"># #     layout_title_text=&quot;Testing dif options for rendeerers; jupLab&quot;</span>
+<span class="c1"># # )</span>
+<span class="c1"># # fig.show(renderer=&quot;jupyterlab&quot;)</span>
+<span class="c1"># # fig = go.Figure(</span>
+<span class="c1"># #     data=[go.Bar(y=[2, 1, 3])],</span>
+<span class="c1"># #     layout_title_text=&quot;Testing dif options for rendeerers; nteract&quot;</span>
+<span class="c1"># # )</span>
+<span class="c1"># # fig.show(renderer=&quot;nteract&quot;)</span>
+<span class="c1"># # import plotly</span>
+<span class="c1"># # import plotly.graph_objs as go</span>
+<span class="c1"># # plotly.offline.init_notebook_mode(connected=True)</span>
+<span class="c1"># # p = plotly.offline.iplot({</span>
+<span class="c1"># #     &quot;data&quot;: [go.Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],</span>
+<span class="c1"># #     &quot;layout&quot;: go.Layout(title=&quot;hello world&quot;),</span>
+<span class="c1"># # })</span>
+<span class="c1"># # str(p)</span>
+<span class="c1"># # fig = go.Figure(</span>
+<span class="c1"># #     data=[go.Bar(y=[2, 1, 3])],</span>
+<span class="c1"># #     layout_title_text=&quot;Testing dif options for rendeerers; plotly_mimetype&quot;</span>
+<span class="c1"># # )</span>
+<span class="c1"># # fig.show(renderer=&quot;plotly_mimetype&quot;,auto_open=True)</span>
+<span class="c1"># # import numpy as np</span>
+<span class="c1"># # import chart_studio.plotly as py</span>
+<span class="c1"># # import plotly.graph_objs as go</span>
+<span class="c1"># # # py.offline.init_notebook_mode()</span>
+<span class="c1"># # a = np.linspace(start=0, stop=36, num=36)</span>
+<span class="c1"># # np.random.seed(25)</span>
+<span class="c1"># # b = np.random.uniform(low=0.0, high=1.0, size=36)</span>
+<span class="c1"># # trace = go.Scatter(x=a, y=b)</span>
+<span class="c1"># # data = [trace]</span>
+<span class="c1"># # py.iplot(data, filename = &#39;basic-file&#39;)</span>
+<span class="c1"># # done I</span>
 </pre></div>
 
     </div>
@@ -14619,35 +14578,35 @@ IPython.notebook.save_notebook();
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#HIDDEN</span>
-<span class="o">%</span><span class="k">matplotlib</span> widget
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
-<span class="n">disp</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Percentage&quot;</span><span class="p">:{</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/BothPerc.html&quot;</span><span class="p">),</span> <span class="s2">&quot;Switchgrass&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/SwitchPerc.html&quot;</span><span class="p">),</span> <span class="s2">&quot;Miscanthus&quot;</span><span class="p">:</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;html/MiscanPerc.html&quot;</span><span class="p">),}}</span>
-<span class="nd">@interact</span>
-<span class="k">def</span> <span class="nf">graph2</span><span class="p">(</span><span class="n">Host_Plant</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Switchgrass &amp; Miscanthus&quot;</span><span class="p">,</span><span class="s2">&quot;Switchgrass&quot;</span><span class="p">,</span><span class="s2">&quot;Miscanthus&quot;</span><span class="p">],</span><span class="n">By</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Percentage&quot;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">]):</span> <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">disp</span><span class="p">[</span><span class="n">By</span><span class="p">][</span><span class="n">Host_Plant</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># #HIDDEN</span>
+<span class="c1"># %matplotlib widget</span>
+<span class="c1"># from IPython.display import display, HTML</span>
+<span class="c1"># disp = {&quot;Percentage&quot;:{&quot;Switchgrass &amp; Miscanthus&quot;: HTML(&quot;html/BothPerc.html&quot;), &quot;Switchgrass&quot;: HTML(&quot;html/SwitchPerc.html&quot;), &quot;Miscanthus&quot;: HTML(&quot;html/MiscanPerc.html&quot;),}}</span>
+<span class="c1"># @interact</span>
+<span class="c1"># def graph2(Host_Plant=[&quot;Switchgrass &amp; Miscanthus&quot;,&quot;Switchgrass&quot;,&quot;Miscanthus&quot;],By=[&quot;Percentage&quot;,&quot;Count&quot;]): return display(disp[By][Host_Plant])</span>
 
-<span class="n">fg</span> <span class="o">=</span> <span class="n">metadataG</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;plot_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;percPlantAligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-<span class="kn">import</span> <span class="nn">cufflinks</span> <span class="k">as</span> <span class="nn">cf</span>
-<span class="kn">import</span> <span class="nn">plotly</span> <span class="k">as</span> <span class="nn">py</span>
-<span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="k">import</span> <span class="n">download_plotlyjs</span><span class="p">,</span> <span class="n">init_notebook_mode</span><span class="p">,</span> <span class="n">plot</span><span class="p">,</span> <span class="n">iplot</span>
-<span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">connected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">cf</span><span class="o">.</span><span class="n">go_offline</span><span class="p">()</span>
-<span class="n">filename</span><span class="o">=</span><span class="s2">&quot;BothPerc.html&quot;</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">asFigure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;% Reads Aligning to Respective Plant Host Assembly G5=Switchgrass G6=Miscanthus&quot;</span><span class="p">)</span>
-<span class="n">py</span><span class="o">.</span><span class="n">offline</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+<span class="c1"># fg = metadataG.groupby([&#39;Date&#39;,&#39;plot_name&#39;]).sum()[&#39;percPlantAligned&#39;].unstack()</span>
+<span class="c1"># import cufflinks as cf</span>
+<span class="c1"># import plotly as py</span>
+<span class="c1"># from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot</span>
+<span class="c1"># init_notebook_mode(connected=True)</span>
+<span class="c1"># cf.go_offline()</span>
+<span class="c1"># filename=&quot;BothPerc.html&quot;</span>
+<span class="c1"># fig = fg.iplot(asFigure=True,title=&quot;% Reads Aligning to Respective Plant Host Assembly G5=Switchgrass G6=Miscanthus&quot;)</span>
+<span class="c1"># py.offline.plot(fig,filename=filename)</span>
 
 
-<span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;alert alert-block alert-success&quot;</span><span class="o">&gt;</span>
+<span class="c1"># &lt;div class=&quot;alert alert-block alert-success&quot;&gt;</span>
 
-<span class="p">[</span><span class="n">Outline</span><span class="p">](</span><span class="c1">#home)</span>
+<span class="c1"># [Outline](#home)</span>
 
-<span class="n">Skip</span> <span class="n">to</span><span class="p">:</span>   
-<span class="o">*</span>  <span class="p">[</span><span class="n">PCoA</span><span class="p">](</span><span class="c1">#readbd)</span>
-<span class="o">*</span>  <span class="p">[</span><span class="n">Host</span> <span class="n">Plant</span> <span class="n">Alignment</span> <span class="n">Report</span><span class="p">](</span><span class="c1">#pAlign)</span>
-<span class="o">*</span>  <span class="p">[</span><span class="n">Fungal</span> <span class="n">Alignments</span><span class="p">](</span><span class="c1">#fAlign)</span>
-<span class="o">*</span>  <span class="n">Alignment</span> <span class="n">Conclusions</span>
+<span class="c1"># Skip to:   </span>
+<span class="c1"># *  [PCoA](#readbd)</span>
+<span class="c1"># *  [Host Plant Alignment Report](#pAlign)</span>
+<span class="c1"># *  [Fungal Alignments](#fAlign)</span>
+<span class="c1"># *  Alignment Conclusions</span>
     
-<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="c1"># &lt;/div&gt;</span>
 
 
 
@@ -14668,10 +14627,10 @@ IPython.notebook.save_notebook();
 
 
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;mapping/metaT/hostRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataT</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">metadataT</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">metadataT</span>
+<span class="c1"># df = read_csv(&quot;mapping/metaT/hostRemovalFlagstats/multiqc_data/multiqc_bowtie2.txt&quot;,sep=&#39;\t&#39;)</span>
+<span class="c1"># df.set_index(&quot;Sample&quot;,inplace=True)</span>
+<span class="c1"># metadataT = merge(metadataT,df,left_index=True,right_index=True)</span>
+<span class="c1"># metadataT</span>
 </pre></div>
 
     </div>
