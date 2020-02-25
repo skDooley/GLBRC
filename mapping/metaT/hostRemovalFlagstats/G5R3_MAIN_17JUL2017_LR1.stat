@@ -1,16 +1,16 @@
 gzip: /mnt/gs18/scratch/users/dooleys1/metaT/trimmed/G5R3_MAIN_17JUL2017_LR1.fastq.se12.gz: No such file or directory
-97163936 reads; of these:
-  97163936 (100.00%) were paired; of these:
-    45933786 (47.27%) aligned concordantly 0 times
-    16529119 (17.01%) aligned concordantly exactly 1 time
-    34701031 (35.71%) aligned concordantly >1 times
+97162768 reads; of these:
+  97162768 (100.00%) were paired; of these:
+    41419042 (42.63%) aligned concordantly 0 times
+    17332735 (17.84%) aligned concordantly exactly 1 time
+    38410991 (39.53%) aligned concordantly >1 times
     ----
-    45933786 pairs aligned concordantly 0 times; of these:
-      1508552 (3.28%) aligned discordantly 1 time
+    41419042 pairs aligned concordantly 0 times; of these:
+      670546 (1.62%) aligned discordantly 1 time
     ----
-    44425234 pairs aligned 0 times concordantly or discordantly; of these:
-      88850468 mates make up the pairs; of these:
-        68570271 (77.17%) aligned 0 times
-        3350007 (3.77%) aligned exactly 1 time
-        16930190 (19.05%) aligned >1 times
-64.71% overall alignment rate
+    40748496 pairs aligned 0 times concordantly or discordantly; of these:
+      81496992 mates make up the pairs; of these:
+        65850668 (80.80%) aligned 0 times
+        3082010 (3.78%) aligned exactly 1 time
+        12564314 (15.42%) aligned >1 times
+66.11% overall alignment rate
