@@ -6,8 +6,8 @@ library(stringr)
 suppressMessages(library(vegan))
 # getwd()
 
-# otu <- read.table("figures/tables/GeneCounts.tsv",sep="\t", header=TRUE, stringsAsFactors = FALSE, row.names=1, quote="\"")
-otu <- read.table("annotations/Level3_CountTable_logged2.tsv",sep="\t", header=TRUE, stringsAsFactors = FALSE, row.names=1, quote="\"")
+otu <- read.table("figures/tables/GeneCounts.tsv",sep="\t", header=TRUE, stringsAsFactors = FALSE, row.names=1, quote="\"")
+#otu <- read.table("annotations/Level3_CountTable_logged2.tsv",sep="\t", header=TRUE, stringsAsFactors = FALSE, row.names=1, quote="\"")
 
 # otu <- read.table("annotations/Level3_CountTable_logged2.tsv",sep="\t", header=TRUE, stringsAsFactors = FALSE, row.names=1, quote="\"")
 otu[is.na(otu)] <- 0
@@ -61,7 +61,6 @@ map_filtered = map_filtered[order(mapcols),]
 mapcols = map_filtered$sequence_name
 
 # sum(cols == mapcols)
-
 library(ggplot2)
 library(scales)
 otu_rare = otu
@@ -340,14 +339,14 @@ temp.2017$OTU <- row.names(switch.collapsed.otu.2017)
 
 switch.collapsed.otu.matched <- inner_join(temp.2016, temp.2017, by="OTU")
 switch.collapsed.otu.matched$OTU <- NULL
-switch.collapsed.dist.2016 <- vegdist(t(switch.collapsed.otu.2016), method="bray")
-switch.collapsed.dist.2017 <- vegdist(t(switch.collapsed.otu.2017), method="bray")
-switch.collapsed.dist.both <- vegdist(t(switch.collapsed.otu.matched), method="bray")
-switch.collapsed.pcoa.2016 <- cmdscale(switch.collapsed.dist.2016, eig=TRUE)
-switch.collapsed.pcoa.2017 <- cmdscale(switch.collapsed.dist.2017, eig=TRUE)
-protest(switch.collapsed.pcoa.2016, switch.collapsed.pcoa.2017)
-protest(switch.collapsed.dist.2016, switch.collapsed.dist.2017)
-adonis(switch.collapsed.dist.both~c(rep(2016, 7), rep(2017,7)))
+#switch.collapsed.dist.2016 <- vegdist(t(switch.collapsed.otu.2016), method="bray")
+#switch.collapsed.dist.2017 <- vegdist(t(switch.collapsed.otu.2017), method="bray")
+#switch.collapsed.dist.both <- vegdist(t(switch.collapsed.otu.matched), method="bray")
+#switch.collapsed.pcoa.2016 <- cmdscale(switch.collapsed.dist.2016, eig=TRUE)
+#switch.collapsed.pcoa.2017 <- cmdscale(switch.collapsed.dist.2017, eig=TRUE)
+#protest(switch.collapsed.pcoa.2016, switch.collapsed.pcoa.2017)
+#protest(switch.collapsed.dist.2016, switch.collapsed.dist.2017)
+#adonis(switch.collapsed.dist.both~c(rep(2016, 7), rep(2017,7)))
 
 switch.phyllo.map <- map_16S[map_16S$plant=="switchgrass"&map_16S$source=="phyllosphere",]
 switch.dist.2017 <- vegdist(t(switch.otu.2017), method = "bray")
@@ -369,12 +368,12 @@ map_switchgrass_matched_dates <- map_switchgrass_sub[map_switchgrass_sub$samplin
 matched_dates <- unique(map_miscanthus_matched_dates$sampling_date)
 day_misc <- NULL
 day_switch <- NULL
-for(i in 1:length(matched_dates)){
-  temp_misc <- otu_miscanthus_matched_dates[,map_miscanthus_matched_dates$sampling_date==matched_dates[i]]
-  temp_switch <- otu_switchgrass_matched_dates[,map_switchgrass_matched_dates$sampling_date==matched_dates[i]]
-  day_misc <- rbind(day_misc,(rowSums(temp_misc)/ncol(temp_misc)))
-  day_switch <- rbind(day_switch,(rowSums(temp_switch)/ncol(temp_switch)))
-}
+# for(i in 1:length(matched_dates)){
+#   temp_misc <- otu_miscanthus_matched_dates[,map_miscanthus_matched_dates$sampling_date==matched_dates[i]]
+#   temp_switch <- otu_switchgrass_matched_dates[,map_switchgrass_matched_dates$sampling_date==matched_dates[i]]
+#   day_misc <- rbind(day_misc,(rowSums(temp_misc)/ncol(temp_misc)))
+#   day_switch <- rbind(day_switch,(rowSums(temp_switch)/ncol(temp_switch)))
+# }
 day_misc <- t(day_misc)
 day_switch<-(t(day_switch))
 row.names(day_misc) <- row.names(otu_miscanthus_matched_dates)
@@ -891,16 +890,16 @@ misc_otu <- otu_rare[,map_16S$plant=="miscanthus"]
 swit16_otu <- otu_rare[,map_16S$plant=="switchgrass"]
 
 # make presence absence list from soil and plant into 1 & 0
-swit16_otu_venn <- 1*(rowSums(swit16_otu)>0)
-misc16_otu_venn <- 1*(rowSums(misc_otu)>0)
+# swit16_otu_venn <- 1*(rowSums(swit16_otu)>0)
+# misc16_otu_venn <- 1*(rowSums(misc_otu)>0)
 
 #' plot Venn
-venn_phyllo_data <- cbind(swit16_otu_venn, misc16_otu_venn)
-colnames(venn_phyllo_data) <- c("Switchgrass 2016", "Miscanthus 2016")
-venn_phyllo_data=venn_phyllo_data[rowSums(venn_phyllo_data)>0,]
-v_phyllo=vennCounts(venn_phyllo_data)
-v_phyllo_2=round(v_phyllo[,"Counts"]/sum(v_phyllo[,"Counts"]),2) #calculate percentage of each group
-vennDiagram(v_phyllo, circle.col = c('darkolivegreen3','darkgreen'), lwd=6, cex=1.2, scale=F)
+# venn_phyllo_data <- cbind(swit16_otu_venn, misc16_otu_venn)
+# colnames(venn_phyllo_data) <- c("Switchgrass 2016", "Miscanthus 2016")
+# venn_phyllo_data=venn_phyllo_data[rowSums(venn_phyllo_data)>0,]
+# v_phyllo=vennCounts(venn_phyllo_data)
+# v_phyllo_2=round(v_phyllo[,"Counts"]/sum(v_phyllo[,"Counts"]),2) #calculate percentage of each group
+# vennDiagram(v_phyllo, circle.col = c('darkolivegreen3','darkgreen'), lwd=6, cex=1.2, scale=F)
 
 #############################
 #Occupancy abundance analysis
