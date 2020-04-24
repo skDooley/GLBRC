@@ -904,8 +904,11 @@ swit16_otu <- otu_rare[,map_16S$plant=="switchgrass"]
 #############################
 #Occupancy abundance analysis
 #############################
-
 #Core analysis V2
+otu_rare=otu_rare[rowSums(otu_rare)>0,]
+map_16S = map_genes
+misc_otu <- otu_rare[,map_16S$plant=="miscanthus"]
+swit16_otu <- otu_rare[,map_16S$plant=="switchgrass"]
 rel_otu_rare <- decostand(otu_rare, method="total", MARGIN=2)
 selected_otus <- data.frame(otu = as.factor(row.names(rel_otu_rare)), rel_otu_rare) %>% gather(sequence_name, abun, -otu) %>% 
   left_join(map_16S[, c('sequence_name','rep','time_numeric', 'treatment' ,'source', 'plant', 'month', 'sampling_date', 
