@@ -13,28 +13,29 @@ otu <- read.table("annotations/Level3_CountTable_logged2.tsv",sep="\t", header=T
 otu[is.na(otu)] <- 0
 
 #Preping the environmental metadata
-glbrc <- dbConnect(SQLite(), dbname="ShadeLabCode/R/InputFiles/GLBRC_bioenergy_db.db" )
+glbrc <- dbConnect(SQLite(), dbname="ShadeLabCode/pickles/GLBRC_db/R/InputFiles/GLBRC_bioenergy_db.db" )
 
-# #get tables into R
-glbrc_NA <-suppressWarnings(dbGetQuery(glbrc, "select * from nucleic_acids"))
-glbrc_soil <- suppressWarnings(dbGetQuery(glbrc, 'select * from soil'))
-glbrc_plant <- suppressWarnings(dbGetQuery(glbrc, 'select * from plant'))
-glbrc_plot <- suppressWarnings(dbGetQuery(glbrc, 'select * from plot'))
-glbrc_sampling <- suppressWarnings(dbGetQuery(glbrc, 'select * from sampling'))
-glbrc_sequncing <- suppressWarnings(dbGetQuery(glbrc, 'select * from sequencing'))
-glbrc_sequncing <- suppressWarnings(glbrc_sequncing %>% 
-  mutate(nucleic_acid_name = str_trim(glbrc_sequncing$nucleic_acid_name, side = "both")))
+#get tables into R
+glbrc_NA <- dbGetQuery(glbrc, "select * from nucleic_acids") 
+glbrc_soil <- dbGetQuery(glbrc, 'select * from soil')
+glbrc_plant <- dbGetQuery(glbrc, 'select * from plant')
+glbrc_plot <- dbGetQuery(glbrc, 'select * from plot')
+glbrc_sampling <- dbGetQuery(glbrc, 'select * from sampling')
+glbrc_sequncing <- dbGetQuery(glbrc, 'select * from sequencing')
+glbrc_sequncing <- glbrc_sequncing %>% 
+  mutate(nucleic_acid_name = str_trim(glbrc_sequncing$nucleic_acid_name, side = "both"))
 
 #joining tables to create complete map file
-metadata <- full_join(glbrc_plot, glbrc_sampling, by='plotID')
+metadata <- full_join(glbrc_sampling, glbrc_plot, by='plotID')
 metadata <- full_join(metadata, glbrc_soil, by='sampleID')
 metadata <- full_join(metadata, glbrc_plant, by='sampleID')
 metadata <- full_join(metadata, glbrc_NA, by='sampleID')
 metadata <- full_join(metadata, glbrc_sequncing, by='nucleic_acid_name')
 
-map <- metadata
+map_full <- metadata
+
 map_mg<- subset(map, map$sequencing_type== "Illumina Hiseq Metagenome Sequencing")
-map_full = map
+(map_full)
 
 #creating numeric time column
 map_full$sampling_date <- paste0(map_full$month,'-', map_full$day,'-',map_full$year) 
@@ -291,14 +292,19 @@ Fig2B <- ggplot(plant.points.collapsed, aes(x=Axis1, y=Axis2))+
         panel.background = element_blank(), axis.line = element_line(colour = "black"))+
   theme(legend.position = "none")
 # ggsave(filename = "ShadeLabCode/R/Figures/Figure2B_PhyllospherePCoAGenes.eps", Fig2B, device = "eps", height = 6, width = 6, units = "in")
-ggsave(filename = "ShadeLabCode/R/Figures/Figure2B_PhyllospherePCoAGenes2.png", Fig2B, device = "png", height = 6, width = 6, units = "in")
+#ggsave(filename = "ShadeLabCode/R/Figures/Figure2B_PhyllospherePCoAGenes2.png", Fig2B, device = "png", height = 6, width = 6, units = "in")
 Fig2B
 
 otu_genes = otu_rare
-map_genes = map_16S
+#map_genes = map_16S
 otu_16S = readRDS("ShadeLabCode/pickles/otu_1000.rds")
 map_16S = readRDS("ShadeLabCode/pickles/map_1000.rds")
-# sum(colnames(otu_genes)%in%colnames(otu_16S))
+map_genes = read.table("ShadeLabCode/pickles/GLBRC_db/R/Outputs/2016_MetaG_map.txt", header=T, sep='\t')
+otu_genes = otu_genes[,order(colnames(otu_genes))]
+
+map_genes = map_genes[order(map_genes$nucleic_acid_name),]
+map_genes$nucleic_acid_name == colnames(otu_genes)
+
 otu_genes_overlap <- otu_genes[,colnames(otu_genes)%in%colnames(otu_16S)]
 otu_16S_overlap <- otu_16S[,colnames(otu_16S)%in%colnames(otu_genes)]
 # dim(otu_genes_overlap)
