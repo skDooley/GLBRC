@@ -23,6 +23,6 @@ MEM=400e9
 
 echo "Starting the metagenome assembly at: ${date}"
 
-megahit --kmin-1pass -1 $(cat R1s.txt) -2 $(cat R2s.txt) --presets meta-large -o GLBRC_UNFILTERED_Metagenome --num-cpu-threads 40 -m $MEM           
+megahit --kmin-1pass -1 $(cat R1s.txt) -2 $(cat R2s.txt) -r se1s.fastq.gz,se2s.fastq.gz --presets meta-large -o GLBRC_UNFILTERED_Metagenome --num-cpu-threads 40 -m $MEM           
 
 echo "Finished the metagenome assembly at: ${date}"
